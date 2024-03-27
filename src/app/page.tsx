@@ -1,30 +1,14 @@
-import Image from "next/image";
+import Nav from "@/components/Nav";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full mx-auto"> 
-    {/* este div ocupará todo el alto de la pantalla */} 
-      <header className="flex flex-col justify-between px-24 py-5">
-        <Image
-          src="/logo.png"
-          alt="Logo de PitsaJaus"
-          width={100}
-          height={100}
-          priority
-        />
-        <nav>
-          <ul>
-            <li>Nuestra carta</li>
-            <li>Encuentra tu PitsaJaus</li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-
+    <div className="min-h-screen">
+      {/* este div ocupará todo el alto de la pantalla */}
+      <Nav/>
+      <main className="container mx-auto bg-blue-500">
+        <h1>Esto es el main</h1>
       </main>
-      <footer>
-
-      </footer>
+      <footer></footer>
     </div>
   );
 }
