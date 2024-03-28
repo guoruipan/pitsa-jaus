@@ -19,7 +19,6 @@ export default function Footer() {
           </li>
         </ul>
         <ul className="flex space-x-4">
-          {/* https://tw-elements.com/docs/standard/components/social-buttons/ */}
           <li>
             <InstagramButton/>
           </li>
