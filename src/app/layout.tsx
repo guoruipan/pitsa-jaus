@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Nav />
-        <main className="container mx-auto">
+        <main className="container mx-auto my-6">
           {children}
         </main>
         <Footer />
