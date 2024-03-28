@@ -7,7 +7,7 @@ export default function Nav() {
       {/* sticky top-0 sirve para hacer que el menú permanezca al hacer scroll */}
       {/* justify-between empuja los dos divs a la izquierda y derecha */}
       {/* items-center alinea los elementos en el centro el eje x */}
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <Link href="/" className="hover:underline">
           <Image
             src="/logo.png"
@@ -18,7 +18,8 @@ export default function Nav() {
             className="rounded-full"
           />
         </Link>
-        <ul className="ml-6 flex space-x-4">
+        <ul className="ml-6 hidden md:flex space-x-4">
+          {/* oculto hasta que llegue al breakpoint md */}
           <li>
             <Link href="/carta" className="hover:underline">
               Nuestra carta
