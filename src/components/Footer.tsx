@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {InstagramButton, FacebookButton} from "./SocialButton";
 
 export default function Footer() {
   return (
@@ -20,8 +21,10 @@ export default function Footer() {
         <ul className="flex space-x-4">
           {/* https://tw-elements.com/docs/standard/components/social-buttons/ */}
           <li>
+            <InstagramButton/>
           </li>
           <li>
+            <FacebookButton/>
           </li>
         </ul>
       </div>
