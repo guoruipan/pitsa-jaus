@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {InstagramButton, FacebookButton} from "./SocialButton";
+import {InstagramButton, FacebookButton} from "./icons/SocialButton";
 
 export default function Footer() {
   return (
@@ -9,8 +9,8 @@ export default function Footer() {
         &copy; {new Date().getFullYear()} - Todos los derechos reservados.
       </div>
 
-      <div className="flex justify-between px-10 items-center">
-        <ul className="flex space-x-4">
+      <div className="flex flex-col md:flex-row justify-between px-10 items-center">
+        <ul className="flex space-x-4 mb-4 md:mb-0">
           <li>
             <Link href="/politica-privacidad">Política de privacidad</Link>
           </li>
@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href="/terminos-condiciones">Términos y condiciones</Link>
           </li>
         </ul>
-        <ul className="flex space-x-4">
+        <ul className="flex flex-wrap md:flex-no-wrap space-x-4">
           <li>
             <InstagramButton/>
           </li>

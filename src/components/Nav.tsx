@@ -1,12 +1,32 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import HamburgerIcon from "./icons/HamburgerIcon";
 
 export default function Nav() {
+  // para controlar el estado del menú hamburguesa
+  const [isOpen, setIsOpen] = useState(false);
+
+  function handleClick() {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <nav className="sticky top-0 bg-orange-700 px-10 py-4 flex justify-between items-center text-white">
       {/* sticky top-0 sirve para hacer que el menú permanezca al hacer scroll */}
       {/* justify-between empuja los dos divs a la izquierda y derecha */}
       {/* items-center alinea los elementos en el centro el eje x */}
+      <div className="md:hidden">
+        {/* Icono del menú hamburguesa */}
+        <button
+          onClick={handleClick}
+          className="outline-none focus:outline-none"
+        >
+          <HamburgerIcon />
+        </button>
+      </div>
       <div className="flex items-center">
         <Link href="/" className="hover:underline">
           <Image
@@ -18,7 +38,7 @@ export default function Nav() {
             className="rounded-full"
           />
         </Link>
-        <ul className="ml-6 hidden md:flex space-x-4">
+        <ul className={`ml-6 ${isOpen ? "flex" : "hidden"} md:flex space-x-4`}>
           {/* oculto hasta que llegue al breakpoint md */}
           <li>
             <Link href="/carta" className="hover:underline">

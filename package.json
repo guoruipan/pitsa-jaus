@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@vercel/postgres": "^0.7.2",
     "next": "14.1.4",
     "react": "^18",
