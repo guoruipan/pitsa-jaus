@@ -41,12 +41,12 @@ export default function Nav() {
         <ul className={`ml-6 ${isOpen ? "flex" : "hidden"} md:flex space-x-4`}>
           {/* oculto hasta que llegue al breakpoint md */}
           <li>
-            <Link href="/carta" className="hover:underline">
+            <Link href="/menu" className="hover:underline">
               Nuestra carta
             </Link>
           </li>
           <li>
-            <Link href="/encuentranos" className="hover:underline">
+            <Link href="/find-us" className="hover:underline">
               Encuentra tu PitsaJaus
             </Link>
           </li>

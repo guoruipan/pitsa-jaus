@@ -12,10 +12,10 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row justify-between px-10 items-center">
         <ul className="flex space-x-4 mb-4 md:mb-0">
           <li>
-            <Link href="/politica-privacidad">Política de privacidad</Link>
+            <Link href="/privacy-policy">Política de privacidad</Link>
           </li>
           <li>
-            <Link href="/terminos-condiciones">Términos y condiciones</Link>
+            <Link href="/terms-and-conditions">Términos y condiciones</Link>
           </li>
         </ul>
         <ul className="flex flex-wrap md:flex-no-wrap space-x-4">

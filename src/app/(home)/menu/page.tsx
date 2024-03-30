@@ -1,9 +1,9 @@
 import Card from "#/components/Card";
-import { listado as listadoPizzas } from "#/models/pizza";
+import { list as listPizzas } from "#/models/pizza";
 
 // hacer la función async permite usar await para obtener datos
 export default async function Page() {
-  const pizzas = await listadoPizzas();
+  const pizzas = await listPizzas();
 
   return (
     <>
@@ -12,7 +12,7 @@ export default async function Page() {
         className="grid grid-cols-4 gap-5 p-5"
       >
         {pizzas.map((pizza) => (
-          <Card key={pizza.id} imgUrl='/placeholder.jpg' texto={`Pizza ${pizza.nombre}`} />
+          <Card key={pizza.id} imgUrl='/placeholder.jpg' text={`Pizza ${pizza.name}`} />
         ))}
       </div>
     </>

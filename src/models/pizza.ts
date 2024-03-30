@@ -2,12 +2,12 @@ import { sql } from "@vercel/postgres";
 
 type Pizza = {
   id: number;
-  nombre: string;
-  descripcion: string;
-  precio: number;
+  name: string;
+  description: string;
+  price: number;
 };
 
-export async function listado() {
+export async function list() {
   // TODO : IMPLEMENT PAGINATION
   // const ITEMS_PER_PAGE = 8;
   // const offset = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -18,6 +18,6 @@ export async function listado() {
     return data.rows;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("No se pudo obtener los datos de pizzas");
+    throw new Error("Failed to fetch data about pizzas");
   }
 }
