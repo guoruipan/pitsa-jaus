@@ -1,9 +1,17 @@
+import { Metadata } from 'next';
+
+const pageTitle = 'Términos y condiciones';
+
+export const metadata: Metadata = {
+  title: pageTitle,
+};
+
 export default function Page() {
   return (
     <>
       <div className="space-y-3 mb-16">
         <h1 className="text-center font-bold text-2xl">
-          Términos y Condiciones de PitsaJaus &#174;
+          {pageTitle} de PitsaJaus &#174;
         </h1>
         <p className="text-center italic">
           Modificado por última vez: 28/03/2024

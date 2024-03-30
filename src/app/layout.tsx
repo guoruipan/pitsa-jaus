@@ -7,8 +7,11 @@ import Footer from "#/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PitsaJaus",
-  description: "Siéntete como en casa",
+  title: {
+    template: '%s | PitsaJaus',
+    default: 'PitsaJaus',
+  },
+  description: "¡Sabor auténtico en cada bocado! PitsaJaus, donde la tradición se fusiona con el sabor.",
 };
 
 export default function RootLayout({
