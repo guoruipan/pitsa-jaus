@@ -6,7 +6,9 @@ import "./globals.css";
 import Nav from "#/components/layout/Nav";
 import Footer from "#/components/layout/Footer";
 import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import theme from "#/theme";
+import Container from "@mui/material/Container";
 
 export const metadata: Metadata = {
   title: {
@@ -27,11 +29,11 @@ export default function RootLayout({
       <body className={`min-h-screen flex flex-col`}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <CssBaseline />
             <Nav />
-            <main className="container mx-auto my-6 px-10 md:px-0">
-              {/* aplico más padding cuando la pantalla es pequeñs */}
+            <Container component="main" className="my-6" maxWidth="lg">
               {children}
-            </main>
+            </Container>
             <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
