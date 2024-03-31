@@ -1,4 +1,4 @@
-import Card from "#/components/Card";
+import Card from "#/components/ui/Card";
 import { list as listPizzas } from "#/models/pizza";
 import { Metadata } from 'next';
 

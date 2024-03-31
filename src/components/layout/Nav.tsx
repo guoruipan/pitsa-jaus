@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import HamburgerIcon from "./icons/HamburgerIcon";
+import HamburgerIcon from "../icons/HamburgerIcon";
 
 export default function Nav() {
   // para controlar el estado del menú hamburguesa

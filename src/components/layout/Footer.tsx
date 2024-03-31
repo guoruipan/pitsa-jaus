@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {InstagramButton, FacebookButton} from "./icons/SocialButton";
+import {InstagramButton, FacebookButton} from "../icons/SocialButton";
 
 export default function Footer() {
   return (
