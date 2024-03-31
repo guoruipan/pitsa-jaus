@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {InstagramButton, FacebookButton} from "../icons/SocialButton";
+import { Instagram, Facebook } from "@mui/icons-material";
 
 export default function Footer() {
   return (
@@ -20,10 +20,10 @@ export default function Footer() {
         </ul>
         <ul className="flex flex-wrap md:flex-no-wrap space-x-4">
           <li>
-            <InstagramButton/>
+            <Instagram/>
           </li>
           <li>
-            <FacebookButton/>
+            <Facebook/>
           </li>
         </ul>
       </div>
