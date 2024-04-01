@@ -1,32 +1,58 @@
-import Link from "next/link";
-import { Instagram, Facebook } from "@mui/icons-material";
+import NextLink from "next/link";
+import MuiLink from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import InstagramIcon from "#/components/icons/InstagramIcon";
+import FacebookIcon from "#/components/icons/FacebookIcon";
+import Box from "@mui/material/Box";
+
+/* footer (mt-auto), junto a body (minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',) empujan el footer al fondo */
+
+function Link({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <MuiLink
+      variant="body1"
+      color="inherit"
+      component={NextLink}
+      href={href}
+      underline="hover"
+    >
+      {children}
+    </MuiLink>
+  );
+}
 
 export default function Footer() {
-  return (
-    <footer className="bg-orange-700 p-4 text-white mt-auto">
-      {/* footer (mt-auto), junto a body (min-h-screen flex flex-col) empujan el footer al fondo */}
-      <div className="mb-4 text-center">
-        &copy; {new Date().getFullYear()} - Todos los derechos reservados.
-      </div>
+  const currentYear = new Date().getFullYear();
 
-      <div className="flex flex-col md:flex-row justify-between px-10 items-center">
-        <ul className="flex space-x-4 mb-4 md:mb-0">
-          <li>
-            <Link href="/privacy-policy">Política de privacidad</Link>
-          </li>
-          <li>
-            <Link href="/terms-and-conditions">Términos y condiciones</Link>
-          </li>
-        </ul>
-        <ul className="flex flex-wrap md:flex-no-wrap space-x-4">
-          <li>
-            <Instagram/>
-          </li>
-          <li>
-            <Facebook/>
-          </li>
-        </ul>
-      </div>
-    </footer>
+  return (
+    <Grid
+      container
+      component="footer"
+      spacing={2}
+      sx={{
+        bgcolor: "primary.main",
+        p: "1rem",
+        color: "primary.contrastText",
+        mt: "auto",
+        textAlign: "center",
+      }}
+    >
+      <Grid item xs={12}>
+        <Typography variant="body1">
+          &copy; {currentYear} - Todos los derechos reservados.
+        </Typography>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <Link href="/privacy-policy">Política de privacidad</Link>
+        <Link href="/terms-and-conditions">Términos y condiciones</Link>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <InstagramIcon  />
+        <FacebookIcon />
+      </Grid>
+    </Grid>
   );
 }

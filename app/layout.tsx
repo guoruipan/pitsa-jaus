@@ -9,6 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "#/theme";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 export const metadata: Metadata = {
   title: {
@@ -26,18 +27,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`min-h-screen flex flex-col`}>
+      <Box component="body" sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }} >
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Nav />
-            <Container component="main" className="my-6" maxWidth="lg">
+            <Container component="main" maxWidth="lg" sx={{ my: "1.5rem" }}>
               {children}
             </Container>
             <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
-      </body>
+      </Box>
     </html>
   );
 }

@@ -1,65 +1,177 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import HamburgerIcon from "../icons/HamburgerIcon";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
+import NextLink from 'next/link';
 
-export default function Nav() {
-  // para controlar el estado del menú hamburguesa
-  const [isOpen, setIsOpen] = useState(false);
+// usado la plantilla "App bar with responsive menu" de aquí
+// https://mui.com/material-ui/react-app-bar/
 
-  function handleClick() {
-    setIsOpen(!isOpen);
-  }
+const pages = ['Nuestra carta', 'Encuéntranos'];
+const settings = ['Mi cuenta', 'Cerrar sesión'];
+
+function ResponsiveAppBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
-    <nav className="sticky top-0 bg-orange-700 px-10 py-4 flex justify-between items-center text-white">
-      {/* sticky top-0 sirve para hacer que el menú permanezca al hacer scroll */}
-      {/* justify-between empuja los dos divs a la izquierda y derecha */}
-      {/* items-center alinea los elementos en el centro el eje x */}
-      <div className="md:hidden">
-        {/* Icono del menú hamburguesa */}
-        <button
-          onClick={handleClick}
-          className="outline-none focus:outline-none"
-        >
-          <HamburgerIcon />
-        </button>
-      </div>
-      <div className="flex items-center">
-        <Link href="/" className="hover:underline">
-          <Image
-            src="/logo.png"
-            alt="Logo de PitsaJaus"
-            width={75}
-            height={75}
-            priority
-            className="rounded-full"
-          />
-        </Link>
-        <ul className={`ml-6 ${isOpen ? "flex" : "hidden"} md:flex space-x-4`}>
-          {/* oculto hasta que llegue al breakpoint md */}
-          <li>
-            <Link href="/menu" className="hover:underline">
-              Nuestra carta
-            </Link>
-          </li>
-          <li>
-            <Link href="/find-us" className="hover:underline">
-              Encuentra tu PitsaJaus
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <Link
-          href="/login"
-          className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600"
-        >
-          Inicia sesión
-        </Link>
-      </div>
-    </nav>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          {/* icono (pantalla grande) */}
+          <LocalPizzaIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* texto pitsajaus (pantalla grande) */}
+          <Typography
+            variant="h6"
+            noWrap
+            component={NextLink}
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            PITSAJAUS
+          </Typography>
+
+          {/* menú hamburguesa (pantalla pequeña) */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {/* TODO implementar enlaces */}
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          {/* icono (pantalla pequeña) */}
+          <LocalPizzaIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* texto pitsajaus (pantalla pequeña) */}
+          <Typography
+            variant="h5"
+            noWrap
+            component={NextLink}
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            PITSAJAUS
+          </Typography>
+          {/* menú normal (pantalla grande) */}
+          {/* TODO implementar enlaces */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+            {/* menú usuario */}
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Abrir ajustes">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {/* TODO implementar avatar imagen */}
+                <Avatar alt="Usuario" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {/* TODO implementar enlaces */}
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
+export default ResponsiveAppBar;
