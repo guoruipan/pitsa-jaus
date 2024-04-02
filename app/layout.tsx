@@ -36,7 +36,7 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Nav />
-            <Container component="main" maxWidth="lg" sx={{ my: "1.5rem" }}>
+            <Container component="main" maxWidth="lg" sx={{ my: "3rem" }}>
               {children}
             </Container>
             <Footer />

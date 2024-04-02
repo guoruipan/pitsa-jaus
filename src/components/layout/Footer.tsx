@@ -4,11 +4,12 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import InstagramIcon from "#/components/icons/InstagramIcon";
 import FacebookIcon from "#/components/icons/FacebookIcon";
-import Box from "@mui/material/Box";
 
-/* footer (mt-auto), junto a body (minHeight: '100vh',
+/* footer (mt-auto), junto a 
+  body (minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',) empujan el footer al fondo */
+        flexDirection: 'column',) 
+  empujan el footer al fondo */
 
 function Link({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -45,12 +46,17 @@ export default function Footer() {
           &copy; {currentYear} - Todos los derechos reservados.
         </Typography>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} lg={3}>
         <Link href="/privacy-policy">Política de privacidad</Link>
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
         <Link href="/terms-and-conditions">Términos y condiciones</Link>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <InstagramIcon  />
+      <Grid item xs={12} md={6} lg={3}>
+        <Link href="/contact-us">Contáctanos</Link>
+      </Grid>
+      <Grid item xs={12} md={6} lg={3}>
+        <InstagramIcon />
         <FacebookIcon />
       </Grid>
     </Grid>
