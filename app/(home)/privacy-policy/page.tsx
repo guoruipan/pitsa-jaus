@@ -1,6 +1,13 @@
-import { Metadata } from 'next';
+import { Metadata } from "next";
+import VerticalSpacedBox from "#/components/ui/VerticalSpacedBox";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import PageTitle from "#/components/ui/PageTitle";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import CheckIcon from "@mui/icons-material/Check";
 
-const pageTitle = 'Política de privacidad';
+const pageTitle = "Política de privacidad";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -9,136 +16,231 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <div className="space-y-3 mb-16">
-        <h1 className="text-center font-bold text-2xl">
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <PageTitle sxProps={{ textAlign: "center" }}>
           {pageTitle} de PitsaJaus &#174;
-        </h1>
-        <p className="text-center italic">
+        </PageTitle>
+        <Typography
+          variant="body1"
+          sx={{ textAlign: "center", fontStyle: "italic" }}
+        >
           Modificado por última vez: 28/03/2024
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="body1">
           En PitsaJaus, nos comprometemos a proteger la privacidad de nuestros
           clientes. Esta Política de Privacidad describe cómo recopilamos,
           utilizamos y protegemos la información personal que usted nos
           proporciona a través de nuestro sitio web, aplicación móvil o
           cualquier otro medio.
-        </p>
-      </div>
+        </Typography>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           Información que recopilamos
-        </h2>
-        <p>Recopilamos información personal de usted cuando:</p>
-        <ul className="list-disc ml-8">
-          <li>
+        </Typography>
+        <Typography variant="body1">Recopilamos información personal de usted cuando:</Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
             Realiza un pedido: Recopilamos su nombre, dirección, número de
             teléfono, dirección de correo electrónico y método de pago.
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
             Crea una cuenta: Recopilamos su nombre, dirección de correo
             electrónico, contraseña y preferencias de pedido.
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
             Se suscribe a nuestro boletín informativo: Recopilamos su dirección
             de correo electrónico.
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
             Nos contacta: Recopilamos su nombre, dirección de correo electrónico
             y cualquier otra información que nos proporcione.
-          </li>
-        </ul>
-      </div>
+          </ListItem>
+        </List>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           Cómo utilizamos su información
-        </h2>
-        <p>Utilizamos su información personal para:</p>
-        <ul className="list-disc ml-8">
-          <li>Procesar sus pedidos</li>
-          <li>Enviarle información sobre sus pedidos</li>
-          <li>Mejorar nuestros productos y servicios</li>
-          <li>Enviarle ofertas y promociones</li>
-          <li>Responder a sus preguntas y comentarios</li>
-        </ul>
-      </div>
+        </Typography>
+        <Typography variant="body1">Utilizamos su información personal para:</Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Procesar sus pedidos
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Enviarle información sobre sus pedidos
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Mejorar nuestros productos y servicios
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Enviarle ofertas y promociones
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Responder a sus preguntas y comentarios
+          </ListItem>
+        </List>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           Cómo compartimos su información
-        </h2>
-        <p>
+        </Typography>
+        <Typography variant="body1">
           No compartimos su información personal con terceros sin su
           consentimiento. Sin embargo, podemos compartir su información con:
-        </p>
-        <ul className="list-disc ml-8">
-          <li>
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
             Proveedores de servicios que nos ayudan a operar nuestro negocio,
             como proveedores de procesamiento de pagos y empresas de entrega.
-          </li>
-          <li>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
             Terceros que nos ayudan a mejorar nuestros productos y servicios,
             como empresas de análisis de datos.
-          </li>
-          <li>Autoridades legales, si así lo exige la ley.</li>
-        </ul>
-      </div>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Autoridades legales, si así lo exige la ley.
+          </ListItem>
+        </List>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           Seguridad de su información
-        </h2>
-        <p>
+        </Typography>
+        <Typography variant="body1">
           Tomamos medidas de seguridad razonables para proteger su información
           personal contra el acceso no autorizado, el uso indebido, la
           divulgación, la alteración o la destrucción.
-        </p>
-      </div>
+        </Typography>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">Sus derechos</h2>
-        <p>Usted tiene derecho a:</p>
-        <ul className="list-disc ml-8">
-          <li>Acceder a su información personal</li>
-          <li>Solicitar que corrijamos o eliminemos su información personal</li>
-          <li>Oponerse al tratamiento de su información personal</li>
-          <li>Restringir el tratamiento de su información personal</li>
-          <li>Solicitar la portabilidad de su información personal</li>
-        </ul>
-        <p>
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          Sus derechos
+        </Typography>
+        <Typography variant="body1">Usted tiene derecho a:</Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Acceder a su información personal
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Solicitar que corrijamos o eliminemos su información personal
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Oponerse al tratamiento de su información personal
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Restringir el tratamiento de su información personal
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Solicitar la portabilidad de su información personal
+          </ListItem>
+        </List>
+        <Typography variant="body1">
           Para ejercer cualquiera de estos derechos, puede contactarnos a través
           de la información que se encuentra al final de esta Política de
           Privacidad.
-        </p>
-      </div>
+        </Typography>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           Cambios en esta Política de Privacidad
-        </h2>
-        <p>
+        </Typography>
+        <Typography variant="body1">
           Nos reservamos el derecho de modificar esta Política de Privacidad en
           cualquier momento. Si realizamos cambios sustanciales a esta Política
           de Privacidad, se lo notificaremos por correo electrónico o mediante
           un aviso en nuestro sitio web.
-        </p>
-      </div>
+        </Typography>
+      </VerticalSpacedBox>
 
-      <div className="space-y-3 mb-16">
-        <h2 className="text-center text-lg font-bold">Contacto</h2>
-        <p>
+      <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          Contacto
+        </Typography>
+        <Typography variant="body1">
           Si tiene alguna pregunta sobre esta Política de Privacidad, puede
           contactarnos a través de:
-        </p>
-        <ul className="list-disc ml-8">
-          <li>Correo electrónico: grpzaragoza@gmail.com</li>
-          <li>Teléfono: +34 611 611 611</li>
-          <li>Dirección: Calle Mayor, 12, Zaragoza, España</li>
-        </ul>
-      </div>
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Correo electrónico: grpzaragoza@gmail.com
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Teléfono: +34 611 611 611
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <CheckIcon />
+            </ListItemIcon>
+            Dirección: Calle Mayor, 12, Zaragoza, España
+          </ListItem>
+        </List>
+      </VerticalSpacedBox>
 
-      <p>Fecha de vigencia: 28 de marzo de 2024</p>
+      <Typography variant="body1">Fecha de vigencia: 28 de marzo de 2024</Typography>
     </>
   );
 }

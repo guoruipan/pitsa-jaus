@@ -1,8 +1,8 @@
 import Card from "#/components/ui/Card";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import { list as listPizzas } from "#/models/pizza";
 import { Metadata } from "next";
+import PageTitle from '#/components/ui/PageTitle';
 
 const pageTitle = "Nuestra Carta";
 
@@ -17,9 +17,7 @@ export default async function Page() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h2" component={"h1"} color="text.primary" >
-          {pageTitle}
-        </Typography>
+        <PageTitle>{pageTitle}</PageTitle>
       </Grid>
 
       {pizzas.map((pizza) => (
