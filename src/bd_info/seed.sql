@@ -58,7 +58,16 @@ INSERT INTO Pizzas (name, description, price)
 VALUES 
     ('Margarita', 'Tomate, mozzarella y albahaca', 8.99),
     ('Pepperoni', 'Tomate, mozzarella y pepperoni', 9.99),
-    ('Hawaiana', 'Tomate, mozzarella, piña y jamón', 10.99);
+    ('Hawaiana', 'Tomate, mozzarella, piña y jamón', 10.99),
+    ('Barbacoa', 'Tomate, mozzarella, carne de res, cebolla y salsa barbacoa', 11.99),
+    ('Vegetariana', 'Tomate, mozzarella, champiñones, pimientos y aceitunas', 10.49),
+    ('Cuatro quesos', 'Tomate, mozzarella, queso azul, queso de cabra y queso parmesano', 12.99),
+    ('Napolitana', 'Tomate, mozzarella, anchoas, aceitunas y alcaparras', 11.49),
+    ('Calzone', 'Masa de pizza rellena de tomate, mozzarella, pepperoni y champiñones', 12.49),
+    ('Prosciutto e rúcula', 'Tomate, mozzarella, jamón crudo y rúcula', 11.99),
+    ('Carbonara', 'Tomate, mozzarella, panceta, huevo y parmesano', 12.99),
+    ('Mexicana', 'Tomate, mozzarella, carne de res, jalapeños y guacamole', 11.99),
+    ('Bufalina', 'Tomate, mozzarella de búfala y albahaca fresca', 13.49);
 
 INSERT INTO Ingredients (name, description)
 VALUES 
