@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import PageTitle from '#/components/ui/PageTitle';
 
 const pageTitle = 'Contáctanos';
 
@@ -7,5 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page (){
-    return <h1>{pageTitle}</h1>;
+    return (
+      <PageTitle>{pageTitle}</PageTitle>
+    );
 }
