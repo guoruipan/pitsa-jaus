@@ -51,7 +51,7 @@ export default function ContactScreen({pageTitle} : {pageTitle : string}) {
             <ListItemText>
               <strong>Correo Electrónico:</strong> Si prefieres escribirnos, no
               dudes en enviarnos un mensaje a la siguiente dirección de correo
-              electrónico: grpzaragoza@gmail.com
+              electrónico: atencioncliente@pitsajaus.com
             </ListItemText>
           </ListItem>
           <ListItem>

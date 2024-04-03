@@ -46,9 +46,9 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (href : string) => {
+  const handleCloseNavMenu = (href? : string) => {
     setAnchorElNav(null);
-    window.location.href = href;
+    window.location.href = href || "#"; // en el menú hamburguesa daba error sino
   };
 
   const handleCloseUserMenu = () => {
@@ -104,7 +104,7 @@ function ResponsiveAppBar() {
                 horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu()}
               sx={{
                 display: { xs: "block", md: "none" },
               }}

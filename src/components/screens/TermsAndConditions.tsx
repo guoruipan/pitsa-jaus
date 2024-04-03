@@ -249,7 +249,7 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             <ListItemIcon>
               <CheckIcon />
             </ListItemIcon>
-            Correo electrónico: grpzaragoza@gmail.com
+            Correo electrónico: atencioncliente@pitsajaus.com
           </ListItem>
           <ListItem>
             <ListItemIcon>
