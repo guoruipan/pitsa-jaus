@@ -22,7 +22,7 @@ export default async function Page() {
 
       {pizzas.map((pizza) => (
         <Grid key={pizza.id} item xs={12} sm={6} md={4} lg={3}>
-          <Card imgUrl="/placeholder.jpg" text={`Pizza ${pizza.name}`} />
+          <Card href={`/menu/${pizza.id}`} imgUrl="/placeholder.jpg" text={`Pizza ${pizza.name}`} />
         </Grid>
       ))}
     </Grid>

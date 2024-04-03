@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import { BoxProps } from "@mui/material/Box";
 
 // la mayoría de componentes de MUI tienen sus propias interfaces de props para acceder a las props del componente
+// la propiedad sxProps añade estilos adicionales de CSS al componente. Esto hace su uso más flexible
 
 interface Props extends BoxProps {
   children: React.ReactNode,
