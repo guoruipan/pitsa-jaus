@@ -6,6 +6,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { createTheme } from "@mui/material/styles";
 
+// desde que quité Tailwind CSS del proyecto, las imagenes de next/image y las fuentes de next/font me han dado problemas
+// utilizo @fontsource como se recomienda en la página de mui
+// https://mui.com/material-ui/react-typography/
+
 // https://m2.material.io/inline-tools/color/
 // https://m2.material.io/design/color/the-color-system.html#color-usage-and-palettes
 // https://zenoo.github.io/mui-theme-creator/
