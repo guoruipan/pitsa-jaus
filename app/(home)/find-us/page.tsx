@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import PageTitle from '#/components/ui/PageTitle';
+import FindUsScreen from '#/components/screens/FindUs';
 
 const pageTitle = 'Encuentra tu PitsaJaus';
 
@@ -9,6 +9,6 @@ export const metadata: Metadata = {
 
 export default function Page (){
   return (
-    <PageTitle>{pageTitle}</PageTitle>
+    <FindUsScreen pageTitle={pageTitle} />
   );
 }
