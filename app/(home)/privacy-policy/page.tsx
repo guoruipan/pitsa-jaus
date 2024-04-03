@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <>
       <VerticalSpacedBox marginBottom={"1.5rem"}>
-        <PageTitle sxProps={{ textAlign: "center" }}>
+        <PageTitle sx={{ textAlign: "center" }}>
           {pageTitle} de PitsaJaus &#174;
         </PageTitle>
         <Typography
