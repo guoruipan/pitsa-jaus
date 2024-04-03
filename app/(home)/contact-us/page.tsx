@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ContactScreen from "#/components/screens/ContactScreen";
+import ContactScreen from "#/components/screens/ContactUs";
 
 const pageTitle = "Contáctanos";
 
