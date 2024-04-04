@@ -7,13 +7,14 @@ export type Pizza = {
   price: number;
 };
 
-export async function list() {
-  // TODO : IMPLEMENT PAGINATION
-  // const ITEMS_PER_PAGE = 8;
-  // const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+// TODO make noStore??
+export async function list(currentPage? : number) {
+  const pageSize = 8; // Número de elementos a mostrar
+  const pageNumber = currentPage || 1; // Número de la página
+  const offset = (pageNumber - 1) * pageSize;
 
   try {
-    const data = await sql<Pizza>`SELECT * FROM pizzas`;
+    const data = await sql<Pizza>`SELECT * FROM pizzas LIMIT ${pageSize} OFFSET ${offset};`;
 
     return data.rows;
   } catch (error) {
@@ -29,9 +30,8 @@ export async function getWithId(id: number) {
 
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada
-    } else {
-      throw new Error("Failed to fetch pizza with specified ID");
-    }
+    } 
+    // si no encuentra nada debería irse al catch
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch pizza with specified ID");
