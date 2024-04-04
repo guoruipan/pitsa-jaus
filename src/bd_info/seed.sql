@@ -1,14 +1,26 @@
 -- Crear manualmente la bd con Vercel Postgres, entonces ejecutar esto en la caja 'Query'
+-- Escribo las variables con snake case porque en la bd los campos se me guardan en minúscula
 
 -- CREATE TABLES
 
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL UNIQUE,
     pwd VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     homeAddress VARCHAR(255),
-    admin BOOLEAN DEFAULT FALSE
+    role VARCHAR(20) NOT NULL DEFAULT 'customer',
+    CONSTRAINT check_role CHECK (role IN ('admin', 'manager', 'customer'))
+);
+
+-- Guardo el código postal como varchar porque, si bien en España son sólo numéricos, la empresa puede que se expanda a otros países donde este no es el caso
+-- Al crear un usuario manager, debe crear al mismo tiempo una tienda asociada. Cuando el manager se quiere dar de baja, borra también la tienda.
+CREATE TABLE Stores (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    address VARCHAR(255) NOT NULL,
+    postCode VARCHAR(100) NOT NULL,
+    idManager INT NOT NULL REFERENCES Users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Pizzas (
@@ -16,12 +28,6 @@ CREATE TABLE Pizzas (
     name VARCHAR(100) NOT NULL,
     description TEXT,
     price DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE Ingredients (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    description TEXT
 );
 
 CREATE TABLE Orders (
@@ -32,7 +38,7 @@ CREATE TABLE Orders (
     sentDate TIMESTAMP
 );
 
-CREATE TABLE OrderLine (
+CREATE TABLE OrderLines (
     id SERIAL PRIMARY KEY,
     idOrder INT REFERENCES Orders(id),
     idPizza INT REFERENCES Pizzas(id),
@@ -40,19 +46,16 @@ CREATE TABLE OrderLine (
     totalLine DECIMAL(10, 2)
 );
 
-CREATE TABLE PizzaIngredients (
-    idPizza INT NOT NULL REFERENCES Pizzas(id),
-    idIngredient INT NOT NULL REFERENCES Ingredients(id),
-    PRIMARY KEY (idPizza, idIngredient)
-);
-
 -- INSERT TABLE
 
-INSERT INTO Users (name, pwd, email, homeAddress, admin)
+INSERT INTO Users (name, pwd, email, homeAddress, role)
 VALUES 
-    ('pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', FALSE),
-    ('admin', 'admin123', 'admin@example.com', 'Avenida Principal, Ciudad', TRUE),
-    ('ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', FALSE);
+    ('admin', 'admin123', 'admin@example.com', 'Avenida Principal, Ciudad', 'admin'),
+    ('ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', 'manager'),
+    ('pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', 'customer');
+
+INSERT INTO Stores (name, address, postCode, idManager)
+VALUES ('PitsaJaus Ana', 'Plaza Central', 50002, 2);
 
 INSERT INTO Pizzas (name, description, price)
 VALUES 
@@ -68,34 +71,6 @@ VALUES
     ('Carbonara', 'Tomate, mozzarella, panceta, huevo y parmesano', 12.99),
     ('Mexicana', 'Tomate, mozzarella, carne de res, jalapeños y guacamole', 11.99),
     ('Bufalina', 'Tomate, mozzarella de búfala y albahaca fresca', 13.49);
-
-INSERT INTO Ingredients (name, description)
-VALUES 
-    ('Tomate', 'Tomate fresco cortado en rodajas'),
-    ('Mozzarella', 'Queso mozzarella rallado'),
-    ('Albahaca', 'Hojas frescas de albahaca'),
-    ('Pepperoni', 'Salami picante en rodajas'),
-    ('Piña', 'Rodajas de piña fresca'),
-    ('Jamón', 'Jamón cocido en dados');
-
-INSERT INTO PizzaIngredients (idPizza, idIngredient)
-VALUES 
-    ((SELECT id FROM Pizzas WHERE name = 'Margarita'), (SELECT id FROM Ingredients WHERE name = 'Tomate')),
-    ((SELECT id FROM Pizzas WHERE name = 'Margarita'), (SELECT id FROM Ingredients WHERE name = 'Mozzarella')),
-    ((SELECT id FROM Pizzas WHERE name = 'Margarita'), (SELECT id FROM Ingredients WHERE name = 'Albahaca'));
-
-INSERT INTO PizzaIngredients (idPizza, idIngredient)
-VALUES 
-    ((SELECT id FROM Pizzas WHERE name = 'Pepperoni'), (SELECT id FROM Ingredients WHERE name = 'Tomate')),
-    ((SELECT id FROM Pizzas WHERE name = 'Pepperoni'), (SELECT id FROM Ingredients WHERE name = 'Mozzarella')),
-    ((SELECT id FROM Pizzas WHERE name = 'Pepperoni'), (SELECT id FROM Ingredients WHERE name = 'Pepperoni'));
-
-INSERT INTO PizzaIngredients (idPizza, idIngredient)
-VALUES 
-    ((SELECT id FROM Pizzas WHERE name = 'Hawaiana'), (SELECT id FROM Ingredients WHERE name = 'Tomate')),
-    ((SELECT id FROM Pizzas WHERE name = 'Hawaiana'), (SELECT id FROM Ingredients WHERE name = 'Mozzarella')),
-    ((SELECT id FROM Pizzas WHERE name = 'Hawaiana'), (SELECT id FROM Ingredients WHERE name = 'Piña')),
-    ((SELECT id FROM Pizzas WHERE name = 'Hawaiana'), (SELECT id FROM Ingredients WHERE name = 'Jamón'));
 
 
 
