@@ -13,3 +13,5 @@ export default function PageTitle ({children, ...rest } : Props ) {
     );
 
 }
+
+// TODO maybe just modify the base theme

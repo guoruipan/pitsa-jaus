@@ -21,7 +21,7 @@ export default function MyCard({ imgUrl, text, href }: Props) {
           alt={`Foto de una pizza ${text}`}
         />
         <CardContent>
-          <Typography variant="h6" color="text.primary">
+          <Typography variant="h6">
             {text}
           </Typography>
         </CardContent>

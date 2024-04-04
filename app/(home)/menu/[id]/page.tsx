@@ -16,10 +16,12 @@ interface Params {
 export default async function Page ({params} : Params){
     const pizza = await getPizza(params.id);
 
+    //TODO utilizado !! porque en getPizza() creo que ya valido. Probar
+
      // modifica el título utilizando la propiedad 'name' de la pizza
-     metadata.title = `${pageTitle} ${pizza.name}`;
+     metadata.title = `${pageTitle} ${pizza!!.name}`;
 
     return (
-      <MenuItemScreen pageTitle={metadata.title} pizza={pizza} />
+      <MenuItemScreen pageTitle={metadata.title} pizza={pizza!!} />
     );
 }

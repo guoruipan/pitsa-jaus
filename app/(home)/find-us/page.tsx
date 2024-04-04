@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: pageTitle,
 };
 
+// TODO /app should only serve to contain routes
+
 export default async function Page (){
   const stores = await listStores();
 

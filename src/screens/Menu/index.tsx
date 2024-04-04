@@ -1,4 +1,4 @@
-import Card from "#/components/ui/Card";
+import Card from "./components/Card";
 import Grid from "@mui/material/Grid";
 import PageTitle from "#/components/ui/PageTitle";
 import { Pizza } from "#/models/pizza";
