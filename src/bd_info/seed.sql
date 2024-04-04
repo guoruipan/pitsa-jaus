@@ -26,7 +26,7 @@ CREATE TABLE Stores (
 CREATE TABLE Pizzas (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    description TEXT,
+    description TEXT NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE Order_lines (
     id SERIAL PRIMARY KEY,
     order_id INT REFERENCES Orders(id),
     pizza_id INT REFERENCES Pizzas(id),
-    quantity INT,
+    quantity INT CHECK (quantity > 0) DEFAULT 1,
     line_total DECIMAL(10, 2)
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE Order_lines (
 
 INSERT INTO Users (name, pwd, email, home_address, role)
 VALUES 
-    ('admin', 'admin123', 'admin@example.com', 'Avenida Principal, Ciudad', 'admin'),
+    ('admin', 'admin123', 'admin@example.com', null, 'admin'),
     ('ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', 'manager'),
     ('pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', 'customer');
 
