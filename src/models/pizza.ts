@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres";
 
-type Pizza = {
+export type Pizza = {
   id: number;
   name: string;
   description: string;
