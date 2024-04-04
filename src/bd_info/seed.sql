@@ -8,7 +8,7 @@ CREATE TABLE Users (
     name VARCHAR(100) NOT NULL UNIQUE,
     pwd VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    homeAddress VARCHAR(255),
+    home_address VARCHAR(255),
     role VARCHAR(20) NOT NULL DEFAULT 'customer',
     CONSTRAINT check_role CHECK (role IN ('admin', 'manager', 'customer'))
 );
@@ -19,8 +19,8 @@ CREATE TABLE Stores (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
     address VARCHAR(255) NOT NULL,
-    postCode VARCHAR(100) NOT NULL,
-    idManager INT NOT NULL REFERENCES Users(id) ON DELETE CASCADE
+    postcode VARCHAR(100) NOT NULL,
+    manager_id INT NOT NULL REFERENCES Users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Pizzas (
@@ -32,29 +32,29 @@ CREATE TABLE Pizzas (
 
 CREATE TABLE Orders (
     id SERIAL PRIMARY KEY,
-    idUser INT NOT NULL REFERENCES Users(id),
+    user_id INT NOT NULL REFERENCES Users(id),
     total DECIMAL(10, 2) NOT NULL,
-    orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    sentDate TIMESTAMP
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    sent_date TIMESTAMP
 );
 
-CREATE TABLE OrderLines (
+CREATE TABLE Order_lines (
     id SERIAL PRIMARY KEY,
-    idOrder INT REFERENCES Orders(id),
-    idPizza INT REFERENCES Pizzas(id),
+    order_id INT REFERENCES Orders(id),
+    pizza_id INT REFERENCES Pizzas(id),
     quantity INT,
-    totalLine DECIMAL(10, 2)
+    line_total DECIMAL(10, 2)
 );
 
 -- INSERT TABLE
 
-INSERT INTO Users (name, pwd, email, homeAddress, role)
+INSERT INTO Users (name, pwd, email, home_address, role)
 VALUES 
     ('admin', 'admin123', 'admin@example.com', 'Avenida Principal, Ciudad', 'admin'),
     ('ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', 'manager'),
     ('pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', 'customer');
 
-INSERT INTO Stores (name, address, postCode, idManager)
+INSERT INTO Stores (name, address, postcode, manager_id)
 VALUES ('PitsaJaus Ana', 'Plaza Central', 50002, 2);
 
 INSERT INTO Pizzas (name, description, price)
