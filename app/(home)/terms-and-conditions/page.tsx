@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import TermsAndCondScreen from "#/components/screens/TermsAndConditions";
+import TermsAndCondScreen from "#/screens/TermsAndConditions";
 
 const pageTitle = "Términos y condiciones";
 

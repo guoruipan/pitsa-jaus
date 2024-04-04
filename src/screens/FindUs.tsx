@@ -36,6 +36,10 @@ export default function FindUsScreen({ pageTitle, stores }: Params) {
       </Box>
       {/* implement query to get locals */}
       <p>{postCode}</p>
+
+      {stores.map((store) => (
+        <p>{store.name}</p>
+      ))}
     </>
   );
 }

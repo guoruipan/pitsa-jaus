@@ -2,8 +2,8 @@
 // https://mui.com/material-ui/integrations/nextjs/
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
-import Nav from "#/components/layout/Nav";
-import Footer from "#/components/layout/Footer";
+import Nav from "#/layout/Nav";
+import Footer from "#/layout/Footer";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "#/theme";

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import FindUsScreen from '#/components/screens/FindUs';
+import FindUsScreen from '#/screens/FindUs';
 import { list as listStores } from "#/models/store";
 
 const pageTitle = 'Encuentra tu PitsaJaus';

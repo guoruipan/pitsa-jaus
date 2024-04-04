@@ -12,8 +12,6 @@ export type Store = {
     // TODO : IMPLEMENT PAGINATION
     // const ITEMS_PER_PAGE = 8;
     // const offset = (currentPage - 1) * ITEMS_PER_PAGE;
- 
-    // TODO if no rows are found, simply return empty list or null
 
     try {
       let data;
@@ -27,13 +25,13 @@ export type Store = {
         data = await sql<Store>`SELECT * FROM stores`;
       }
 
+      // si no encuentra registros, devolver array vacío
       if (data) {
         return data.rows;
       }
       else {
-        throw new Error ("There were no stores to show");
+        return [];
       }
-  
       
     } catch (error) {
       console.error("Database Error:", error);

@@ -1,4 +1,4 @@
-import MenuScreen from "#/components/screens/Menu";
+import MenuScreen from "#/screens/Menu";
 import { Metadata } from "next";
 import { list as listPizzas } from "#/models/pizza";
 

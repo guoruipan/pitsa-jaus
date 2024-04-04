@@ -21,7 +21,6 @@ export default function MyCard({ imgUrl, text, href }: Props) {
           alt={`Foto de una pizza ${text}`}
         />
         <CardContent>
-          {/* gutterBottom aplica margin-bottom */}
           <Typography variant="h6" color="text.primary">
             {text}
           </Typography>

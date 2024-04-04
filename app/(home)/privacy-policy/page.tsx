@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import PrivacyPolicyScreen from "#/components/screens/PrivacyPolicy";
+import PrivacyPolicyScreen from "#/screens/PrivacyPolicy";
 
 const pageTitle = "Política de privacidad";
 

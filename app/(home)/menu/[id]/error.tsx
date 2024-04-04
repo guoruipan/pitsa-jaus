@@ -3,7 +3,7 @@
 // https://nextjs.org/docs/app/building-your-application/routing/error-handling
 
 import { useEffect } from 'react';
-import ErrorScreen from '#/components/screens/Error';
+import ErrorScreen from '#/screens/Error';
 
 export default function Error({
   error,

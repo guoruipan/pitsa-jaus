@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { getWithId as getPizza } from "#/models/pizza";
-import MenuItemScreen from '#/components/screens/MenuItem';
+import MenuItemScreen from '#/screens/MenuItem';
 
 const pageTitle = 'Pizza';
 
