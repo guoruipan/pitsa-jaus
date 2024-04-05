@@ -21,7 +21,10 @@ export default function StoreTable({stores} : Props) {
           <TableRow>
             <TableCell>Nombre</TableCell>
             <TableCell align="right">Dirección</TableCell>
+            <TableCell align="right">Ciudad</TableCell>
+            <TableCell align="right">Estado</TableCell>
             <TableCell align="right">Código Postal</TableCell>
+            <TableCell align="right">Número de teléfono</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,7 +37,10 @@ export default function StoreTable({stores} : Props) {
                 {store.name}
               </TableCell>
               <TableCell align="right">{store.address}</TableCell>
+              <TableCell align="right">{store.city}</TableCell>
+              <TableCell align="right">{store.state}</TableCell>
               <TableCell align="right">{store.postcode}</TableCell>
+              <TableCell align="right">{store.phone_number}</TableCell>
             </TableRow>
           ))}
         </TableBody>

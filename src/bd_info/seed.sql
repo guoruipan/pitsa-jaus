@@ -9,7 +9,7 @@ CREATE TABLE Users (
   pwd VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE,
   home_address VARCHAR(255),
-  role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'manager', 'customer')) DEFAULT 'customer',
+  role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'manager', 'customer')) DEFAULT 'customer'
 );
 
 -- Guardo el código postal como varchar porque, si bien en España son sólo numéricos, la empresa puede que se expanda a otros países donde este no es el caso
