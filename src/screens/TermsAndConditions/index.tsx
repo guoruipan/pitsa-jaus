@@ -1,4 +1,4 @@
-import VerticalSpacedBox from "#/components/ui/VerticalSpacedBox";
+import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import PageTitle from "#/components/ui/PageTitle";
@@ -9,7 +9,7 @@ import CheckIcon from "@mui/icons-material/Check";
 export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) {
     return (
         <>
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <PageTitle sx={{ textAlign: "center" }}>
           {pageTitle} de PitsaJaus ®
         </PageTitle>
@@ -25,9 +25,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
           todos los clientes, a continuación se detallan nuestros Términos y
           Condiciones:
         </Typography>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           1. Pedidos y Pagos:
         </Typography>
@@ -63,9 +63,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             sin previo aviso.
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           2. Entregas y Recogidas:
         </Typography>
@@ -101,9 +101,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             tráfico, etc.).
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           3. Promociones y Descuentos:
         </Typography>
@@ -130,9 +130,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             expresamente lo contrario.
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           4. Política de Cancelaciones:
         </Typography>
@@ -159,9 +159,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             camino hacia su domicilio.
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           5. Reembolsos:
         </Typography>
@@ -189,9 +189,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             utilizado para realizar el pedido.
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           6. Modificación de Términos y Condiciones:
         </Typography>
@@ -211,9 +211,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             a partir de la fecha de publicación.
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           7. Ley Aplicable y Jurisdicción:
         </Typography>
@@ -234,9 +234,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             Zaragoza, España.
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
           8. Contacto
         </Typography>
@@ -264,7 +264,7 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
             Dirección: Calle Mayor, 12, Zaragoza, España
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
 
       <Typography variant="body1">
         Fecha de vigencia: 28 de marzo de 2024

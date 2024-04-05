@@ -1,4 +1,4 @@
-import VerticalSpacedBox from "#/components/ui/VerticalSpacedBox";
+import Stack from '@mui/material/Stack';
 import PageTitle from "#/components/ui/PageTitle";
 import { Suspense } from "react";
 import MenuGridSkeleton from "./components/MenuGridSkeleton";
@@ -13,11 +13,11 @@ interface Params {
 
 export default function MenuScreen({ pageTitle }: Params) {
   return (
-    <VerticalSpacedBox>
+    <Stack>
       <PageTitle gutterBottom>{pageTitle}</PageTitle>
       <Suspense fallback={<MenuGridSkeleton />}>
         <MenuGrid />
       </Suspense>
-    </VerticalSpacedBox>
+    </Stack>
   );
 }

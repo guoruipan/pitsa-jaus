@@ -1,5 +1,6 @@
 "use client";
 
+import Stack from "@mui/material/Stack";
 import PageTitle from "#/components/ui/PageTitle";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -19,8 +20,8 @@ export default function FindUsScreen({ pageTitle }: Params) {
   }
 
   return (
-    <>
-      <PageTitle gutterBottom>{pageTitle}</PageTitle>
+    <Stack spacing={3}>
+      <PageTitle>{pageTitle}</PageTitle>
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <SearchIcon sx={{ mr: 1, my: 0.5 }} />
         <TextField
@@ -34,6 +35,6 @@ export default function FindUsScreen({ pageTitle }: Params) {
         />
       </Box>
       <StoreTable postCode={postCode} />
-    </>
+    </Stack>
   );
 }

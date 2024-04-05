@@ -1,7 +1,7 @@
 'use client';
 
 import PageTitle from "#/components/ui/PageTitle";
-import VerticalSpacedBox from "#/components/ui/VerticalSpacedBox";
+import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -24,7 +24,7 @@ export default function ContactScreen({pageTitle} : {pageTitle : string}) {
 
   return (
     <>
-      <VerticalSpacedBox marginBottom={"1.5rem"}>
+      <Stack spacing={2} marginBottom={"1.5rem"}>
         <PageTitle sx={{ textAlign: "center" }}>{pageTitle}</PageTitle>
         <Typography variant="body1">
           En PitsaJaus, valoramos enormemente los comentarios de nuestros
@@ -65,7 +65,7 @@ export default function ContactScreen({pageTitle} : {pageTitle : string}) {
             </ListItemText>
           </ListItem>
         </List>
-      </VerticalSpacedBox>
+      </Stack>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import VerticalSpacedBox from "#/components/ui/VerticalSpacedBox";
+import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import PageTitle from "#/components/ui/PageTitle";
@@ -9,7 +9,7 @@ import CheckIcon from "@mui/icons-material/Check";
 export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) {
     return (
       <>
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <PageTitle sx={{ textAlign: "center" }}>
             {pageTitle} de PitsaJaus &#174;
           </PageTitle>
@@ -26,9 +26,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
             proporciona a través de nuestro sitio web, aplicación móvil o
             cualquier otro medio.
           </Typography>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Información que recopilamos
           </Typography>
@@ -63,9 +63,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
               y cualquier otra información que nos proporcione.
             </ListItem>
           </List>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Cómo utilizamos su información
           </Typography>
@@ -102,9 +102,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
               Responder a sus preguntas y comentarios
             </ListItem>
           </List>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Cómo compartimos su información
           </Typography>
@@ -134,9 +134,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
               Autoridades legales, si así lo exige la ley.
             </ListItem>
           </List>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Seguridad de su información
           </Typography>
@@ -145,9 +145,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
             personal contra el acceso no autorizado, el uso indebido, la
             divulgación, la alteración o la destrucción.
           </Typography>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Sus derechos
           </Typography>
@@ -189,9 +189,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
             de la información que se encuentra al final de esta Política de
             Privacidad.
           </Typography>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Cambios en esta Política de Privacidad
           </Typography>
@@ -201,9 +201,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
             de Privacidad, se lo notificaremos por correo electrónico o mediante
             un aviso en nuestro sitio web.
           </Typography>
-        </VerticalSpacedBox>
+        </Stack>
   
-        <VerticalSpacedBox marginBottom={"1.5rem"}>
+        <Stack spacing={2} marginBottom={"1.5rem"}>
           <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
             Contacto
           </Typography>
@@ -231,7 +231,7 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
               Dirección: Calle Mayor, 12, Zaragoza, España
             </ListItem>
           </List>
-        </VerticalSpacedBox>
+        </Stack>
   
         <Typography variant="body1">Fecha de vigencia: 28 de marzo de 2024</Typography>
       </>
