@@ -2,6 +2,7 @@ import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import H1 from "#/components/ui/H1";
+import H2 from "#/components/ui/H2";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
@@ -28,9 +29,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           1. Pedidos y Pagos:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -66,9 +67,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           2. Entregas y Recogidas:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -104,9 +105,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           3. Promociones y Descuentos:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -133,9 +134,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           4. Política de Cancelaciones:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -162,9 +163,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           5. Reembolsos:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -192,9 +193,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           6. Modificación de Términos y Condiciones:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -214,9 +215,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           7. Ley Aplicable y Jurisdicción:
-        </Typography>
+        </H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -237,9 +238,9 @@ export default function TermsAndCondScreen ({pageTitle} : {pageTitle : string}) 
       </Stack>
 
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+        <H2 sx={{ textAlign: "center" }}>
           8. Contacto
-        </Typography>
+        </H2>
         <Typography variant="body1">
           Si tiene alguna pregunta sobre estos Términos y Condiciones, puede
           contactarnos a través de:

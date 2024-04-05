@@ -2,6 +2,7 @@ import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import H1 from "#/components/ui/H1";
+import H2 from "#/components/ui/H2";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
@@ -29,9 +30,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Información que recopilamos
-          </Typography>
+          </H2>
           <Typography variant="body1">Recopilamos información personal de usted cuando:</Typography>
           <List>
             <ListItem>
@@ -66,9 +67,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Cómo utilizamos su información
-          </Typography>
+          </H2>
           <Typography variant="body1">Utilizamos su información personal para:</Typography>
           <List>
             <ListItem>
@@ -105,9 +106,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Cómo compartimos su información
-          </Typography>
+          </H2>
           <Typography variant="body1">
             No compartimos su información personal con terceros sin su
             consentimiento. Sin embargo, podemos compartir su información con:
@@ -137,9 +138,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Seguridad de su información
-          </Typography>
+          </H2>
           <Typography variant="body1">
             Tomamos medidas de seguridad razonables para proteger su información
             personal contra el acceso no autorizado, el uso indebido, la
@@ -148,9 +149,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Sus derechos
-          </Typography>
+          </H2>
           <Typography variant="body1">Usted tiene derecho a:</Typography>
           <List>
             <ListItem>
@@ -192,9 +193,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Cambios en esta Política de Privacidad
-          </Typography>
+          </H2>
           <Typography variant="body1">
             Nos reservamos el derecho de modificar esta Política de Privacidad en
             cualquier momento. Si realizamos cambios sustanciales a esta Política
@@ -204,9 +205,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
         </Stack>
   
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <Typography variant="h4" component={"h2"} sx={{ textAlign: "center" }}>
+          <H2 sx={{ textAlign: "center" }}>
             Contacto
-          </Typography>
+          </H2>
           <Typography variant="body1">
             Si tiene alguna pregunta sobre esta Política de Privacidad, puede
             contactarnos a través de:
