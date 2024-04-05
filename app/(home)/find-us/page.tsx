@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import FindUsScreen from '#/screens/FindUs';
-import { list as listStores } from "#/models/store";
 
 const pageTitle = 'Encuentra tu PitsaJaus';
 
@@ -8,12 +7,8 @@ export const metadata: Metadata = {
   title: pageTitle,
 };
 
-// TODO /app should only serve to contain routes
-
-export default async function Page (){
-  const stores = await listStores();
-
+export default function Page (){
   return (
-    <FindUsScreen pageTitle={pageTitle} stores={stores} />
+    <FindUsScreen pageTitle={pageTitle} />
   );
 }

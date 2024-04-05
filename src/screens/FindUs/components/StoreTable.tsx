@@ -5,15 +5,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Store } from '#/models/store';
+import { list as listStores } from "#/models/store";
 
 // paper le da apariencia de estar elevado a la tabla
 
-interface Props {
-    stores : Store[];
-}
-
-export default function StoreTable({stores} : Props) {
+export default async function StoreTable() {
+    const stores = await listStores();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="Tabla de tiendas">

@@ -5,15 +5,13 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import { Store } from '#/models/store';
 import StoreTable from './components/StoreTable';
 
 interface Params {
   pageTitle: string,
-  stores: Store [],
 }
 
-export default function FindUsScreen({ pageTitle, stores }: Params) {
+export default function FindUsScreen({ pageTitle }: Params) {
   const [postCode, setPostCode] = useState("");
 
   function handleInputChange (newValue : string) {
@@ -37,7 +35,7 @@ export default function FindUsScreen({ pageTitle, stores }: Params) {
       </Box>
       {/* implement query to get locals */}
       <p>{postCode}</p>
-      <StoreTable stores={stores} />
+      <StoreTable />
     </>
   );
 }
