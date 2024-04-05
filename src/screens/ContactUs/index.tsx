@@ -24,7 +24,7 @@ export default function ContactScreen({pageTitle} : {pageTitle : string}) {
 
   return (
     <>
-      <Stack spacing={2} marginBottom={"1.5rem"}>
+      <Stack spacing={2}>
         <H1 sx={{ textAlign: "center" }}>{pageTitle}</H1>
         <Typography variant="body1">
           En PitsaJaus, valoramos enormemente los comentarios de nuestros
