@@ -14,6 +14,10 @@ export async function list(currentPage? : number) {
   const offset = (pageNumber - 1) * pageSize;
 
   try {
+    // TODO DELETE BELOW
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    //TODO DELETE ABOVE
+
     const data = await sql<Pizza>`SELECT * FROM pizzas LIMIT ${pageSize} OFFSET ${offset};`;
 
     return data.rows;
@@ -24,7 +28,7 @@ export async function list(currentPage? : number) {
 }
 
 export async function getWithId(id: number) {
-  // returns the pizza with the specified id
+  // devuevlve la pizza con el id especificado
   try {
     const data = await sql<Pizza>`SELECT * FROM pizzas WHERE id=${id}`;
 

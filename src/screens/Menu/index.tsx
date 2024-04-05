@@ -1,34 +1,23 @@
-import Card from "./components/Card";
-import Grid from "@mui/material/Grid";
+import VerticalSpacedBox from "#/components/ui/VerticalSpacedBox";
 import PageTitle from "#/components/ui/PageTitle";
-import { Pizza } from "#/models/pizza";
-import Pagination from "@mui/material/Pagination";
+import { Suspense } from "react";
+import MenuGridSkeleton from "./components/MenuGridSkeleton";
+import MenuGrid from "./components/MenuGrid";
 
 interface Params {
   pageTitle: string;
-  pizzas: Pizza[];
 }
 
-export default function MenuScreen({ pageTitle, pizzas }: Params) {
+/* suspense permite renderizar el componente MenuGrid de forma más dinámica, sin bloquear la funcionalidad del resto de la página mientras cargan los datos  */
+/* https://nextjs.org/learn/dashboard-app/streaming  */
+
+export default function MenuScreen({ pageTitle }: Params) {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <PageTitle gutterBottom>{pageTitle}</PageTitle>
-      </Grid>
-
-      {pizzas.map((pizza) => (
-        <Grid key={pizza.id} item xs={12} sm={6} md={4} lg={3}>
-          <Card
-            href={`/menu/${pizza.id}`}
-            imgUrl="/placeholder.jpg"
-            text={`Pizza ${pizza.name}`}
-          />
-        </Grid>
-      ))}
-
-      <Grid item xs={12} mt={5}>
-        <Pagination count={10} color="secondary" page={3}  />
-      </Grid>
-    </Grid>
+    <VerticalSpacedBox>
+      <PageTitle gutterBottom>{pageTitle}</PageTitle>
+      <Suspense fallback={<MenuGridSkeleton />}>
+        <MenuGrid />
+      </Suspense>
+    </VerticalSpacedBox>
   );
 }

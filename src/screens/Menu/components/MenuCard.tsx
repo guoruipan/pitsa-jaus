@@ -10,7 +10,7 @@ interface Props {
   href?: string;
 }
 
-export default function MyCard({ imgUrl, text, href }: Props) {
+export default function MenuCard({ imgUrl, text, href }: Props) {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardActionArea href={href || '#'}>
