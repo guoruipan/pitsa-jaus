@@ -26,11 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Box component="body" sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-      }} >
+      <Box
+        component="body"
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />

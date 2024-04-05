@@ -8,11 +8,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import StoreTable from './components/StoreTable';
 
-interface Params {
+interface Props {
   pageTitle: string,
 }
 
-export default function FindUsScreen({ pageTitle }: Params) {
+export default function FindUsScreen({ pageTitle }: Props) {
   const [postCode, setPostCode] = useState("");
 
   function handleInputChange (newValue : string) {

@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import InstagramIcon from "#/components/icons/InstagramIcon";
 import FacebookIcon from "#/components/icons/FacebookIcon";
-import Link from '#/components/ui/Link';
+import Link from "#/components/ui/Link";
 
 /* footer (mt-auto), junto a 
   body (minHeight: '100vh',
@@ -32,13 +32,19 @@ export default function Footer() {
         </Typography>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/privacy-policy">Política de privacidad</Link>
+        <Link variant="body1" color="inherit" href="/privacy-policy">
+          Política de privacidad
+        </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/terms-and-conditions">Términos y condiciones</Link>
+        <Link variant="body1" color="inherit" href="/terms-and-conditions">
+          Términos y condiciones
+        </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/contact-us">Contáctanos</Link>
+        <Link variant="body1" color="inherit" href="/contact-us">
+          Contáctanos
+        </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
         <InstagramIcon />

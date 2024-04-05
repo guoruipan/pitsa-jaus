@@ -8,7 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return (
-    <PrivacyPolicyScreen pageTitle={pageTitle} />
-  );
+  return <PrivacyPolicyScreen pageTitle={pageTitle} />;
 }

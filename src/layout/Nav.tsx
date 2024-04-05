@@ -32,12 +32,8 @@ const pages: Page[] = [
 const settings = ["Mi cuenta", "Cerrar sesión"];
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -46,7 +42,7 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (href? : string) => {
+  const handleCloseNavMenu = (href?: string) => {
     setAnchorElNav(null);
     window.location.href = href || "#"; // en el menú hamburguesa daba error sino
   };
@@ -111,7 +107,10 @@ function ResponsiveAppBar() {
             >
               {/* implementados los enlaces */}
               {pages.map((page) => (
-                <MenuItem key={page.href} onClick={() => handleCloseNavMenu(page.href)}>
+                <MenuItem
+                  key={page.href}
+                  onClick={() => handleCloseNavMenu(page.href)}
+                >
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}

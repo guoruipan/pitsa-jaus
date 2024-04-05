@@ -13,7 +13,7 @@ interface Props {
 export default function MenuCard({ imgUrl, text, href }: Props) {
   return (
     <Card sx={{ minWidth: 275 }}>
-      <CardActionArea href={href || '#'}>
+      <CardActionArea href={href || "#"}>
         <CardMedia
           component={"img"}
           sx={{ height: 140 }}
@@ -21,9 +21,7 @@ export default function MenuCard({ imgUrl, text, href }: Props) {
           alt={`Foto de una pizza ${text}`}
         />
         <CardContent>
-          <Typography variant="h6">
-            {text}
-          </Typography>
+          <Typography variant="h6">{text}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>

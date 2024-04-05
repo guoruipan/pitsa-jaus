@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import { createTheme } from "@mui/material/styles";
 
 // desde que quité Tailwind CSS del proyecto, las imagenes de next/image y las fuentes de next/font me han dado problemas
@@ -16,7 +16,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: "Roboto",
   },
   palette: {
     primary: {

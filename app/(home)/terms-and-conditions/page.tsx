@@ -8,7 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return (
-    <TermsAndCondScreen pageTitle={pageTitle} />
-  );
+  return <TermsAndCondScreen pageTitle={pageTitle} />;
 }

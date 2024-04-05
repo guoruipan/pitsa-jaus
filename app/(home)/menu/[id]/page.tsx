@@ -1,27 +1,17 @@
-import { Metadata } from 'next';
-import { getWithId as getPizza } from "#/models/pizza";
-import MenuItemScreen from '#/screens/MenuItem';
+import { Metadata } from "next";
+import MenuItemScreen from "#/screens/MenuItem";
 
-const pageTitle = 'Pizza';
+const pageTitle = "Pizza";
 
 export const metadata: Metadata = {
   title: pageTitle,
 };
 
-interface Params {
+interface Props {
   // parece que no puedo poner directamente id, tiene que estar dentro de params
-  params: { id: number }
+  params: { id: number };
 }
 
-export default async function Page ({params} : Params){
-    const pizza = await getPizza(params.id);
-
-    //TODO utilizado !! porque en getPizza() creo que ya valido. Probar
-
-     // modifica el título utilizando la propiedad 'name' de la pizza
-     metadata.title = `${pageTitle} ${pizza!!.name}`;
-
-    return (
-      <MenuItemScreen pageTitle={metadata.title} pizza={pizza!!} />
-    );
+export default function Page({ params }: Props) {
+  return <MenuItemScreen id={params.id} />;
 }

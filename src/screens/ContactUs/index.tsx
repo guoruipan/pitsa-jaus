@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
 import H1 from "#/components/ui/H1";
-import Stack from '@mui/material/Stack';
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
 import ListItemText from "@mui/material/ListItemText";
-import { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
-export default function ContactScreen({pageTitle} : {pageTitle : string}) {
+export default function ContactScreen({ pageTitle }: { pageTitle: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

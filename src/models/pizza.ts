@@ -8,7 +8,7 @@ export type Pizza = {
 };
 
 // TODO make noStore??
-export async function list(currentPage? : number) {
+export async function list(currentPage?: number) {
   const pageSize = 8; // Número de elementos a mostrar
   const pageNumber = currentPage || 1; // Número de la página
   const offset = (pageNumber - 1) * pageSize;
@@ -18,7 +18,8 @@ export async function list(currentPage? : number) {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
     //TODO DELETE ABOVE
 
-    const data = await sql<Pizza>`SELECT * FROM pizzas LIMIT ${pageSize} OFFSET ${offset};`;
+    const data =
+      await sql<Pizza>`SELECT * FROM pizzas LIMIT ${pageSize} OFFSET ${offset};`;
 
     return data.rows;
   } catch (error) {
@@ -34,7 +35,7 @@ export async function getWithId(id: number) {
 
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada
-    } 
+    }
     // si no encuentra nada debería irse al catch
   } catch (error) {
     console.error("Database Error:", error);

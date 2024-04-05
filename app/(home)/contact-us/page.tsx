@@ -16,5 +16,4 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return <ContactScreen pageTitle={pageTitle} />;
-  
 }
