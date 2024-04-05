@@ -1,4 +1,5 @@
 import { sql } from "@vercel/postgres";
+import { unstable_noStore as noStore } from 'next/cache';
 
 export type Store = {
     id: number;
@@ -12,6 +13,8 @@ export type Store = {
   };
 
   export async function list(postcode? : string) {
+    //TODO really keep nostore??
+    noStore();
     // TODO : IMPLEMENT PAGINATION
     // const ITEMS_PER_PAGE = 8;
     // const offset = (currentPage - 1) * ITEMS_PER_PAGE;

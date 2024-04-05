@@ -33,9 +33,7 @@ export default function FindUsScreen({ pageTitle }: Params) {
           }}
         />
       </Box>
-      {/* implement query to get locals */}
-      <p>{postCode}</p>
-      <StoreTable />
+      <StoreTable postCode={postCode} />
     </>
   );
 }

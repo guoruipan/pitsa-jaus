@@ -9,8 +9,12 @@ import { list as listStores } from "#/models/store";
 
 // paper le da apariencia de estar elevado a la tabla
 
-export default async function StoreTable() {
-    const stores = await listStores();
+interface Props {
+    postCode : string ;
+}
+
+export default async function StoreTable({postCode} : Props) {
+    const stores = await listStores(postCode);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="Tabla de tiendas">
