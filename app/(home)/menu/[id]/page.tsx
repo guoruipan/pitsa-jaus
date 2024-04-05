@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 };
 
 interface Props {
-  // parece que no puedo poner directamente id, tiene que estar dentro de params
+  // no puedo poner directamente id, tiene que estar dentro de params que es una propiedad especial de next js
+  // https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes
   params: { id: number };
 }
 

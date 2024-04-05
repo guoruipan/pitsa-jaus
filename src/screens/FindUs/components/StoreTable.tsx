@@ -9,12 +9,18 @@ import { list as listStores } from "#/models/store";
 
 // paper le da apariencia de estar elevado a la tabla
 
+// TODO implement search using url params
+
 interface Props {
-  postCode: string;
+  query : string;
+  currentPage : number;
 }
 
-export default async function StoreTable({ postCode }: Props) {
-  const stores = await listStores(postCode);
+// TODO implement pagination
+
+export default async function StoreTable({query, currentPage} : Props) {
+  const stores = await listStores(query);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="Tabla de tiendas">
