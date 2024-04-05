@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import PageTitle from "#/components/ui/PageTitle";
+import H1 from "#/components/ui/H1";
 
 export default function ErrorScreen(params: { reset: Function }) {
   return (
     <Box>
-      <PageTitle gutterBottom>¡Algo ha ido mal!</PageTitle>
+      <H1 gutterBottom>¡Algo ha ido mal!</H1>
       <Button
         variant={"contained"}
         onClick={

@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import PageTitle from "#/components/ui/PageTitle";
+import H1 from "#/components/ui/H1";
 import { Suspense } from "react";
 import MenuGridSkeleton from "./components/MenuGridSkeleton";
 import MenuGrid from "./components/MenuGrid";
@@ -14,7 +14,7 @@ interface Params {
 export default function MenuScreen({ pageTitle }: Params) {
   return (
     <Stack>
-      <PageTitle gutterBottom>{pageTitle}</PageTitle>
+      <H1 gutterBottom>{pageTitle}</H1>
       <Suspense fallback={<MenuGridSkeleton />}>
         <MenuGrid />
       </Suspense>

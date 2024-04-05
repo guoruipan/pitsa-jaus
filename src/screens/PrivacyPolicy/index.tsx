@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
-import PageTitle from "#/components/ui/PageTitle";
+import H1 from "#/components/ui/H1";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
@@ -10,9 +10,9 @@ export default function PrivacyPolicyScreen({pageTitle} : {pageTitle : string}) 
     return (
       <>
         <Stack spacing={2} marginBottom={"1.5rem"}>
-          <PageTitle sx={{ textAlign: "center" }}>
+          <H1 sx={{ textAlign: "center" }}>
             {pageTitle} de PitsaJaus &#174;
-          </PageTitle>
+          </H1>
           <Typography
             variant="body1"
             sx={{ textAlign: "center", fontStyle: "italic" }}

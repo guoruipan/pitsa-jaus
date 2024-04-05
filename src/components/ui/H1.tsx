@@ -5,7 +5,7 @@ interface Props extends TypographyProps {
     children : React.ReactNode,
 }
 
-export default function PageTitle ({children, ...rest } : Props ) {
+export default function H1 ({children, ...rest } : Props ) {
     return (
         <Typography variant="h2" component={"h1"} {...rest}>
           {children}

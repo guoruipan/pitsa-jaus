@@ -1,7 +1,7 @@
 "use client";
 
 import Stack from "@mui/material/Stack";
-import PageTitle from "#/components/ui/PageTitle";
+import H1 from "#/components/ui/H1";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
@@ -21,7 +21,7 @@ export default function FindUsScreen({ pageTitle }: Params) {
 
   return (
     <Stack spacing={3}>
-      <PageTitle>{pageTitle}</PageTitle>
+      <H1>{pageTitle}</H1>
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <SearchIcon sx={{ mr: 1, my: 0.5 }} />
         <TextField

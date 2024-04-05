@@ -1,6 +1,6 @@
 'use client';
 
-import PageTitle from "#/components/ui/PageTitle";
+import H1 from "#/components/ui/H1";
 import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -25,7 +25,7 @@ export default function ContactScreen({pageTitle} : {pageTitle : string}) {
   return (
     <>
       <Stack spacing={2} marginBottom={"1.5rem"}>
-        <PageTitle sx={{ textAlign: "center" }}>{pageTitle}</PageTitle>
+        <H1 sx={{ textAlign: "center" }}>{pageTitle}</H1>
         <Typography variant="body1">
           En PitsaJaus, valoramos enormemente los comentarios de nuestros
           clientes, ya que son una fuente invaluable de retroalimentación que
