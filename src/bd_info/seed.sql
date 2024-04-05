@@ -4,13 +4,12 @@
 -- CREATE TABLES
 
 CREATE TABLE Users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    pwd VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    home_address VARCHAR(255),
-    role VARCHAR(20) NOT NULL DEFAULT 'customer',
-    CONSTRAINT check_role CHECK (role IN ('admin', 'manager', 'customer'))
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  pwd VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  home_address VARCHAR(255),
+  role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'manager', 'customer')) DEFAULT 'customer',
 );
 
 -- Guardo el código postal como varchar porque, si bien en España son sólo numéricos, la empresa puede que se expanda a otros países donde este no es el caso
@@ -18,8 +17,11 @@ CREATE TABLE Users (
 CREATE TABLE Stores (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
-    address VARCHAR(255) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
     postcode VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(100),
     manager_id INT NOT NULL REFERENCES Users(id) ON DELETE CASCADE
 );
 
@@ -34,16 +36,16 @@ CREATE TABLE Orders (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES Users(id),
     total DECIMAL(10, 2) NOT NULL,
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     sent_date TIMESTAMP
 );
 
 CREATE TABLE Order_lines (
     id SERIAL PRIMARY KEY,
-    order_id INT REFERENCES Orders(id),
-    pizza_id INT REFERENCES Pizzas(id),
-    quantity INT CHECK (quantity > 0) DEFAULT 1,
-    line_total DECIMAL(10, 2)
+    order_id INT NOT NULL REFERENCES Orders(id),
+    pizza_id INT NOT NULL REFERENCES Pizzas(id),
+    quantity INT NOT NULL CHECK (quantity > 0) DEFAULT 1,
+    line_total DECIMAL(10, 2) NOT NULL
 );
 
 -- INSERT TABLE
@@ -52,10 +54,13 @@ INSERT INTO Users (name, pwd, email, home_address, role)
 VALUES 
     ('admin', 'admin123', 'admin@example.com', null, 'admin'),
     ('ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', 'manager'),
+    ('bea', 'bea', 'bea@example.com', 'Avenida Principal, Ciudad', 'manager'),
     ('pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', 'customer');
 
-INSERT INTO Stores (name, address, postcode, manager_id)
-VALUES ('PitsaJaus Ana', 'Plaza Central', 50002, 2);
+INSERT INTO Stores (name, address, city, state, postcode, phone_number, manager_id)
+VALUES 
+    ('PitsaJaus Ana', 'Plaza Central', 'Zaragoza', 'España', 50002, '611611611', 2),
+    ('PitsaJaus Bea', 'Avenida Principal', 'Zaragoza', 'España',  50010, '622622622' , 4);
 
 INSERT INTO Pizzas (name, description, price)
 VALUES 

@@ -4,7 +4,10 @@ export type Store = {
     id: number;
     name: string;
     address: string;
+    city: string;
+    state: string;
     postcode: string;
+    phone_number: string;
     manager_id: number;
   };
 
