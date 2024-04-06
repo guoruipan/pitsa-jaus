@@ -9,18 +9,16 @@ import { getTotalPages as getPizzaPages } from '#/models/pizza';
 
 interface Props {
   pageTitle: string;
-  searchParams?: {
-    page?: string;
-  };
+  page?: string;
 }
 
 /* suspense permite renderizar el componente MenuGrid de forma más dinámica, sin bloquear la funcionalidad del resto de la página mientras cargan los datos  */
 /* https://nextjs.org/learn/dashboard-app/streaming  */
 
-export default async function MenuScreen({ pageTitle, searchParams }: Props) {
+export default async function MenuScreen({ pageTitle, page }: Props) {
   const totalPages = await getPizzaPages();
 
-  const currentPage = Number(searchParams?.page) || 1;
+  const currentPage = Number(page) || 1;
 
   return (
     <Stack spacing={3}>

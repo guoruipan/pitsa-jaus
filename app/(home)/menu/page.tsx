@@ -8,6 +8,15 @@ export const metadata: Metadata = {
   title: pageTitle,
 };
 
-export default function Page() {
-  return <MenuScreen pageTitle={pageTitle} />;
+// searchParams es una prop de las páginas next.js
+// https://nextjs.org/docs/app/api-reference/file-conventions/page
+
+interface Props {
+  searchParams?: {
+    page?: string;
+  };
+}
+
+export default function Page({searchParams} : Props) {
+  return <MenuScreen pageTitle={pageTitle} page={searchParams?.page} />;
 }
