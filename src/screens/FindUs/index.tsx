@@ -8,31 +8,23 @@ import StoreTableSkeleton from "./components/StoreTableSkeleton";
 
 interface Props {
   pageTitle: string;
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
+  query?: string;
+  page?: string;
 }
 
-// en next js, las páginas aceptan searchParams
-// https://nextjs.org/docs/app/api-reference/file-conventions/page
-
-export default function FindUsScreen({ pageTitle, searchParams }: Props) {
-  const query = searchParams?.query || "";
-  const currentPage = Number(searchParams?.page) || 1;
-
-  console.log("query in FindUsScreen:", query);
-  console.log("currentPage in FindUsScreen:", currentPage);
+export default function FindUsScreen({ pageTitle, query, page }: Props) {
+  const searchTerm = query || "";
+  const currentPage = Number(page) || 1;
 
   return (
     <Stack spacing={3}>
       <H1>{pageTitle}</H1>
       <SearchBar />
       <Suspense
-        key={`${query} ${currentPage}`}
+        key={`${searchTerm} ${currentPage}`}
         fallback={<StoreTableSkeleton />}
       >
-        <StoreTable query={query} currentPage={currentPage} />
+        <StoreTable query={searchTerm} currentPage={currentPage} />
       </Suspense>
     </Stack>
   );

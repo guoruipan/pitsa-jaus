@@ -16,9 +16,6 @@ export async function list(term = "", currentPage = 1) {
   const pageSize = 5; // Número de elementos a mostrar
   const offset = (currentPage - 1) * pageSize;
 
-  console.log("Term in Store.list: " + term);
-  console.log("currentPage in Store.list: " + currentPage);
-
   try {
     // TODO DELETE BELOW
     // await new Promise((resolve) => setTimeout(resolve, 3000));

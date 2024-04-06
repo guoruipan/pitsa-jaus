@@ -8,6 +8,15 @@ export const metadata: Metadata = {
   title: pageTitle,
 };
 
-export default function Page() {
-  return <FindUsScreen pageTitle={pageTitle} />;
+// en next js, las páginas aceptan searchParams
+// https://nextjs.org/docs/app/api-reference/file-conventions/page
+interface Props {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}
+
+export default function Page({searchParams} : Props) {
+  return <FindUsScreen pageTitle={pageTitle} query={searchParams?.query} page={searchParams?.page} />;
 }
