@@ -1,24 +1,34 @@
 import React from "react";
-import Stack from "@mui/material/Stack";
 import H1 from "#/components/ui/H1";
 import { Suspense } from "react";
 import MenuGridSkeleton from "./components/MenuGridSkeleton";
 import MenuGrid from "./components/MenuGrid";
+import { Stack } from "@mui/material";
+import Pagination from "#/components/ui/Pagination";
+import { getTotalPages as getPizzaPages } from '#/models/pizza';
 
 interface Props {
   pageTitle: string;
+  searchParams?: {
+    page?: string;
+  };
 }
 
 /* suspense permite renderizar el componente MenuGrid de forma más dinámica, sin bloquear la funcionalidad del resto de la página mientras cargan los datos  */
 /* https://nextjs.org/learn/dashboard-app/streaming  */
 
-export default function MenuScreen({ pageTitle }: Props) {
+export default async function MenuScreen({ pageTitle, searchParams }: Props) {
+  const totalPages = await getPizzaPages();
+
+  const currentPage = Number(searchParams?.page) || 1;
+
   return (
-    <Stack>
+    <Stack spacing={3}>
       <H1 gutterBottom>{pageTitle}</H1>
       <Suspense fallback={<MenuGridSkeleton />}>
-        <MenuGrid />
+        <MenuGrid currentPage={currentPage} />
       </Suspense>
+      <Pagination totalPages={totalPages} />
     </Stack>
   );
 }

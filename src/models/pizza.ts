@@ -7,10 +7,11 @@ export type Pizza = {
   price: number;
 };
 
+const ITEMS_PER_PAGE = 8;
+
 // TODO make noStore??
 export async function list(currentPage = 1) {
-  const pageSize = 8; // Número de elementos a mostrar
-  const offset = (currentPage - 1) * pageSize;
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
     // TODO DELETE BELOW
@@ -18,12 +19,26 @@ export async function list(currentPage = 1) {
     //TODO DELETE ABOVE
 
     const data =
-      await sql<Pizza>`SELECT * FROM pizzas LIMIT ${pageSize} OFFSET ${offset};`;
+      await sql<Pizza>`SELECT * FROM pizzas LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
 
     return data.rows;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch data about pizzas");
+  }
+}
+
+export async function getTotalPages() {
+
+  try {
+    const count = await sql`SELECT COUNT(*) FROM pizzas;`;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+
+    return totalPages;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of pizzas.");
   }
 }
 
