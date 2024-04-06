@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import NextLink from "next/link";
 import MuiLink from "@mui/material/Link";
 import { TypographyProps } from "@mui/material/Typography";

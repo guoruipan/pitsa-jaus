@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { list as listPizzas } from "#/models/pizza";
 import MenuCard from "./MenuCard";
 import Grid from "@mui/material/Grid";

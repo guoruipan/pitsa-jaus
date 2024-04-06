@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import H1 from "#/components/ui/H1";

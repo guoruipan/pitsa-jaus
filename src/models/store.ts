@@ -27,11 +27,12 @@ export async function list(term = "", currentPage = 1) {
     let data;
 
     // el param term es opcional. Si está, filtra por él. Si no, muestra la lista completa
-    if (term !== ""){
-      data = await sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%' LIMIT ${pageSize} OFFSET ${offset}`;
-    }
-    else {
-      data = await sql<Store>`SELECT * FROM stores LIMIT ${pageSize} OFFSET ${offset}`;
+    if (term !== "") {
+      data =
+        await sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%' LIMIT ${pageSize} OFFSET ${offset}`;
+    } else {
+      data =
+        await sql<Store>`SELECT * FROM stores LIMIT ${pageSize} OFFSET ${offset}`;
     }
 
     // si no encuentra registros, devolver array vacío

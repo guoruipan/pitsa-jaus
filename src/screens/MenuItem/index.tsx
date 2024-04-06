@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import H1 from "#/components/ui/H1";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";

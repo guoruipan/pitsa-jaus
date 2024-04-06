@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Metadata } from "next";
 import H1 from "#/components/ui/H1";
 

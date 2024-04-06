@@ -1,7 +1,7 @@
 "use client"; // Error components must be Client Components
 
 // https://nextjs.org/docs/app/building-your-application/routing/error-handling
-import React from 'react';
+import React from "react";
 import { useEffect } from "react";
 import ErrorScreen from "#/screens/Error";
 

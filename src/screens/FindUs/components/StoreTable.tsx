@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,13 +11,13 @@ import { list as listStores } from "#/models/store";
 // paper le da apariencia de estar elevado a la tabla
 
 interface Props {
-  query : string;
-  currentPage : number;
+  query: string;
+  currentPage: number;
 }
 
 // TODO implement pagination
 
-export default async function StoreTable({query, currentPage} : Props) {
+export default async function StoreTable({ query, currentPage }: Props) {
   const stores = await listStores(query, currentPage);
 
   return (

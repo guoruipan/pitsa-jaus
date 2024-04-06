@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -18,7 +18,7 @@ export default function MenuGridSkeleton() {
   );
 }
 
-function MenuCardSkeleton () {
+function MenuCardSkeleton() {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardMedia>

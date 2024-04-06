@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import MenuScreen from "#/screens/Menu";
 import { Metadata } from "next";
 

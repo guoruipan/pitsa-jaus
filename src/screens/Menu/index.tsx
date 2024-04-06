@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Stack from "@mui/material/Stack";
 import H1 from "#/components/ui/H1";
 import { Suspense } from "react";

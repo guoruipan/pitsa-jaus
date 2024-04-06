@@ -34,8 +34,7 @@ export async function getWithId(id: number) {
 
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada
-    }
-    else {
+    } else {
       throw new Error("Failed to fetch pizza with specified ID");
     }
   } catch (error) {
