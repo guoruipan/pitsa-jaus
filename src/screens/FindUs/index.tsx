@@ -5,6 +5,8 @@ import SearchBar from "./components/SearchBar";
 import StoreTable from "./components/StoreTable";
 import { Suspense } from "react";
 import StoreTableSkeleton from "./components/StoreTableSkeleton";
+import { getTotalPages as getStorePages } from "#/models/store";
+import Pagination from "#/components/ui/Pagination";
 
 interface Props {
   pageTitle: string;
@@ -12,9 +14,11 @@ interface Props {
   page?: string;
 }
 
-export default function FindUsScreen({ pageTitle, query, page }: Props) {
+export default async function FindUsScreen({ pageTitle, query, page }: Props) {
   const searchTerm = query || "";
   const currentPage = Number(page) || 1;
+
+  const totalPages = await getStorePages(query);
 
   return (
     <Stack spacing={3}>
@@ -26,6 +30,7 @@ export default function FindUsScreen({ pageTitle, query, page }: Props) {
       >
         <StoreTable query={searchTerm} currentPage={currentPage} />
       </Suspense>
+      <Pagination totalPages={totalPages} />
     </Stack>
   );
 }

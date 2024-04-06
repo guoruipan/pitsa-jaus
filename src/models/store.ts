@@ -11,10 +11,11 @@ export type Store = {
   manager_id: number;
 };
 
+const ITEMS_PER_PAGE = 5;
+
 // TODO make noStore??
 export async function list(term = "", currentPage = 1) {
-  const pageSize = 5; // Número de elementos a mostrar
-  const offset = (currentPage - 1) * pageSize;
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
     // TODO DELETE BELOW
@@ -26,10 +27,10 @@ export async function list(term = "", currentPage = 1) {
     // el param term es opcional. Si está, filtra por él. Si no, muestra la lista completa
     if (term !== "") {
       data =
-        await sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%' LIMIT ${pageSize} OFFSET ${offset}`;
+        await sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%' LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
     } else {
       data =
-        await sql<Store>`SELECT * FROM stores LIMIT ${pageSize} OFFSET ${offset}`;
+        await sql<Store>`SELECT * FROM stores LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
     }
 
     // si no encuentra registros, devolver array vacío
@@ -37,5 +38,24 @@ export async function list(term = "", currentPage = 1) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch data about stores");
+  }
+}
+
+export async function getTotalPages(term = "") {
+  try {
+    let count;
+
+    if (term !== "") {
+      count = await sql`SELECT COUNT(*) FROM stores WHERE postcode ILIKE '%' || ${term} || '%';`;
+    } else {
+      count = await sql`SELECT COUNT(*) FROM stores;`;
+    }
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+
+    return totalPages;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of stores.");
   }
 }

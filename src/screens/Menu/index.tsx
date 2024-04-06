@@ -5,7 +5,7 @@ import MenuGridSkeleton from "./components/MenuGridSkeleton";
 import MenuGrid from "./components/MenuGrid";
 import { Stack } from "@mui/material";
 import Pagination from "#/components/ui/Pagination";
-import { getTotalPages as getPizzaPages } from '#/models/pizza';
+import { getTotalPages as getPizzaPages } from "#/models/pizza";
 
 interface Props {
   pageTitle: string;
@@ -19,6 +19,11 @@ export default async function MenuScreen({ pageTitle, page }: Props) {
   const totalPages = await getPizzaPages();
 
   const currentPage = Number(page) || 1;
+  
+  // este error sólo debería darse si el usuario introduce manualmente un número de página inválido
+  if (currentPage > totalPages) {
+    throw new Error("page parameter exceeds totalPages of pizzas");
+  }
 
   return (
     <Stack spacing={3}>
