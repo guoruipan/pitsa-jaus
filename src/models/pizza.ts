@@ -14,7 +14,7 @@ export async function list(currentPage = 1) {
 
   try {
     // TODO DELETE BELOW
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+     await new Promise((resolve) => setTimeout(resolve, 3000));
     //TODO DELETE ABOVE
 
     const data =

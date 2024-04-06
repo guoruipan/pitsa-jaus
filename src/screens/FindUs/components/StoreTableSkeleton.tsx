@@ -8,7 +8,7 @@ export default function StoreTableSkeleton() {
           <TableRow key={i}>
             {Array.from({ length: 6 }).map((_, j) => (
               <TableCell key={j}>
-                <Skeleton variant="rectangular" width={150} height={16} />
+                <Skeleton variant="text" />
               </TableCell>
             ))}
           </TableRow>
