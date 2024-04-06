@@ -1,5 +1,6 @@
 // AppRouterCacheProvider es recomendable para trabajar con mui
 // https://mui.com/material-ui/integrations/nextjs/
+import React from 'react';
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import Nav from "#/layout/Nav";

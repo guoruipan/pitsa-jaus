@@ -1,8 +1,13 @@
+import React from 'react';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import H1 from "#/components/ui/H1";
 
-export default function ErrorScreen({ reset }: { reset: Function }) {
+interface Props {
+  reset: () => void;
+}
+
+export default function ErrorScreen({ reset }: Props) {
   return (
     <Box>
       <H1 gutterBottom>¡Algo ha ido mal!</H1>

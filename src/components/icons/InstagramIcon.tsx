@@ -1,3 +1,4 @@
+import React from 'react';
 import Instagram from "@mui/icons-material/Instagram";
 import NextLink from "next/link";
 import MuiLink from "@mui/material/Link";

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import H1 from "#/components/ui/H1";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -8,20 +9,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CheckIcon from "@mui/icons-material/Check";
 import ListItemText from "@mui/material/ListItemText";
-import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 
 export default function ContactScreen({ pageTitle }: { pageTitle: string }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    // TODO enviar correo
-  };
-
   return (
     <>
       <Stack spacing={2}>

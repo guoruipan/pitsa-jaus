@@ -2,6 +2,7 @@
 
 // https://nextjs.org/learn/dashboard-app/adding-search-and-pagination
 
+import React from 'react';
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";

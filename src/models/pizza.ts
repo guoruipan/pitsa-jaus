@@ -14,7 +14,7 @@ export async function list(currentPage = 1) {
 
   try {
     // TODO DELETE BELOW
-     await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
     //TODO DELETE ABOVE
 
     const data =
@@ -35,7 +35,9 @@ export async function getWithId(id: number) {
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada
     }
-    // si no encuentra nada debería irse al catch
+    else {
+      throw new Error("Failed to fetch pizza with specified ID");
+    }
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch pizza with specified ID");
