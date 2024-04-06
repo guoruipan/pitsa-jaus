@@ -13,10 +13,18 @@ export default function MyPagination({ totalPages }: Props) {
   const { replace } = useRouter();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
+  const query = searchParams.get("query") || "";
 
   function handleSearch(page: number) {
     const params = new URLSearchParams(searchParams);
-    params.set("page", page.toString());
+
+    if (query !== "") {
+      params.set('page', '1');
+    }
+    else {
+      params.set("page", page.toString());
+    }
+    
     replace(`${pathname}?${params.toString()}`);
   }
 
