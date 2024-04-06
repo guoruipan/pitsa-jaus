@@ -9,8 +9,6 @@ import { list as listStores } from "#/models/store";
 
 // paper le da apariencia de estar elevado a la tabla
 
-// TODO implement search using url params
-
 interface Props {
   query : string;
   currentPage : number;
@@ -19,7 +17,7 @@ interface Props {
 // TODO implement pagination
 
 export default async function StoreTable({query, currentPage} : Props) {
-  const stores = await listStores(query);
+  const stores = await listStores(query, currentPage);
 
   return (
     <TableContainer component={Paper}>

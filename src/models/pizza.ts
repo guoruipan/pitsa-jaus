@@ -8,10 +8,9 @@ export type Pizza = {
 };
 
 // TODO make noStore??
-export async function list(currentPage?: number) {
+export async function list(currentPage = 1) {
   const pageSize = 8; // Número de elementos a mostrar
-  const pageNumber = currentPage || 1; // Número de la página
-  const offset = (pageNumber - 1) * pageSize;
+  const offset = (currentPage - 1) * pageSize;
 
   try {
     // TODO DELETE BELOW

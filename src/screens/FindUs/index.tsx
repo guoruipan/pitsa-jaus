@@ -20,11 +20,14 @@ export default function FindUsScreen({ pageTitle, searchParams }: Props) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
+  console.log('query in FindUsScreen:', query);
+console.log('currentPage in FindUsScreen:', currentPage);
+
   return (
     <Stack spacing={3}>
       <H1>{pageTitle}</H1>
       <SearchBar />
-      <Suspense key={query + currentPage} fallback={<StoreTableSkeleton />}>
+      <Suspense key={`${query} ${currentPage}`} fallback={<StoreTableSkeleton />}>
         <StoreTable query={query} currentPage={currentPage} />
       </Suspense>
     </Stack>
