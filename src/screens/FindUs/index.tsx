@@ -16,9 +16,12 @@ interface Props {
 
 export default async function FindUsScreen({ pageTitle, query, page }: Props) {
   const searchTerm = query || "";
-  const currentPage = Number(page) || 1;
-
   const totalPages = await getStorePages(query);
+
+  // Number(page) || 1 -> Recibe el param page, si es NaN o undefined por defecto es 1
+  // Math.min(..., totalPages) -> devuelve el menor de los dos nums, para asegurarme de que page no exceda totalPages
+  // Max.max(1, ...) -> devuelve el mayor de los dos nums, para asegurarme de que page no sea menor que 1
+  const currentPage = Math.max(1, Math.min(Number(page) || 1, totalPages));
 
   return (
     <Stack spacing={3}>
@@ -30,7 +33,7 @@ export default async function FindUsScreen({ pageTitle, query, page }: Props) {
       >
         <StoreTable query={searchTerm} currentPage={currentPage} />
       </Suspense>
-      <Pagination totalPages={totalPages} />
+      <Pagination totalPages={totalPages} defaultPage={currentPage} />
     </Stack>
   );
 }
