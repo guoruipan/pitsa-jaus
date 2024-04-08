@@ -11,7 +11,7 @@ import ContactForm from "./components/ContactForm";
 
 export default function ContactScreen({ pageTitle }: { pageTitle: string }) {
   return (
-    <Stack spacing={2}>
+    <Stack spacing={3}>
       <H1 sx={{ textAlign: "center" }}>{pageTitle}</H1>
       <Typography variant="body1">
         En PitsaJaus, valoramos enormemente los comentarios de nuestros

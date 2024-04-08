@@ -4,6 +4,7 @@
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61
 // https://formik.org/docs/examples/checkboxes
 // https://formik.org/docs/guides/validation
+// https://stackoverflow.com/questions/73531755/formik-handle-checkbox-validation-with-react-and-material-ui
 
 import React from "react";
 import { useFormik } from "formik";
@@ -85,8 +86,10 @@ export default function ContactForm() {
           onBlur={formik.handleBlur}
           error={formik.touched.body && Boolean(formik.errors.body)}
           helperText={formik.touched.body && formik.errors.body}
+          multiline
+          rows={4}
+          maxRows={8}
         />
-        {/* TODO add error, helperText */}
         <FormControl>
           <FormControlLabel
             control={
@@ -101,9 +104,7 @@ export default function ContactForm() {
             label="Acepto la Política de privacidad"
           />
           <FormHelperText style={{ color: "red" }}>
-            {formik.touched.privacyPolicy && formik.errors.privacyPolicy
-              ? formik.touched.privacyPolicy && formik.errors.privacyPolicy
-              : " "}
+            {formik.touched.privacyPolicy && formik.errors.privacyPolicy}
           </FormHelperText>
         </FormControl>
 
