@@ -32,7 +32,7 @@ const pages: Page[] = [
 
 const settings = ["Mi cuenta", "Cerrar sesión"];
 
-function ResponsiveAppBar() {
+export default function Nav() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -188,4 +188,3 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;

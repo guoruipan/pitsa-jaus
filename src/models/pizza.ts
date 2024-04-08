@@ -29,7 +29,6 @@ export async function list(currentPage = 1) {
 }
 
 export async function getTotalPages() {
-
   try {
     const count = await sql`SELECT COUNT(*) FROM pizzas;`;
 
