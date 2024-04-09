@@ -3,7 +3,7 @@
 import React from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
-import Nav from "#/layout/Nav";
+import AppBar from "#/layout/AppBar";
 import Footer from "#/layout/Footer";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -38,7 +38,7 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Nav />
+            <AppBar />
             <Container component="main" maxWidth="lg" sx={{ my: "3rem" }}>
               {children}
             </Container>

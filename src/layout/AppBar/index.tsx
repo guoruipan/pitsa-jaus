@@ -32,7 +32,7 @@ const pages: Page[] = [
 
 const settings = ["Mi cuenta", "Cerrar sesión"];
 
-export default function Nav() {
+export default function MyAppBar() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
