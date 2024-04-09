@@ -35,6 +35,7 @@ CREATE TABLE Pizzas (
 CREATE TABLE Orders (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES Users(id),
+    store_id INT NOT NULL REFERENCES Stores(id),
     total DECIMAL(10, 2) NOT NULL,
     order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     sent_date TIMESTAMP
@@ -53,14 +54,34 @@ CREATE TABLE Order_lines (
 INSERT INTO Users (name, pwd, email, home_address, role)
 VALUES 
     ('admin', 'admin123', 'admin@example.com', null, 'admin'),
-    ('ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', 'manager'),
-    ('bea', 'bea', 'bea@example.com', 'Avenida Principal, Ciudad', 'manager'),
-    ('pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', 'customer');
+    ('Ana', 'ana', 'ana@example.com', 'Plaza Central, Ciudad', 'manager'),
+    ('Bea', 'bea', 'bea@example.com', 'Avenida Principal, Ciudad', 'manager'),
+    ('Carlos', 'carlos123', 'carlos@example.com', 'Calle Mayor, 45', 'manager'),
+    ('Diana', 'diana456', 'diana@store.com', 'Calle Libertad, 10', 'manager'),
+    ('Elena', 'elena789', 'elena@company.com', 'Avenida del Sol, 21', 'manager'),
+    ('Francisco', 'francisco00', 'francisco@email.com', 'Calle Luna, 32', 'manager'),
+    ('Gloria', 'gloria111', 'gloria@store.com', 'Calle Estacion, 1', 'manager'),
+    ('Hugo', 'hugo222', 'hugo@company.com', null, 'manager'),   
+    ('Irene', 'irene333', 'irene@email.com', 'Calle Principal, 7', 'manager'),
+    ('Javier', 'javier444', 'javier@store.com', 'Calle Norte, 56', 'manager'),
+    ('Karina', 'karina555', 'karina@company.com', 'Calle Sur, 89', 'manager'),
+    ('Luis', 'luis666', 'luis@email.com', 'Calle Oriente, 23', 'manager'),
+    ('Pepe', 'pepe', 'pepe@example.com', 'Calle 123, Ciudad', 'customer');
 
 INSERT INTO Stores (name, address, city, state, postcode, phone_number, manager_id)
 VALUES 
     ('PitsaJaus Ana', 'Plaza Central', 'Zaragoza', 'España', 50002, '611611611', 2),
-    ('PitsaJaus Bea', 'Avenida Principal', 'Zaragoza', 'España',  50010, '622622622' , 4);
+    ('PitsaJaus Bea', 'Avenida Principal', 'Zaragoza', 'España',  50010, '622622622' , 3),
+    ('Supermercado Estrella', 'Calle Mayor, 123', 'Zaragoza', 'España', 50003, '633633633', 4),
+  ('Librería Cervantes', 'Calle Libertad, 45', 'Zaragoza', 'España', 50004, '644644644', 5),
+  ('Farmacia San Marcos', 'Calle Independencia, 78', 'Zaragoza', 'España', 50005, '655655655', 6),
+  ('Cafetería La Pausa', 'Calle Aragon, 21', 'Zaragoza', 'España', 50006, '666666666', 7),
+  ('Tienda de Ropa Moda', 'Calle Delicias, 34', 'Zaragoza', 'España', 50007, '677677677', 8),
+  ('Panadería La Espiga Dorada', 'Calle Huesca, 56', 'Zaragoza', 'España', 50008, '688688688', 9),
+  ('Joyería Brillante', 'Calle Teruel, 7', 'Zaragoza', 'España', 50009, '699699699', 10),
+  ('Carnicería El Toro', 'Calle Valencia, 89', 'Zaragoza', 'España', 50011, '700700700', 11),
+  ('Frutería La Huerta', 'Calle Mallorca, 23', 'Zaragoza', 'España', 50012, '711711711', 12),
+  ('Pescadería El Mar', 'Calle Menorca, 45', 'Zaragoza', 'España', 50013, '722722722', 13);
 
 INSERT INTO Pizzas (name, description, price)
 VALUES 
