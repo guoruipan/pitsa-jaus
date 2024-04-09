@@ -109,7 +109,7 @@ export default function ContactForm() {
         </FormControl>
 
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
+          Enviar
         </Button>
       </Stack>
     </form>
