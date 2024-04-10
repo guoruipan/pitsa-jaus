@@ -1,7 +1,8 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import H1 from "#/components/ui/H1";
+import { Typography } from "@mui/material";
 
 interface Props {
   reset: () => void;
@@ -9,8 +10,9 @@ interface Props {
 
 export default function ErrorScreen({ reset }: Props) {
   return (
-    <Box>
-      <H1 gutterBottom>¡Algo ha ido mal!</H1>
+    <Stack spacing={3}>
+      <H1>¡Ups! Algo ha ido mal</H1>
+      <Typography variant="h6" component={"p"}>Lo sentimos, se ha producido un error inesperado. Por favor, inténtalo de nuevo más tarde.</Typography>
       <Button
         variant={"contained"}
         onClick={
@@ -20,6 +22,6 @@ export default function ErrorScreen({ reset }: Props) {
       >
         Inténtalo de nuevo
       </Button>
-    </Box>
+    </Stack>
   );
 }

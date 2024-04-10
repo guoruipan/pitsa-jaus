@@ -14,7 +14,7 @@ export default async function MenuItemScreen({ id }: Props) {
   const pizza = await getPizza(id);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={3}>
       <Grid item xs={12}>
         <Breadcrumbs currentPageName={pizza.name} />
       </Grid>
@@ -22,8 +22,8 @@ export default async function MenuItemScreen({ id }: Props) {
         <Image
           src="/placeholder.jpg"
           alt={`Imagen de una pizza ${pizza.name}`}
-          width={200}
-          height={200}
+          width={300}
+          height={300}
         />
       </Grid>
       <Grid item xs={12} md={6}>
