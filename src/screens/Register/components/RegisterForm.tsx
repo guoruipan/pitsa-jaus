@@ -6,6 +6,8 @@
 // https://formik.org/docs/guides/validation
 // https://stackoverflow.com/questions/73531755/formik-handle-checkbox-validation-with-react-and-material-ui
 
+// https://mui.com/material-ui/react-select/
+
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -16,44 +18,97 @@ import {
   FormControlLabel,
   FormHelperText,
   Checkbox,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { insert as createUser, getWithEmail as getUser } from "#/models/user";
+import type { User } from "#/models/user";
 
 // TODO EVERYTHING
 
 export default function RegisterForm() {
   const validationSchema = yup.object({
-    email: yup
+    name: yup
+      .string()
+      .max(100, "Este campo no puede exceder los 100 caracteres")
+      .required("Este campo es obligatorio"),
+    email: yup // TODO email validate unique
       .string()
       .email("Introduce una dirección de email válida")
+      .max(100, "Este campo no puede exceder los 100 caracteres")
       .required("Este campo es obligatorio"),
-    subject: yup
+    pwd: yup
       .string()
-      .max(50, "Este campo no puede exceder los 50 caracteres")
+      .max(100, "Este campo no puede exceder los 100 caracteres")
       .required("Este campo es obligatorio"),
-    body: yup.string().required("Este campo es obligatorio"),
+    home_address: yup
+      .string()
+      .max(255, "Este campo no puede exceder los 255 caracteres"),
+    role: yup
+      .string()
+      .required("Este campo es obligatorio")
+      .oneOf(["admin", "manager", "customer"], "Debes seleccionar una opción"),
     privacyPolicy: yup
       .boolean()
       .required("Este campo es obligatorio")
       .oneOf([true], "Debes aceptar la política de privacidad."),
+    termsConditions: yup
+      .boolean()
+      .required("Este campo es obligatorio")
+      .oneOf([true], "Debes aceptar términos y condiciones."),
   });
 
   const formik = useFormik({
     initialValues: {
+      name: "",
       email: "",
-      subject: "",
-      body: "",
+      pwd: "",
+      home_address: "",
+      role: "",
       privacyPolicy: false,
+      termsConditions: false,
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      const user: User = {
+        id: 0,
+        name: values.name,
+        pwd: values.pwd,
+        email: values.email,
+        home_address: values.home_address,
+        role: values.role as "admin" | "manager" | "customer",
+      };
+
+      if (await getUser(user.email) === null){
+        console.log("Registering user...");
+
+        createUser(user);
+      }
+      else {
+        console.log("Something went wrong");
+        formik.touched.email = true;
+        formik.errors.email = "Ya existe un usuario con el email introducido";
+      }
+      
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
+        <TextField
+          fullWidth
+          id="name"
+          name="name"
+          label="Nombre"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
         <TextField
           fullWidth
           id="email"
@@ -67,29 +122,50 @@ export default function RegisterForm() {
         />
         <TextField
           fullWidth
-          id="subject"
-          name="subject"
-          label="Asunto"
-          value={formik.values.subject}
+          id="pwd"
+          name="pwd"
+          label="Contraseña"
+          type="password"
+          value={formik.values.pwd}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.subject && Boolean(formik.errors.subject)}
-          helperText={formik.touched.subject && formik.errors.subject}
+          error={formik.touched.pwd && Boolean(formik.errors.pwd)}
+          helperText={formik.touched.pwd && formik.errors.pwd}
         />
         <TextField
           fullWidth
-          id="body"
-          name="body"
-          label="Cuerpo del mensaje"
-          value={formik.values.body}
+          id="home_address"
+          name="home_address"
+          label="Dirección de domicilio"
+          value={formik.values.home_address}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.body && Boolean(formik.errors.body)}
-          helperText={formik.touched.body && formik.errors.body}
-          multiline
-          rows={4}
-          maxRows={8}
+          error={
+            formik.touched.home_address && Boolean(formik.errors.home_address)
+          }
+          helperText={formik.touched.home_address && formik.errors.home_address}
         />
+        <FormControl fullWidth>
+          <InputLabel id="role_label">Rol</InputLabel>
+          <Select
+            id="role"
+            name="role"
+            labelId="role_label"
+            label="Rol"
+            value={formik.values.role}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.role && Boolean(formik.errors.role)}
+          >
+            <MenuItem value={"admin"}>Administrador</MenuItem>
+            <MenuItem value={"manager"}>Gerente</MenuItem>
+            <MenuItem value={"Cliente"}>Cliente</MenuItem>
+          </Select>
+          <FormHelperText style={{ color: "red" }}>
+            {formik.touched.role && formik.errors.role}
+          </FormHelperText>
+        </FormControl>
+
         <FormControl>
           <FormControlLabel
             control={
@@ -105,6 +181,24 @@ export default function RegisterForm() {
           />
           <FormHelperText style={{ color: "red" }}>
             {formik.touched.privacyPolicy && formik.errors.privacyPolicy}
+          </FormHelperText>
+        </FormControl>
+
+        <FormControl>
+          <FormControlLabel
+            control={
+              <Checkbox
+                id="termsConditions"
+                name="termsConditions"
+                checked={formik.values.termsConditions}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            }
+            label="Acepto los Términos y condiciones"
+          />
+          <FormHelperText style={{ color: "red" }}>
+            {formik.touched.termsConditions && formik.errors.termsConditions}
           </FormHelperText>
         </FormControl>
 
