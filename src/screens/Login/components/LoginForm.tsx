@@ -4,7 +4,6 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
-import { authenticate } from "#/lib/actions";
 import Stack from "@mui/material/Stack";
 
 // https://formik.org/docs/examples/with-material-ui
@@ -29,7 +28,7 @@ export default function LoginForm() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert("se ha pulsado el botón");
+      alert("se ha pulsado el botón" + values);
     },
   });
 
