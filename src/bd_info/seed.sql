@@ -22,7 +22,7 @@ CREATE TABLE Stores (
     state VARCHAR(100) NOT NULL,
     postcode VARCHAR(100) NOT NULL,
     phone_number VARCHAR(100),
-    manager_id INT NOT NULL REFERENCES Users(id) ON DELETE CASCADE
+    manager_id INT NOT NULL UNIQUE REFERENCES Users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Pizzas (

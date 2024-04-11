@@ -9,7 +9,7 @@ export type User = {
   name: string;
   pwd: string;
   email: string;
-  home_address: string;
+  home_address?: string;
   role: "admin" | "manager" | "customer";
 };
 
@@ -24,8 +24,8 @@ export async function insert(user: User) {
     throw new Error("Failed to register new user.");
   }
 
-  revalidatePath("/login");
-  redirect("/login");
+  revalidatePath("/register-success");
+  redirect("/register-success");
 }
 
 export async function getWithEmail(email: string) {

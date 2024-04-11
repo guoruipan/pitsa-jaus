@@ -26,8 +26,6 @@ import Stack from "@mui/material/Stack";
 import { insert as createUser, getWithEmail as getUser } from "#/models/user";
 import type { User } from "#/models/user";
 
-// TODO EVERYTHING
-
 export default function RegisterForm() {
   const validationSchema = yup.object({
     name: yup
@@ -77,21 +75,17 @@ export default function RegisterForm() {
         name: values.name,
         pwd: values.pwd,
         email: values.email,
-        home_address: values.home_address,
+        home_address: values.home_address || undefined, 
         role: values.role as "admin" | "manager" | "customer",
       };
+      {/* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */}
 
-      if (await getUser(user.email) === null){
-        console.log("Registering user...");
-
+      if ((await getUser(user.email)) === null) {
         createUser(user);
-      }
-      else {
-        console.log("Something went wrong");
+      } else {
         formik.touched.email = true;
         formik.errors.email = "Ya existe un usuario con el email introducido";
       }
-      
     },
   });
 
