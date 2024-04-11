@@ -1,0 +1,290 @@
+// https://github.com/vercel/next-learn/blob/main/dashboard/final-example/app/lib/placeholder-data.js
+
+const users = [
+  {
+    name: "admin",
+    email: "admin@example.com",
+    pwd: "admin123",
+    home_address: null,
+    role: "admin",
+  },
+  {
+    name: "Ana",
+    email: "ana@example.com",
+    pwd: "ana",
+    home_address: "Plaza Central, Ciudad",
+    role: "manager",
+  },
+  {
+    name: "Bea",
+    email: "bea@example.com",
+    pwd: "bea",
+    home_address: "Avenida Principal, Ciudad",
+    role: "manager",
+  },
+  {
+    name: "Carlos",
+    email: "carlos@example.com",
+    pwd: "carlos123",
+    home_address: "Calle Mayor, 45",
+    role: "manager",
+  },
+  {
+    name: "Diana",
+    email: "diana@store.com",
+    pwd: "diana456",
+    home_address: "Calle Libertad, 10",
+    role: "manager",
+  },
+  {
+    name: "Elena",
+    email: "elena@company.com",
+    pwd: "elena789",
+    home_address: "Avenida del Sol, 21",
+    role: "manager",
+  },
+  {
+    name: "Francisco",
+    email: "francisco@email.com",
+    pwd: "francisco00",
+    home_address: "Calle Luna, 32",
+    role: "manager",
+  },
+  {
+    name: "Gloria",
+    email: "gloria@store.com",
+    pwd: "gloria111",
+    home_address: "Calle Estacion, 1",
+    role: "manager",
+  },
+  {
+    name: "Hugo",
+    email: "hugo@company.com",
+    pwd: "hugo222",
+    home_address: null,
+    role: "manager",
+  },
+  {
+    name: "Irene",
+    email: "irene@email.com",
+    pwd: "irene333",
+    home_address: "Calle Principal, 7",
+    role: "manager",
+  },
+  {
+    name: "Javier",
+    email: "javier@store.com",
+    pwd: "javier444",
+    home_address: "Calle Norte, 56",
+    role: "manager",
+  },
+  {
+    name: "Karina",
+    email: "karina@company.com",
+    pwd: "karina555",
+    home_address: "Calle Sur, 89",
+    role: "manager",
+  },
+  {
+    name: "Luis",
+    email: "luis@email.com",
+    pwd: "luis666",
+    home_address: "Calle Oriente, 23",
+    role: "manager",
+  },
+  {
+    name: "Pepe",
+    email: "pepe@example.com",
+    pwd: "pepe",
+    home_address: "Calle 123, Ciudad",
+    role: "customer",
+  },
+];
+
+const stores = [
+  {
+    name: "PitsaJaus Ana",
+    address: "Plaza Central",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50002,
+    phone_number: "611611611",
+    manager_id: 2,
+  },
+  {
+    name: "PitsaJaus Bea",
+    address: "Avenida Principal",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50010,
+    phone_number: "622622622",
+    manager_id: 3,
+  },
+  {
+    name: "Supermercado Estrella",
+    address: "Calle Mayor, 123",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50003,
+    phone_number: "633633633",
+    manager_id: 4,
+  },
+  {
+    name: "Librería Cervantes",
+    address: "Calle Libertad, 45",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50004,
+    phone_number: "644644644",
+    manager_id: 5,
+  },
+  {
+    name: "Farmacia San Marcos",
+    address: "Calle Independencia, 78",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50005,
+    phone_number: "655655655",
+    manager_id: 6,
+  },
+  {
+    name: "Cafetería La Pausa",
+    address: "Calle Aragon, 21",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50006,
+    phone_number: "666666666",
+    manager_id: 7,
+  },
+  {
+    name: "Tienda de Ropa Moda",
+    address: "Calle Delicias, 34",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50007,
+    phone_number: "677677677",
+    manager_id: 8,
+  },
+  {
+    name: "Panadería La Espiga Dorada",
+    address: "Calle Huesca, 56",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50008,
+    phone_number: "688688688",
+    manager_id: 9,
+  },
+  {
+    name: "Joyería Brillante",
+    address: "Calle Teruel, 7",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50009,
+    phone_number: "699699699",
+    manager_id: 10,
+  },
+  {
+    name: "Carnicería El Toro",
+    address: "Calle Valencia, 89",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50011,
+    phone_number: "700700700",
+    manager_id: 11,
+  },
+  {
+    name: "Frutería La Huerta",
+    address: "Calle Mallorca, 23",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50012,
+    phone_number: "711711711",
+    manager_id: 12,
+  },
+  {
+    name: "Pescadería El Mar",
+    address: "Calle Menorca, 45",
+    city: "Zaragoza",
+    state: "España",
+    postcode: 50013,
+    phone_number: "722722722",
+    manager_id: 13,
+  },
+];
+
+const pizzas = [
+  {
+    name: "Margarita",
+    description: "Tomate, mozzarella y albahaca",
+    price: 8.99,
+  },
+  {
+    name: "Pepperoni",
+    description: "Tomate, mozzarella y pepperoni",
+    price: 9.99,
+  },
+  {
+    name: "Hawaiana",
+    description: "Tomate, mozzarella, piña y jamón",
+    price: 10.99,
+  },
+  {
+    name: "Barbacoa",
+    description: "Tomate, mozzarella, carne de res, cebolla y salsa barbacoa",
+    price: 11.99,
+  },
+  {
+    name: "Vegetariana",
+    description: "Tomate, mozzarella, champiñones, pimientos y aceitunas",
+    price: 10.49,
+  },
+  {
+    name: "Cuatro quesos",
+    description:
+      "Tomate, mozzarella, queso azul, queso de cabra y queso parmesano",
+    price: 12.99,
+  },
+  {
+    name: "Napolitana",
+    description: "Tomate, mozzarella, anchoas, aceitunas y alcaparras",
+    price: 11.49,
+  },
+  {
+    name: "Calzone",
+    description:
+      "Masa de pizza rellena de tomate, mozzarella, pepperoni y champiñones",
+    price: 12.49,
+  },
+  {
+    name: "Prosciutto e rúcula",
+    description: "Tomate, mozzarella, jamón crudo y rúcula",
+    price: 11.99,
+  },
+  {
+    name: "Carbonara",
+    description: "Tomate, mozzarella, panceta, huevo y parmesano",
+    price: 12.99,
+  },
+  {
+    name: "Mexicana",
+    description: "Tomate, mozzarella, carne de res, jalapeños y guacamole",
+    price: 11.99,
+  },
+  {
+    name: "Bufalina",
+    description: "Tomate, mozzarella de búfala y albahaca fresca",
+    price: 13.49,
+  },
+];
+
+const orders = [];
+
+const order_lines = [];
+
+module.exports = {
+  users,
+  stores,
+  pizzas,
+  orders,
+  order_lines,
+};
