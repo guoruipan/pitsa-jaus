@@ -6,8 +6,8 @@
 CREATE TABLE Users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  pwd VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE,
+  pwd VARCHAR(100) NOT NULL,
   home_address VARCHAR(255),
   role VARCHAR(20) NOT NULL CHECK (role IN ('admin', 'manager', 'customer')) DEFAULT 'customer'
 );

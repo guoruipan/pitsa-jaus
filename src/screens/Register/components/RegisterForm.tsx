@@ -73,8 +73,8 @@ export default function RegisterForm() {
       const user: User = {
         id: 0,
         name: values.name,
-        pwd: values.pwd,
         email: values.email,
+        pwd: values.pwd,
         home_address: values.home_address || undefined, 
         role: values.role as "admin" | "manager" | "customer",
       };
@@ -153,7 +153,7 @@ export default function RegisterForm() {
           >
             <MenuItem value={"admin"}>Administrador</MenuItem>
             <MenuItem value={"manager"}>Gerente</MenuItem>
-            <MenuItem value={"Cliente"}>Cliente</MenuItem>
+            <MenuItem value={"customer"}>Cliente</MenuItem>
           </Select>
           <FormHelperText style={{ color: "red" }}>
             {formik.touched.role && formik.errors.role}

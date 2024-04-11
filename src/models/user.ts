@@ -3,21 +3,27 @@
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import bcrypt from "bcrypt";
+
+// bcrypt example
+// https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
 
 export type User = {
   id: number;
   name: string;
-  pwd: string;
   email: string;
+  pwd: string;
   home_address?: string;
   role: "admin" | "manager" | "customer";
 };
 
 export async function insert(user: User) {
   try {
+    const hashedPassword = await bcrypt.hash(user.pwd, 10);
+
     await sql<User>`
-    INSERT INTO users (name, pwd, email, home_address, role)
-    VALUES (${user.name}, ${user.pwd}, ${user.email}, ${user.home_address}, ${user.role})
+    INSERT INTO users (name, email, pwd, home_address, role)
+    VALUES (${user.name}, ${user.email}, ${hashedPassword}, ${user.home_address}, ${user.role})
   `;
   } catch (error) {
     console.error("Database Error:", error);
