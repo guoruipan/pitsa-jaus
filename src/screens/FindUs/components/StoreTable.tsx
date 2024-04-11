@@ -15,8 +15,6 @@ interface Props {
   currentPage: number;
 }
 
-// TODO implement pagination
-
 export default async function StoreTable({ query, currentPage }: Props) {
   const stores = await listStores(query, currentPage);
 
