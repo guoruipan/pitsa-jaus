@@ -5,12 +5,6 @@ import InstagramIcon from "#/components/icons/InstagramIcon";
 import FacebookIcon from "#/components/icons/FacebookIcon";
 import Link from "#/components/ui/Link";
 
-/* footer (mt-auto), junto a 
-  body (minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',) 
-  empujan el footer al fondo */
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -23,7 +17,6 @@ export default function Footer() {
         bgcolor: "primary.main",
         p: "1rem",
         color: "primary.contrastText",
-        mt: "auto",
         textAlign: "center",
       }}
     >

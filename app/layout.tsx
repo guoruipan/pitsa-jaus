@@ -39,7 +39,11 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <AppBar />
-            <Container component="main" maxWidth="lg" sx={{ my: "3rem" }}>
+            <Container
+              component="main"
+              maxWidth="lg"
+              sx={{ pt: "3rem", pb: "4rem", my: "auto" }}
+            >
               {children}
             </Container>
             <Footer />
