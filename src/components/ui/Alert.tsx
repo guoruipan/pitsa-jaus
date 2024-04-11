@@ -1,10 +1,14 @@
 import React from "react";
-import Alert from "@mui/material/Alert";
+import Alert, { AlertProps } from "@mui/material/Alert";
 
-export function AlertError({ message }: { message: string }) {
+interface Props extends AlertProps {
+  children: React.ReactNode;
+}
+
+export function AlertError({ children, ...rest }: Props) {
   return (
-    <Alert variant="outlined" severity="error">
-      {message}
+    <Alert variant="filled" severity="error" {...rest}>
+      {children}
     </Alert>
   );
 }
