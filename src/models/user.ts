@@ -44,3 +44,13 @@ export async function getWithEmail(email: string) {
     throw new Error("Failed to fetch user with email");
   }
 }
+
+export async function checkPassword(
+  plainPassword: string,
+  hash: string
+): Promise<boolean> {
+  // https://www.npmjs.com/package/bcrypt
+  // tenerlo directamente en componentes de lado del Cliente parece dar problemas
+  const result = await bcrypt.compare(plainPassword, hash);
+  return result;
+}

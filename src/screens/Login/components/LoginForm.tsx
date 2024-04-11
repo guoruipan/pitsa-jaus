@@ -1,10 +1,13 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { getWithEmail as getUser, checkPassword } from "#/models/user";
+import { AlertError } from "#/components/ui/Alert";
 
 // https://formik.org/docs/examples/with-material-ui
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61
@@ -13,6 +16,8 @@ import Stack from "@mui/material/Stack";
 // https://stackoverflow.com/questions/73531755/formik-handle-checkbox-validation-with-react-and-material-ui
 
 export default function LoginForm() {
+  const [showAlert, setShowAlert] = useState(false);
+
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -27,14 +32,30 @@ export default function LoginForm() {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert("se ha pulsado el botón" + values);
+    onSubmit: async (values) => {
+      // quitamos los mensajes de error previos
+      setShowAlert(false);
+      // obtenemos el usuario de bd
+      const userFromDB = await getUser(values.email);
+
+      // si no encuentra el usuario, o si la contraseña no coincide mostramos error
+      if (
+        userFromDB === null ||
+        !(await checkPassword(values.password, userFromDB.pwd))
+      ) {
+        setShowAlert(true);
+        return;
+      }
+
+      // login válido
+      alert("correcto");
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
+        {showAlert && <AlertError message="Usuario o contraseña incorrectos" />}
         <TextField
           fullWidth
           id="email"
