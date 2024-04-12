@@ -47,7 +47,7 @@ export async function getWithEmail(email: string) {
 
 export async function checkPassword(
   plainPassword: string,
-  hash: string
+  hash: string,
 ): Promise<boolean> {
   // https://www.npmjs.com/package/bcrypt
   // tenerlo directamente en componentes de lado del Cliente parece dar problemas

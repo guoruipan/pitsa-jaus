@@ -17,8 +17,8 @@ import {
   FormHelperText,
   Checkbox,
 } from "@mui/material";
-import Stack from "@mui/material/Stack";
-import H2 from "#/components/ui/H2";
+import { PaperStack } from "#/components/containers/PaperStack";
+import H2 from "#/components/texts/H2";
 
 export default function ContactForm() {
   const validationSchema = yup.object({
@@ -52,7 +52,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Stack spacing={2}>
+      <PaperStack>
         <H2>Formulario de contacto</H2>
         <TextField
           fullWidth
@@ -111,7 +111,7 @@ export default function ContactForm() {
         <Button color="primary" variant="contained" fullWidth type="submit">
           Enviar
         </Button>
-      </Stack>
+      </PaperStack>
     </form>
   );
 }

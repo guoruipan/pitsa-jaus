@@ -19,7 +19,7 @@ export default async function StoreTable({ query, currentPage }: Props) {
   const stores = await listStores(query, currentPage);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} elevation={3}>
       <Table sx={{ minWidth: 650 }} aria-label="Tabla de tiendas">
         <TableHead>
           <TableRow>

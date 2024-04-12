@@ -1,9 +1,9 @@
 import React from "react";
-import H1 from "#/components/ui/H1";
-import Stack from "@mui/material/Stack";
+import H1 from "#/components/texts/H1";
 import LoginForm from "./components/LoginForm";
 import { Typography } from "@mui/material";
-import Link from "#/components/ui/Link";
+import Link from "#/components/texts/Link";
+import { CenteredPaperStack } from "#/components/containers/PaperStack";
 
 interface Props {
   pageTitle: string;
@@ -11,12 +11,15 @@ interface Props {
 
 export default function LoginScreen({ pageTitle }: Props) {
   return (
-    <Stack spacing={3} sx={{ width: "50%", mx: "auto" }}>
+    <CenteredPaperStack>
       <H1>{pageTitle}</H1>
       <LoginForm />
       <Typography variant="body1">
-        ¿No tienes cuenta? <Link href="/register">Regístrate</Link>
+        ¿No tienes cuenta?{" "}
+        <Link href="/register" underline="hover">
+          Regístrate
+        </Link>
       </Typography>
-    </Stack>
+    </CenteredPaperStack>
   );
 }

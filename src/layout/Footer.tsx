@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import InstagramIcon from "#/components/icons/InstagramIcon";
 import FacebookIcon from "#/components/icons/FacebookIcon";
-import Link from "#/components/ui/Link";
+import Link from "#/components/texts/Link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,17 +26,32 @@ export default function Footer() {
         </Typography>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/privacy-policy">
+        <Link
+          variant="body1"
+          color="inherit"
+          href="/privacy-policy"
+          underline="hover"
+        >
           Política de privacidad
         </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/terms-and-conditions">
+        <Link
+          variant="body1"
+          color="inherit"
+          href="/terms-and-conditions"
+          underline="hover"
+        >
           Términos y condiciones
         </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/contact-us">
+        <Link
+          variant="body1"
+          color="inherit"
+          href="/contact-us"
+          underline="hover"
+        >
           Contáctanos
         </Link>
       </Grid>

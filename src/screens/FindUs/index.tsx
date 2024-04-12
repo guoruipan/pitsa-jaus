@@ -1,6 +1,6 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
-import H1 from "#/components/ui/H1";
+import H1 from "#/components/texts/H1";
 import SearchBar from "./components/SearchBar";
 import StoreTable from "./components/StoreTable";
 import { Suspense } from "react";

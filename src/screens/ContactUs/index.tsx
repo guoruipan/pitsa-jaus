@@ -1,5 +1,5 @@
 import React from "react";
-import H1 from "#/components/ui/H1";
+import H1 from "#/components/texts/H1";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";

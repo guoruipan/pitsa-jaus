@@ -24,7 +24,7 @@ export default function MainMenu({ breakpoint }: Props) {
   };
   const handleCloseNavMenu = (href?: string) => {
     setAnchorElNav(null);
-    window.location.href = href || "#"; // en el menú hamburguesa daba error sino
+    href && (window.location.href = href); // en el menú hamburguesa daba error sino
   };
 
   if (breakpoint === "xs") {

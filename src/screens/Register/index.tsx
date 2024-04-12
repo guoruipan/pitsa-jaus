@@ -1,7 +1,7 @@
 import React from "react";
-import H1 from "#/components/ui/H1";
-import Stack from "@mui/material/Stack";
+import H1 from "#/components/texts/H1";
 import RegisterForm from "./components/RegisterForm";
+import { PaperStack } from "#/components/containers/PaperStack";
 
 interface Props {
   pageTitle: string;
@@ -9,9 +9,9 @@ interface Props {
 
 export default function RegisterScreen({ pageTitle }: Props) {
   return (
-    <Stack spacing={3}>
+    <PaperStack>
       <H1>{pageTitle}</H1>
       <RegisterForm />
-    </Stack>
+    </PaperStack>
   );
 }

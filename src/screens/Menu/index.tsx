@@ -1,5 +1,5 @@
 import React from "react";
-import H1 from "#/components/ui/H1";
+import H1 from "#/components/texts/H1";
 import { Suspense } from "react";
 import MenuGridSkeleton from "./components/MenuGridSkeleton";
 import MenuGrid from "./components/MenuGrid";

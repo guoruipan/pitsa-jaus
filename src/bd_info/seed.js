@@ -40,7 +40,7 @@ async function seedUsers(client) {
           VALUES (${user.name}, ${user.email}, ${hashedPassword}, ${user.home_address}, ${user.role})
           ON CONFLICT (id) DO NOTHING;
         `;
-      })
+      }),
     );
 
     console.log(`Seeded ${insertedUsers.length} users`);
@@ -80,8 +80,8 @@ async function seedStores(client) {
           INSERT INTO stores (name, address, city, state, postcode, phone_number, manager_id)
           VALUES (${store.name}, ${store.address}, ${store.city}, ${store.state}, ${store.postcode}, ${store.phone_number}, ${store.manager_id})
           ON CONFLICT (id) DO NOTHING;
-        `
-      )
+        `,
+      ),
     );
 
     console.log(`Seeded ${insertedStores.length} stores`);
@@ -117,8 +117,8 @@ async function seedPizzas(client) {
           INSERT INTO pizzas (name, description, price)
           VALUES (${pizza.name}, ${pizza.description}, ${pizza.price})
           ON CONFLICT (id) DO NOTHING;
-        `
-      )
+        `,
+      ),
     );
 
     console.log(`Seeded ${insertedPizzas.length} pizzas`);
@@ -156,8 +156,8 @@ async function seedOrders(client) {
             INSERT INTO orders (user_id, store_id, total, order_date, sent_date)
             VALUES (${order.user_id}, ${order.store_id}, ${order.total}, ${order.order_date}, ${order.sent_date})
             ON CONFLICT (id) DO NOTHING;
-          `
-      )
+          `,
+      ),
     );
 
     console.log(`Seeded ${insertedOrders.length} orders`);
@@ -194,8 +194,8 @@ async function seedOrderLines(client) {
               INSERT INTO order_lines (order_id, pizza_id, quantity, line_total)
               VALUES (${order_line.order_id}, ${order_line.pizza_id}, ${order_line.quantity}, ${order_line.line_total})
               ON CONFLICT (id) DO NOTHING;
-            `
-      )
+            `,
+      ),
     );
 
     console.log(`Seeded ${insertedOrderLines.length} order_lines`);
@@ -225,6 +225,6 @@ async function main() {
 main().catch((err) => {
   console.error(
     "An error occurred while attempting to seed the database:",
-    err
+    err,
   );
 });

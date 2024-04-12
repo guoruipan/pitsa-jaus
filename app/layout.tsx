@@ -9,7 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "#/theme";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 export const metadata: Metadata = {
   title: {
@@ -27,12 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Box
+      <Stack
         component="body"
         sx={{
           minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
         }}
       >
         <AppRouterCacheProvider>
@@ -49,7 +47,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
-      </Box>
+      </Stack>
     </html>
   );
 }
