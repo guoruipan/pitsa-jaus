@@ -46,9 +46,7 @@ function MainMenuXS({
   handleCloseNavMenu,
 }: {
   anchorElNav: HTMLElement | null;
-  // eslint-disable-next-line no-unused-vars
   handleOpenNavMenu: (event: MouseEvent<HTMLElement>) => void;
-  // eslint-disable-next-line no-unused-vars
   handleCloseNavMenu: (href?: string) => void;
 }) {
   return (
@@ -98,7 +96,6 @@ function MainMenuXS({
 function MainMenuMD({
   handleCloseNavMenu,
 }: {
-  // eslint-disable-next-line no-unused-vars
   handleCloseNavMenu: (href?: string) => void;
 }) {
   return (
