@@ -7,8 +7,8 @@ interface Props {
   breakpoint: "xs" | "md";
 }
 
-export default function LogoAndTitle ({breakpoint} : Props) {
-  return breakpoint === "xs"? <LogoAndTitleXS/> : <LogoAndTitleMD/>;
+export default function LogoAndTitle({ breakpoint }: Props) {
+  return breakpoint === "xs" ? <LogoAndTitleXS /> : <LogoAndTitleMD />;
 }
 
 const LogoAndTitleXS = () => {
@@ -34,7 +34,7 @@ const LogoAndTitleXS = () => {
       </Typography>
     </>
   );
-}
+};
 
 const LogoAndTitleMD = () => {
   return (
@@ -58,4 +58,4 @@ const LogoAndTitleMD = () => {
       </Typography>
     </>
   );
-}
+};

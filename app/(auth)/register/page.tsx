@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return  <RegisterScreen pageTitle={pageTitle} />
+  return  <RegisterScreen pageTitle={pageTitle} />;
 }

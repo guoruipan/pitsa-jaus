@@ -8,5 +8,10 @@
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "semi": ["error", "always"], 
+    "no-undef": "error",         
+    "no-unused-vars": "warn",      
+    "no-console": "warn",         
+    "no-empty": "error" 
   }
 }

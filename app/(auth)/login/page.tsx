@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return  <LoginScreen pageTitle={pageTitle} />
+  return  <LoginScreen pageTitle={pageTitle} />;
 }

@@ -1,14 +1,16 @@
-require('dotenv').config({ path: '.env.local' })
+/* eslint @typescript-eslint/no-var-requires: "off" */
+/* eslint no-console: "off" */
+require("dotenv").config({ path: ".env.local" });
 
-const { db } = require('@vercel/postgres');
+const { db } = require("@vercel/postgres");
 const {
   users,
   stores,
   pizzas,
   orders,
-  order_lines
-} = require('./placeholder-data.js');
-const bcrypt = require('bcrypt');
+  order_lines,
+} = require("./placeholder-data.js");
+const bcrypt = require("bcrypt");
 
 // https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
 // https://nextjs.org/learn/dashboard-app/setting-up-your-database
@@ -171,9 +173,9 @@ async function seedOrders(client) {
 }
 
 async function seedOrderLines(client) {
-    try {
-      // Create the "order_lines" table if it doesn't exist
-      const createTable = await client.sql`
+  try {
+    // Create the "order_lines" table if it doesn't exist
+    const createTable = await client.sql`
             CREATE TABLE IF NOT EXISTS order_lines (
                 id SERIAL PRIMARY KEY,
                 order_id INT NOT NULL REFERENCES Orders(id),
@@ -182,31 +184,31 @@ async function seedOrderLines(client) {
                 line_total DECIMAL(10, 2) NOT NULL
             );
           `;
-  
-      console.log(`Created "order_lines" table`);
-  
-      // Insert data into the "order_lines" table
-      const insertedOrderLines = await Promise.all(
-        order_lines.map(
-          (order_line) => client.sql`
+
+    console.log(`Created "order_lines" table`);
+
+    // Insert data into the "order_lines" table
+    const insertedOrderLines = await Promise.all(
+      order_lines.map(
+        (order_line) => client.sql`
               INSERT INTO order_lines (order_id, pizza_id, quantity, line_total)
               VALUES (${order_line.order_id}, ${order_line.pizza_id}, ${order_line.quantity}, ${order_line.line_total})
               ON CONFLICT (id) DO NOTHING;
             `
-        )
-      );
-  
-      console.log(`Seeded ${insertedOrderLines.length} order_lines`);
-  
-      return {
-        createTable,
-        customers: insertedOrderLines,
-      };
-    } catch (error) {
-      console.error("Error seeding order_lines:", error);
-      throw error;
-    }
+      )
+    );
+
+    console.log(`Seeded ${insertedOrderLines.length} order_lines`);
+
+    return {
+      createTable,
+      customers: insertedOrderLines,
+    };
+  } catch (error) {
+    console.error("Error seeding order_lines:", error);
+    throw error;
   }
+}
 
 async function main() {
   const client = await db.connect();
