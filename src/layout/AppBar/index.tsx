@@ -23,7 +23,7 @@ export default function MyAppBar() {
           {/* tamaño grande */}
           <LogoAndTitle breakpoint="md" />
           <MainMenu breakpoint="md" />
-          
+
           <LoginButton />
           {/* <UserMenu  /> */}
         </Toolbar>

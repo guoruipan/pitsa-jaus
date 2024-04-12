@@ -7,7 +7,8 @@ export default function LoginButton() {
   return (
     <>
       <NextLink href="/login">
-        <LoginIcon sx={{ mr: 1, display: "flex", fill: "white" }} /> {/* no he logrado cambiar el color de otra forma */}
+        <LoginIcon sx={{ mr: 1, display: "flex", fill: "white" }} />
+        {/* no he logrado cambiar el color de otra forma */}
       </NextLink>
       <Typography
         variant="body1"

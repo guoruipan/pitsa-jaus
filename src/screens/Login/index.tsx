@@ -11,7 +11,7 @@ interface Props {
 
 export default function LoginScreen({ pageTitle }: Props) {
   return (
-    <Stack spacing={3} sx={{width: "50%", mx: "auto"}}>
+    <Stack spacing={3} sx={{ width: "50%", mx: "auto" }}>
       <H1>{pageTitle}</H1>
       <LoginForm />
       <Typography variant="body1">

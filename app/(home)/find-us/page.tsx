@@ -17,6 +17,12 @@ interface Props {
   };
 }
 
-export default function Page({searchParams} : Props) {
-  return <FindUsScreen pageTitle={pageTitle} query={searchParams?.query} page={searchParams?.page} />;
+export default function Page({ searchParams }: Props) {
+  return (
+    <FindUsScreen
+      pageTitle={pageTitle}
+      query={searchParams?.query}
+      page={searchParams?.page}
+    />
+  );
 }

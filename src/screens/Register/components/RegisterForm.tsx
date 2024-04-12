@@ -75,10 +75,12 @@ export default function RegisterForm() {
         name: values.name,
         email: values.email,
         pwd: values.pwd,
-        home_address: values.home_address || undefined, 
+        home_address: values.home_address || undefined,
         role: values.role as "admin" | "manager" | "customer",
       };
-      {/* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */}
+      {
+        /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
+      }
 
       if ((await getUser(user.email)) === null) {
         createUser(user);

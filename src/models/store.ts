@@ -46,7 +46,8 @@ export async function getTotalPages(term = "") {
     let count;
 
     if (term !== "") {
-      count = await sql`SELECT COUNT(*) FROM stores WHERE postcode ILIKE '%' || ${term} || '%';`;
+      count =
+        await sql`SELECT COUNT(*) FROM stores WHERE postcode ILIKE '%' || ${term} || '%';`;
     } else {
       count = await sql`SELECT COUNT(*) FROM stores;`;
     }

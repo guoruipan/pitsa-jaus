@@ -17,6 +17,6 @@ interface Props {
   };
 }
 
-export default function Page({searchParams} : Props) {
+export default function Page({ searchParams }: Props) {
   return <MenuScreen pageTitle={pageTitle} page={searchParams?.page} />;
 }

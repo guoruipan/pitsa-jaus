@@ -3,15 +3,24 @@
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier" // IMPORTANTE que prettier sea el último para que tenga la última palabra
   ],
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "parser": "@typescript-eslint/parser",
   "rules": {
-    "semi": ["error", "always"], 
-    "no-undef": "error",         
-    "no-unused-vars": "warn",      
-    "no-console": "warn",         
-    "no-empty": "error" 
+    "semi": ["error", "always"],
+    "no-undef": "error",
+    "no-unused-vars": "off", // esto da problemas
+    "@typescript-eslint/no-unused-vars": "error", // usar mejor este
+    "no-console": "warn",
+    "no-empty": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false,
+        "trailingComma": "es5"
+      }
+    ]
   }
 }

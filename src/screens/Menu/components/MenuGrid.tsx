@@ -4,10 +4,10 @@ import MenuCard from "./MenuCard";
 import Grid from "@mui/material/Grid";
 
 interface Props {
-  currentPage : number;
+  currentPage: number;
 }
 
-export default async function MenuGrid({currentPage} : Props) {
+export default async function MenuGrid({ currentPage }: Props) {
   const pizzas = await listPizzas(currentPage);
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import LoginScreen from "#/screens/Login"; 
+import LoginScreen from "#/screens/Login";
 
 const pageTitle = "Inicia sesión";
 
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return  <LoginScreen pageTitle={pageTitle} />;
+  return <LoginScreen pageTitle={pageTitle} />;
 }
