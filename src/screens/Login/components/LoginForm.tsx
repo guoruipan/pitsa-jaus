@@ -55,11 +55,7 @@ export default function LoginForm() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
-        {showAlert && (
-          <AlertError variant="filled">
-            Usuario o contraseña incorrectos
-          </AlertError>
-        )}
+        {showAlert && <AlertError>Usuario o contraseña incorrectos</AlertError>}
         <TextField
           fullWidth
           id="email"

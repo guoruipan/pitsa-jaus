@@ -44,6 +44,10 @@ export async function getTotalPages() {
 export async function getWithId(id: number) {
   // devuevlve la pizza con el id especificado
   try {
+    // TODO DELETE BELOW
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    //TODO DELETE ABOVE
+
     const data = await sql<Pizza>`SELECT * FROM pizzas WHERE id=${id}`;
 
     if (data.rowCount > 0) {

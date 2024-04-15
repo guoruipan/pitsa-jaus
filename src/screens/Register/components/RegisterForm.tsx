@@ -32,7 +32,7 @@ export default function RegisterForm() {
       .string()
       .max(100, "Este campo no puede exceder los 100 caracteres")
       .required("Este campo es obligatorio"),
-    email: yup // TODO email validate unique
+    email: yup
       .string()
       .email("Introduce una dirección de email válida")
       .max(100, "Este campo no puede exceder los 100 caracteres")
@@ -78,9 +78,8 @@ export default function RegisterForm() {
         home_address: values.home_address || undefined,
         role: values.role as "admin" | "manager" | "customer",
       };
-      {
-        /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
-      }
+
+      /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
 
       if ((await getUser(user.email)) === null) {
         createUser(user);

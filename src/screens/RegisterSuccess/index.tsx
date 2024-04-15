@@ -1,6 +1,7 @@
 import React from "react";
 import H1 from "#/components/texts/H1";
-import { Stack, Typography, Button, Paper } from "@mui/material";
+import { Typography, Button } from "@mui/material";
+import { CenteredPaperStack } from "#/components/containers/PaperStack";
 
 interface Props {
   pageTitle: string;
@@ -8,12 +9,7 @@ interface Props {
 
 export default function RegisterSuccessScreen({ pageTitle }: Props) {
   return (
-    <Stack
-      spacing={3}
-      component={Paper}
-      elevation={6}
-      sx={{ width: "50%", mx: "auto", p: "3rem" }}
-    >
+    <CenteredPaperStack>
       <H1>{pageTitle}</H1>
       <Typography variant="h6" component="p">
         Pulsa el botón para volver a la página de login
@@ -21,6 +17,6 @@ export default function RegisterSuccessScreen({ pageTitle }: Props) {
       <Button variant="contained" href="/login">
         Volver a inicio de sesión
       </Button>
-    </Stack>
+    </CenteredPaperStack>
   );
 }
