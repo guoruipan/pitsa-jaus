@@ -8,14 +8,8 @@ interface Props extends GridProps {
 
 export function PaperGrid({ elevation = 6, children, ...rest }: Props) {
   return (
-    <Paper elevation={elevation}>
-      <Grid
-        container
-        spacing={3}
-        padding={"3rem"}
-        borderRadius={"1rem"}
-        {...rest}
-      >
+    <Paper elevation={elevation} sx={{ borderRadius: "1rem", p: "3rem" }}>
+      <Grid container spacing={3} {...rest}>
         {children}
       </Grid>
     </Paper>

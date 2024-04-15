@@ -7,6 +7,7 @@
 // https://stackoverflow.com/questions/73531755/formik-handle-checkbox-validation-with-react-and-material-ui
 
 import React from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -19,8 +20,11 @@ import {
 } from "@mui/material";
 import { PaperStack } from "#/components/containers/PaperStack";
 import H2 from "#/components/texts/H2";
+import { AlertSuccess } from "#/components/ui/Alert";
 
 export default function ContactForm() {
+  const [showAlert, setShowAlert] = useState(false);
+
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -46,6 +50,7 @@ export default function ContactForm() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      setShowAlert(true);
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -54,6 +59,7 @@ export default function ContactForm() {
     <form onSubmit={formik.handleSubmit}>
       <PaperStack>
         <H2>Formulario de contacto</H2>
+        {showAlert && <AlertSuccess>Formulario enviado con éxito</AlertSuccess>}
         <TextField
           fullWidth
           id="email"

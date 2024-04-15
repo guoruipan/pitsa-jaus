@@ -8,8 +8,8 @@ interface Props extends StackProps {
 
 export function PaperStack({ elevation = 6, children, ...rest }: Props) {
   return (
-    <Paper elevation={elevation}>
-      <Stack spacing={3} padding={"3rem"} borderRadius={"1rem"} {...rest}>
+    <Paper elevation={elevation} sx={{ borderRadius: "1rem", p: "3rem" }}>
+      <Stack spacing={3} {...rest}>
         {children}
       </Stack>
     </Paper>
@@ -22,15 +22,11 @@ export function CenteredPaperStack({
   ...rest
 }: Props) {
   return (
-    <Paper elevation={elevation}>
-      <Stack
-        spacing={3}
-        padding={"3rem"}
-        borderRadius={"1rem"}
-        width={"50%"}
-        mx={"auto"}
-        {...rest}
-      >
+    <Paper
+      elevation={elevation}
+      sx={{ borderRadius: "1rem", p: "3rem", width: "50%", mx: "auto" }}
+    >
+      <Stack spacing={3} {...rest}>
         {children}
       </Stack>
     </Paper>
