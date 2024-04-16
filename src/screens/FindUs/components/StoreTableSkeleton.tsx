@@ -12,7 +12,7 @@ import {
 
 export default function StoreTableSkeleton() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} elevation={6}>
       <Table sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
