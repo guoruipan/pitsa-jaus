@@ -28,6 +28,7 @@ export default async function MenuItemScreen({ id }: Props) {
             alt={`Imagen de una pizza ${pizza.name}`}
             width={300}
             height={300}
+            style={{ objectFit: "cover" }}
           />
         </Grid>
         <Grid item xs={12} md={6}>

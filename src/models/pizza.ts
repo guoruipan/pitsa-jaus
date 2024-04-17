@@ -53,8 +53,10 @@ export async function getWithId(id: number) {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
     //TODO DELETE ABOVE
 
-    const data = await sql<Pizza>`SELECT * FROM pizzas WHERE id=${id}`;
+    const data =
+      await sql<Pizza>`SELECT id, name, description, price, photo FROM pizzas WHERE id=${id}`;
     console.log(data.rows[0]);
+    // si hago select * a veces no coge la foto
 
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada
