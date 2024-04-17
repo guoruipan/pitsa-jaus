@@ -38,3 +38,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Links
 
 https://gourav.io/blog/nextjs-cheatsheet#add-typescript-support
+
+For auth
+https://nextjs.org/learn/dashboard-app/adding-authentication
+https://next-auth.js.org/configuration/initialization
+https://nextjs.org/docs/app/building-your-application/authentication
+https://www.youtube.com/watch?v=md65iBX5Gxg
+https://next-auth.js.org/getting-started/example

@@ -217,63 +217,75 @@ const pizzas = [
     name: "Margarita",
     description: "Tomate, mozzarella y albahaca",
     price: 8.99,
+    photo: "margarita.webp",
   },
   {
     name: "Pepperoni",
     description: "Tomate, mozzarella y pepperoni",
     price: 9.99,
+    photo: "pepperoni.webp",
   },
   {
     name: "Hawaiana",
     description: "Tomate, mozzarella, piña y jamón",
     price: 10.99,
+    photo: "hawaiana.jpg",
   },
   {
     name: "Barbacoa",
     description: "Tomate, mozzarella, carne de res, cebolla y salsa barbacoa",
     price: 11.99,
+    photo: "barbacoa.jpg",
   },
   {
     name: "Vegetariana",
     description: "Tomate, mozzarella, champiñones, pimientos y aceitunas",
     price: 10.49,
+    photo: "vegetariana.webp",
   },
   {
     name: "Cuatro quesos",
     description:
       "Tomate, mozzarella, queso azul, queso de cabra y queso parmesano",
     price: 12.99,
+    photo: "cuatroquesos.avif",
   },
   {
     name: "Napolitana",
     description: "Tomate, mozzarella, anchoas, aceitunas y alcaparras",
     price: 11.49,
+    photo: "napolitana.jpg",
   },
   {
     name: "Calzone",
     description:
       "Masa de pizza rellena de tomate, mozzarella, pepperoni y champiñones",
     price: 12.49,
+    photo: "calzone.webp",
   },
   {
     name: "Prosciutto e rúcula",
     description: "Tomate, mozzarella, jamón crudo y rúcula",
     price: 11.99,
+    photo: "prosciuttoerucula.jpg",
   },
   {
     name: "Carbonara",
     description: "Tomate, mozzarella, panceta, huevo y parmesano",
     price: 12.99,
+    photo: "carbonara.avif",
   },
   {
     name: "Mexicana",
     description: "Tomate, mozzarella, carne de res, jalapeños y guacamole",
     price: 11.99,
+    photo: "mexicana.jpg",
   },
   {
     name: "Bufalina",
     description: "Tomate, mozzarella de búfala y albahaca fresca",
     price: 13.49,
+    photo: "bufalina.jpg",
   },
 ];
 

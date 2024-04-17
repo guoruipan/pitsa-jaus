@@ -5,9 +5,14 @@ export type Pizza = {
   name: string;
   description: string;
   price: number;
+  photo: string;
 };
 
 const ITEMS_PER_PAGE = 8;
+
+export function getPhotoRoute(pizza: Pizza) {
+  return `/pizza/${pizza.id}_${pizza.photo}`;
+}
 
 // TODO make noStore??
 export async function list(currentPage = 1) {
@@ -19,7 +24,7 @@ export async function list(currentPage = 1) {
     //TODO DELETE ABOVE
 
     const data =
-      await sql<Pizza>`SELECT * FROM pizzas LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
+      await sql<Pizza>`SELECT * FROM pizzas ORDER BY id LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
 
     return data.rows;
   } catch (error) {
@@ -49,6 +54,7 @@ export async function getWithId(id: number) {
     //TODO DELETE ABOVE
 
     const data = await sql<Pizza>`SELECT * FROM pizzas WHERE id=${id}`;
+    console.log(data.rows[0]);
 
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada

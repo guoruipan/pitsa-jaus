@@ -3,7 +3,10 @@ import H1 from "#/components/texts/H1";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import { getWithId as getPizza } from "#/models/pizza";
+import {
+  getWithId as getPizza,
+  getPhotoRoute as getPizzaPhoto,
+} from "#/models/pizza";
 import Breadcrumbs from "./components/Breadcrumbs";
 import { PaperGrid } from "#/components/containers/PaperGrid";
 import { Stack } from "@mui/material";
@@ -21,7 +24,7 @@ export default async function MenuItemScreen({ id }: Props) {
       <PaperGrid>
         <Grid item xs={12} md={6}>
           <Image
-            src="/placeholder.jpg"
+            src={getPizzaPhoto(pizza)}
             alt={`Imagen de una pizza ${pizza.name}`}
             width={300}
             height={300}

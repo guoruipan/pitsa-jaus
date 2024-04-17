@@ -1,5 +1,8 @@
 import React from "react";
-import { list as listPizzas } from "#/models/pizza";
+import {
+  list as listPizzas,
+  getPhotoRoute as getPizzaPhoto,
+} from "#/models/pizza";
 import MenuCard from "./MenuCard";
 import Grid from "@mui/material/Grid";
 
@@ -16,7 +19,7 @@ export default async function MenuGrid({ currentPage }: Props) {
         <Grid item key={pizza.id} xs={12} sm={6} md={4} lg={3}>
           <MenuCard
             href={`/menu/${pizza.id}`}
-            imgUrl="/placeholder.jpg"
+            imgUrl={getPizzaPhoto(pizza)}
             text={`Pizza ${pizza.name}`}
           />
         </Grid>

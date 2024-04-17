@@ -104,7 +104,8 @@ async function seedPizzas(client) {
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
             description TEXT NOT NULL,
-            price DECIMAL(10, 2) NOT NULL
+            price DECIMAL(10, 2) NOT NULL,
+            photo VARCHAR(100) NOT NULL
         );
       `;
 
@@ -114,8 +115,8 @@ async function seedPizzas(client) {
     const insertedPizzas = await Promise.all(
       pizzas.map(
         (pizza) => client.sql`
-          INSERT INTO pizzas (name, description, price)
-          VALUES (${pizza.name}, ${pizza.description}, ${pizza.price})
+          INSERT INTO pizzas (name, description, price, photo)
+          VALUES (${pizza.name}, ${pizza.description}, ${pizza.price}, ${pizza.photo})
           ON CONFLICT (id) DO NOTHING;
         `,
       ),
