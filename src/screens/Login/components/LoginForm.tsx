@@ -48,7 +48,8 @@ export default function LoginForm() {
       }
 
       // login válido
-      alert("correcto");
+      console.log("En loginform, borrar redirect");
+      window.location.href = "/dashboard";
     },
   });
 

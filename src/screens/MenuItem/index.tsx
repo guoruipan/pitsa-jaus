@@ -9,7 +9,10 @@ import {
 } from "#/models/pizza";
 import Breadcrumbs from "./components/Breadcrumbs";
 import { PaperGrid } from "#/components/containers/PaperGrid";
-import { Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
+
+// https://nextjs.org/docs/app/building-your-application/optimizing/images
+// https://nextjs.org/docs/app/api-reference/components/image
 
 interface Props {
   id: number;
@@ -23,17 +26,36 @@ export default async function MenuItemScreen({ id }: Props) {
       <Breadcrumbs currentPageName={pizza.name} />
       <PaperGrid>
         <Grid item xs={12} md={6}>
-          <Image
-            src={getPizzaPhoto(pizza)}
-            alt={`Imagen de una pizza ${pizza.name}`}
-            width={300}
-            height={300}
-            style={{ objectFit: "cover" }}
-          />
+          <Box
+            sx={{
+              position: "relative",
+              height: "400px",
+              borderRadius: "1rem",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src={getPizzaPhoto(pizza)}
+              alt={`Imagen de una pizza ${pizza.name}`}
+              fill
+              objectFit="cover"
+              priority
+            />
+          </Box>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <H1>{pizza.name}</H1>
-          <Typography variant={"body1"}>{pizza.description}</Typography>
+        <Grid item xs={12} md={6} sx={{ my: "auto" }}>
+          <Stack
+            spacing={2}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <H1>{pizza.name}</H1>
+            <Typography variant={"body1"}>{pizza.description}</Typography>
+            <Button variant="contained">Añadir</Button>
+          </Stack>
         </Grid>
       </PaperGrid>
     </Stack>
