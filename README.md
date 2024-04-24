@@ -45,3 +45,23 @@ https://next-auth.js.org/configuration/initialization
 https://nextjs.org/docs/app/building-your-application/authentication
 https://www.youtube.com/watch?v=md65iBX5Gxg
 https://next-auth.js.org/getting-started/example
+/////////////////
+/////////////////
+auth.ts
+
+// https://authjs.dev/getting-started/authentication/credentials
+// nextauth parece haber sido desarollado usando strict=false en la configuración de typescript.
+// por ello, hay un error conocido con el tipo de retorno de la función authorize
+// la solución recomendada es desactivar typescript strict mode en todo el proyecto
+// No es la solución ideal, pero desactivo la advertencia con eslint-disable
+// https://stackoverflow.com/questions/74089665/next-auth-credentials-provider-authorize-type-error
+
+////////////////
+readme
+
+https://authjs.dev/getting-started/installation?framework=next.js
+https://cloudcoders.xyz/blog/nextauth-credentials-provider-with-external-api-and-login-page/
+https://authjs.dev/getting-started
+
+///////////////
+https://www.youtube.com/watch?v=qDRQ2EaWsNM
