@@ -60,8 +60,6 @@ export async function getWithId(id: number) {
 
     if (data.rowCount > 0) {
       return data.rows[0]; // Devuelve la primera pizza encontrada
-    } else {
-      throw new Error("Failed to fetch pizza with specified ID"); // en principio el else no hace falta, pero typescript se queja porque esto puede devolver undefined si no está
     }
   } catch (error) {
     console.error("Database Error:", error);

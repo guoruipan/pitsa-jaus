@@ -104,7 +104,12 @@ function MainMenuMD({
         <Button
           key={page.href}
           onClick={() => handleCloseNavMenu(page.href)}
-          sx={{ my: 2, color: "inherit", display: "block" }}
+          sx={{
+            my: 2,
+            color: "inherit",
+            display: "block",
+            ":hover": { textDecoration: "underline" },
+          }}
         >
           {page.name}
         </Button>

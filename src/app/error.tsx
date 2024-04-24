@@ -4,7 +4,10 @@
 
 import React from "react";
 import { useEffect } from "react";
-import ErrorScreen from "#/screens/Error";
+import Button from "@mui/material/Button";
+import H1 from "#/components/texts/H1";
+import { Typography } from "@mui/material";
+import { PaperStack } from "#/components/containers/PaperStack";
 
 export default function Error({
   error,
@@ -18,5 +21,22 @@ export default function Error({
     console.error(error);
   }, [error]);
 
-  return <ErrorScreen reset={reset} />;
+  return (
+    <PaperStack>
+      <H1>¡Ups! Algo ha ido mal</H1>
+      <Typography variant="h6" component={"p"}>
+        Lo sentimos, se ha producido un error inesperado. Por favor, inténtalo
+        de nuevo más tarde.
+      </Typography>
+      <Button
+        variant={"contained"}
+        onClick={
+          // Attempt to recover by trying to re-render the segment
+          () => reset()
+        }
+      >
+        Inténtalo de nuevo
+      </Button>
+    </PaperStack>
+  );
 }

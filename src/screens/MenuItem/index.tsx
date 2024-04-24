@@ -21,6 +21,8 @@ interface Props {
 export default async function MenuItemScreen({ id }: Props) {
   const pizza = await getPizza(id);
 
+  if (!pizza) throw new Error("No se ha podido encontrar la pizza");
+
   return (
     <Stack spacing={3}>
       <Breadcrumbs currentPageName={pizza.name} />
