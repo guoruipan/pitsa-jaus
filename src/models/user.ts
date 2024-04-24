@@ -4,6 +4,8 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
+import { signIn } from "#/auth";
+import { AuthError } from "next-auth";
 
 // bcrypt example
 // https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
@@ -53,4 +55,23 @@ export async function checkPassword(
   // tenerlo directamente en componentes de lado del Cliente parece dar problemas
   const result = await bcrypt.compare(plainPassword, hash);
   return result;
+}
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return "Invalid credentials.";
+        default:
+          return "Something went wrong.";
+      }
+    }
+    throw error;
+  }
 }

@@ -8,6 +8,8 @@ import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { getWithEmail as getUser, checkPassword } from "#/models/user";
 import { AlertError } from "#/components/ui/Alert";
+import { useFormState } from "react-dom";
+import { authenticate } from "#/models/user";
 
 // https://formik.org/docs/examples/with-material-ui
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61
@@ -53,8 +55,10 @@ export default function LoginForm() {
     },
   });
 
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form action={dispatch}>
       <Stack spacing={2}>
         {showAlert && <AlertError>Usuario o contraseña incorrectos</AlertError>}
         <TextField
@@ -84,6 +88,7 @@ export default function LoginForm() {
         <Button color="primary" variant="contained" fullWidth type="submit">
           Iniciar sesión
         </Button>
+        <div>{errorMessage && <p>{errorMessage}</p>}</div>
       </Stack>
     </form>
   );

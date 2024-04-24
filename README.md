@@ -62,6 +62,8 @@ readme
 https://authjs.dev/getting-started/installation?framework=next.js
 https://cloudcoders.xyz/blog/nextauth-credentials-provider-with-external-api-and-login-page/
 https://authjs.dev/getting-started
+https://medium.com/@renanleonel/how-to-set-up-nextauth-v5-authentication-with-middleware-and-jest-configuration-in-next-js-14-ca3e64bfb7d5
 
 ///////////////
 https://www.youtube.com/watch?v=qDRQ2EaWsNM
+https://www.youtube.com/watch?v=splh0ZIo-s4

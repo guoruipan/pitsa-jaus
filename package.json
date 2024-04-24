@@ -22,11 +22,13 @@
     "dotenv": "^16.4.5",
     "formik": "^2.4.5",
     "next": "14.1.4",
+    "next-auth": "^5.0.0-beta.16",
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.3",
     "use-debounce": "^10.0.0",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
