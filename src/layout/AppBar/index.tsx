@@ -6,7 +6,6 @@ import LoginButton from "./components/LoginButton";
 import UserMenu from "./components/UserMenu";
 import LogoAndTitle from "./components/LogoAndTitle";
 import MainMenu from "./components/MainMenu";
-import LogoutButton from "./components/LogoutButton";
 import { auth } from "#/auth";
 
 // basado en la plantilla "App bar with responsive menu" de aquí
@@ -26,15 +25,7 @@ export default async function MyAppBar() {
           <LogoAndTitle breakpoint="md" />
           <MainMenu breakpoint="md" />
 
-          {!session && <LoginButton />}
-
-          {session && (
-            <>
-              <UserMenu>
-                <LogoutButton />
-              </UserMenu>
-            </>
-          )}
+          {session ? <UserMenu /> : <LoginButton />}
         </Toolbar>
       </Container>
     </AppBar>

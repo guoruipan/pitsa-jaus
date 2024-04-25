@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
+import { logout } from "#/lib/session";
 import Link from "#/components/texts/Link";
 
 const settings: { name: string; href: string }[] = [
@@ -16,7 +16,7 @@ const settings: { name: string; href: string }[] = [
 
 // https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#supported-pattern-passing-server-components-to-client-components-as-props
 
-export default function UserMenu({ children }: { children: React.ReactNode }) {
+export default function UserMenu() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
@@ -55,14 +55,28 @@ export default function UserMenu({ children }: { children: React.ReactNode }) {
               href={setting.href}
               textAlign={"center"}
               color={"inherit"}
-              underline="hover"
+              underline="none"
             >
               {setting.name}
             </Link>
           </MenuItem>
         ))}
         <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
-          {children}
+          <form action={logout}>
+            <button
+              type="submit"
+              style={{
+                background: "none",
+                border: "none",
+                margin: 0,
+                padding: 0,
+                font: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              Cierra sesión
+            </button>
+          </form>
         </MenuItem>
       </Menu>
     </Box>

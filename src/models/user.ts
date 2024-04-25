@@ -1,10 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-
 import bcrypt from "bcrypt";
-import { signIn } from "#/auth";
-import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -33,6 +30,7 @@ export async function insert(user: User) {
     throw new Error("Failed to register new user.");
   }
 
+  console.log("find a better way to redirect after insert user");
   // tiene que estar en un componente de servidor
   revalidatePath("/auth/register-success");
   redirect("/auth/register-success");
@@ -46,35 +44,5 @@ export async function getWithEmail(email: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch user with email");
-  }
-}
-
-export async function checkPassword(
-  plainPassword: string,
-  hash: string,
-): Promise<boolean> {
-  // https://www.npmjs.com/package/bcrypt
-  // tenerlo directamente en componentes de lado del Cliente parece dar problemas
-  const result = await bcrypt.compare(plainPassword, hash);
-  return result;
-}
-
-export async function authenticate(credentials: {
-  email: string;
-  password: string;
-}): Promise<"Usuario o contraseña incorrectos" | "Algo fue mal" | undefined> {
-  // TODO make return type
-  try {
-    await signIn("credentials", credentials);
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return "Usuario o contraseña incorrectos";
-        default:
-          return "Algo fue mal";
-      }
-    }
-    throw error;
   }
 }

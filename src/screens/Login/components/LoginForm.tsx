@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { AlertError } from "#/components/ui/Alert";
-import { authenticate } from "#/models/user";
+import { authenticate } from "#/lib/session";
 
 // https://formik.org/docs/examples/with-material-ui
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61

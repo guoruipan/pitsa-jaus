@@ -37,18 +37,27 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <AppBar />
-            <Container
-              component="main"
-              maxWidth="lg"
-              sx={{ pt: "3rem", pb: "4rem", my: "auto" }}
-            >
-              {children}
-            </Container>
-            <Footer />
+            <InnerLayout>{children}</InnerLayout>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </Stack>
     </html>
+  );
+}
+
+// creado para intentar evitar un warning, no funcionó.
+function InnerLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <AppBar />
+      <Container
+        component="main"
+        maxWidth="lg"
+        sx={{ pt: "3rem", pb: "4rem", my: "auto" }}
+      >
+        {children}
+      </Container>
+      <Footer />
+    </>
   );
 }
