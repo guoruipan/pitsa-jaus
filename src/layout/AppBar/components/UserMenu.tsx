@@ -14,7 +14,9 @@ const settings: { name: string; href: string }[] = [
   { name: "Mi perfil", href: "/dashboard" },
 ];
 
-export default function UserMenu() {
+// https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#supported-pattern-passing-server-components-to-client-components-as-props
+
+export default function UserMenu({ children }: { children: React.ReactNode }) {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
@@ -28,7 +30,7 @@ export default function UserMenu() {
     <Box sx={{ flexGrow: 0 }}>
       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
         {/* TODO implementar avatar imagen */}
-        <Avatar alt="Usuario" src="/static/images/avatar/2.jpg" />
+        <Avatar alt="Usuario" />
       </IconButton>
 
       <Menu
@@ -47,7 +49,6 @@ export default function UserMenu() {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {/* TODO implementar enlaces */}
         {settings.map((setting) => (
           <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
             <Link
@@ -60,6 +61,9 @@ export default function UserMenu() {
             </Link>
           </MenuItem>
         ))}
+        <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+          {children}
+        </MenuItem>
       </Menu>
     </Box>
   );

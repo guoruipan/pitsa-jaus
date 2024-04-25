@@ -10,6 +10,7 @@ import {
 import Breadcrumbs from "./components/Breadcrumbs";
 import { PaperGrid } from "#/components/containers/PaperGrid";
 import { Box, Button, Stack } from "@mui/material";
+import { auth } from "#/auth";
 
 // https://nextjs.org/docs/app/building-your-application/optimizing/images
 // https://nextjs.org/docs/app/api-reference/components/image
@@ -19,6 +20,8 @@ interface Props {
 }
 
 export default async function MenuItemScreen({ id }: Props) {
+  const session = await auth();
+
   const pizza = await getPizza(id);
 
   if (!pizza) throw new Error("No se ha podido encontrar la pizza");
@@ -56,7 +59,7 @@ export default async function MenuItemScreen({ id }: Props) {
           >
             <H1>{pizza.name}</H1>
             <Typography variant={"body1"}>{pizza.description}</Typography>
-            <Button variant="contained">Añadir</Button>
+            {session && <Button variant="contained">Añadir</Button>}
           </Stack>
         </Grid>
       </PaperGrid>

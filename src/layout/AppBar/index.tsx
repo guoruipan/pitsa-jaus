@@ -30,8 +30,9 @@ export default async function MyAppBar() {
 
           {session && (
             <>
-              <UserMenu />
-              <LogoutButton />
+              <UserMenu>
+                <LogoutButton />
+              </UserMenu>
             </>
           )}
         </Toolbar>

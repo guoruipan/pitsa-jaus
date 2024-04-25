@@ -2,6 +2,7 @@
 
 import React from "react";
 import { signOut } from "#/auth";
+import { Button } from "@mui/material";
 
 async function handleLogout() {
   "use server";
@@ -11,7 +12,9 @@ async function handleLogout() {
 export default async function LogoutButton() {
   return (
     <form action={handleLogout}>
-      <button type="submit">Sign Out</button>
+      <Button variant="text" type="submit">
+        Sign Out
+      </Button>
     </form>
   );
 }
