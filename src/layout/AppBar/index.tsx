@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
@@ -8,6 +6,7 @@ import LoginButton from "./components/LoginButton";
 // import UserMenu from "./components/UserMenu";
 import LogoAndTitle from "./components/LogoAndTitle";
 import MainMenu from "./components/MainMenu";
+import LogoutButton from "./components/LogoutButton";
 
 // basado en la plantilla "App bar with responsive menu" de aquí
 // https://mui.com/material-ui/react-app-bar/
@@ -26,6 +25,7 @@ export default function MyAppBar() {
 
           <LoginButton />
           {/* <UserMenu  /> */}
+          <LogoutButton />
         </Toolbar>
       </Container>
     </AppBar>

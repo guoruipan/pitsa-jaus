@@ -57,19 +57,19 @@ export async function checkPassword(
   return result;
 }
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
+export async function authenticate(credentials: {
+  email: string;
+  password: string;
+}) {
   try {
-    await signIn("credentials", formData);
+    await signIn("credentials", credentials);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return "Invalid credentials.";
+          return "Usuario o contraseña incorrectos";
         default:
-          return "Something went wrong.";
+          return "Algo fue mal";
       }
     }
     throw error;

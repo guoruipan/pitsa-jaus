@@ -41,15 +41,9 @@ https://gourav.io/blog/nextjs-cheatsheet#add-typescript-support
 
 For auth
 https://nextjs.org/learn/dashboard-app/adding-authentication
-https://next-auth.js.org/configuration/initialization
 https://nextjs.org/docs/app/building-your-application/authentication
-https://www.youtube.com/watch?v=md65iBX5Gxg
-https://next-auth.js.org/getting-started/example
-/////////////////
-/////////////////
-auth.ts
 
-// https://authjs.dev/getting-started/authentication/credentials
+https://authjs.dev/getting-started/authentication/credentials
 // nextauth parece haber sido desarollado usando strict=false en la configuración de typescript.
 // por ello, hay un error conocido con el tipo de retorno de la función authorize
 // la solución recomendada es desactivar typescript strict mode en todo el proyecto
@@ -67,3 +61,8 @@ https://medium.com/@renanleonel/how-to-set-up-nextauth-v5-authentication-with-mi
 ///////////////
 https://www.youtube.com/watch?v=qDRQ2EaWsNM
 https://www.youtube.com/watch?v=splh0ZIo-s4
+/////////
+https://authjs.dev/reference/core/errors#credentialssignin
+https://medium.com/@renanleonel/how-to-set-up-nextauth-v5-authentication-with-middleware-and-jest-configuration-in-next-js-14-ca3e64bfb7d5
+https://www.youtube.com/watch?v=DJvM2lSPn6w
+// https://github.com/nextauthjs/next-auth/discussions/3637

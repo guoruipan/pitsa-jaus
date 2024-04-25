@@ -6,9 +6,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { getWithEmail as getUser, checkPassword } from "#/models/user";
 import { AlertError } from "#/components/ui/Alert";
-import { useFormState } from "react-dom";
 import { authenticate } from "#/models/user";
 
 // https://formik.org/docs/examples/with-material-ui
@@ -18,7 +16,7 @@ import { authenticate } from "#/models/user";
 // https://stackoverflow.com/questions/73531755/formik-handle-checkbox-validation-with-react-and-material-ui
 
 export default function LoginForm() {
-  const [showAlert, setShowAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const validationSchema = yup.object({
     email: yup
@@ -36,31 +34,20 @@ export default function LoginForm() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       // quitamos los mensajes de error previos
-      setShowAlert(false);
-      // obtenemos el usuario de bd
-      const userFromDB = await getUser(values.email);
+      setErrorMessage("");
 
-      // si no encuentra el usuario, o si la contraseña no coincide mostramos error
-      if (
-        userFromDB === null ||
-        !(await checkPassword(values.password, userFromDB.pwd))
-      ) {
-        setShowAlert(true);
-        return;
+      const error = await authenticate(values);
+
+      if (error) {
+        setErrorMessage(error);
       }
-
-      // login válido
-      console.log("En loginform, borrar redirect");
-      window.location.href = "/dashboard";
     },
   });
 
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
-
   return (
-    <form action={dispatch}>
+    <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
-        {showAlert && <AlertError>Usuario o contraseña incorrectos</AlertError>}
+        {errorMessage && <AlertError>{errorMessage}</AlertError>}
         <TextField
           fullWidth
           id="email"
@@ -88,7 +75,6 @@ export default function LoginForm() {
         <Button color="primary" variant="contained" fullWidth type="submit">
           Iniciar sesión
         </Button>
-        <div>{errorMessage && <p>{errorMessage}</p>}</div>
       </Stack>
     </form>
   );

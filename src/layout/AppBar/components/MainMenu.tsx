@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useState, MouseEvent } from "react";
 import Button from "@mui/material/Button";
