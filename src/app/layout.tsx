@@ -3,8 +3,8 @@ import React from "react";
 // https://mui.com/material-ui/integrations/nextjs/
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
-import AppBar from "#/layout/AppBar";
-import Footer from "#/layout/Footer";
+import AppBar from "#/components/layout/AppBar";
+import Footer from "#/components/layout/Footer";
 import { ThemeProvider } from "@mui/material/styles";
 // https://mui.com/material-ui/react-css-baseline/
 import CssBaseline from "@mui/material/CssBaseline";
