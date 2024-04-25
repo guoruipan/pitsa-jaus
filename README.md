@@ -34,35 +34,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Links
-
-https://gourav.io/blog/nextjs-cheatsheet#add-typescript-support
-
-For auth
-https://nextjs.org/learn/dashboard-app/adding-authentication
-https://nextjs.org/docs/app/building-your-application/authentication
-
-https://authjs.dev/getting-started/authentication/credentials
-// nextauth parece haber sido desarollado usando strict=false en la configuración de typescript.
-// por ello, hay un error conocido con el tipo de retorno de la función authorize
-// la solución recomendada es desactivar typescript strict mode en todo el proyecto
-// No es la solución ideal, pero desactivo la advertencia con eslint-disable
-// https://stackoverflow.com/questions/74089665/next-auth-credentials-provider-authorize-type-error
-
-////////////////
-readme
-
-https://authjs.dev/getting-started/installation?framework=next.js
-https://cloudcoders.xyz/blog/nextauth-credentials-provider-with-external-api-and-login-page/
-https://authjs.dev/getting-started
-https://medium.com/@renanleonel/how-to-set-up-nextauth-v5-authentication-with-middleware-and-jest-configuration-in-next-js-14-ca3e64bfb7d5
-
-///////////////
-https://www.youtube.com/watch?v=qDRQ2EaWsNM
-https://www.youtube.com/watch?v=splh0ZIo-s4
-/////////
-https://authjs.dev/reference/core/errors#credentialssignin
-https://medium.com/@renanleonel/how-to-set-up-nextauth-v5-authentication-with-middleware-and-jest-configuration-in-next-js-14-ca3e64bfb7d5
-https://www.youtube.com/watch?v=DJvM2lSPn6w
-// https://github.com/nextauthjs/next-auth/discussions/3637
