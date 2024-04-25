@@ -1,11 +1,12 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+
 import bcrypt from "bcrypt";
 import { signIn } from "#/auth";
 import { AuthError } from "next-auth";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // bcrypt example
 // https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
@@ -32,8 +33,9 @@ export async function insert(user: User) {
     throw new Error("Failed to register new user.");
   }
 
-  revalidatePath("/register-success");
-  redirect("/register-success");
+  // tiene que estar en un componente de servidor
+  revalidatePath("/auth/register-success");
+  redirect("/auth/register-success");
 }
 
 export async function getWithEmail(email: string) {
@@ -60,7 +62,8 @@ export async function checkPassword(
 export async function authenticate(credentials: {
   email: string;
   password: string;
-}) {
+}): Promise<"Usuario o contraseña incorrectos" | "Algo fue mal" | undefined> {
+  // TODO make return type
   try {
     await signIn("credentials", credentials);
   } catch (error) {

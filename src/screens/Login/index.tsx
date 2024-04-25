@@ -16,7 +16,7 @@ export default function LoginScreen({ pageTitle }: Props) {
       <LoginForm />
       <Typography variant="body1">
         ¿No tienes cuenta?{" "}
-        <Link href="/register" underline="hover">
+        <Link href="/auth/register" underline="hover">
           Regístrate
         </Link>
       </Typography>

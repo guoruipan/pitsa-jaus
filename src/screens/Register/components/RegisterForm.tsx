@@ -81,7 +81,7 @@ export default function RegisterForm() {
 
       /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
 
-      if ((await getUser(user.email)) === null) {
+      if (!(await getUser(user.email))) {
         createUser(user);
       } else {
         formik.touched.email = true;

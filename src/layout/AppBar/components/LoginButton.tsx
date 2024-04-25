@@ -8,7 +8,7 @@ export default function LoginButton() {
     <Box
       display={"flex"}
       component={NextLink}
-      href={"/login"}
+      href={"/auth/login"}
       sx={{ color: "inherit", textDecoration: "none" }}
     >
       <LoginIcon sx={{ mr: 1, display: "flex" }} />

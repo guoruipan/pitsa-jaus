@@ -14,7 +14,7 @@ export default function RegisterSuccessScreen({ pageTitle }: Props) {
       <Typography variant="h6" component="p">
         Pulsa el botón para volver a la página de login
       </Typography>
-      <Button variant="contained" href="/login">
+      <Button variant="contained" href="/auth/login">
         Volver a inicio de sesión
       </Button>
     </CenteredPaperStack>

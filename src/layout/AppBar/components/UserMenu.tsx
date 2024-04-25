@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useState, MouseEvent } from "react";
 import Box from "@mui/material/Box";
@@ -5,9 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
 
-const settings = ["Mi cuenta", "Cerrar sesión"];
+import Link from "#/components/texts/Link";
+
+const settings: { name: string; href: string }[] = [
+  { name: "Mi perfil", href: "/dashboard" },
+];
 
 export default function UserMenu() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -44,8 +49,15 @@ export default function UserMenu() {
       >
         {/* TODO implementar enlaces */}
         {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+          <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+            <Link
+              href={setting.href}
+              textAlign={"center"}
+              color={"inherit"}
+              underline="hover"
+            >
+              {setting.name}
+            </Link>
           </MenuItem>
         ))}
       </Menu>
