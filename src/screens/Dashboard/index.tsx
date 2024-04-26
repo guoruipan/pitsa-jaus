@@ -9,11 +9,14 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
+  ListSubheader,
   Stack,
 } from "@mui/material";
 import type { User } from "#/models/user";
 import DeleteUser from "./components/DeleteUser";
+import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
 
 interface Props {
   user: User;
@@ -25,13 +28,20 @@ export default function DashboardScreen({ user }: Props) {
   return (
     <Stack spacing={3}>
       <List>
+        <ListSubheader>Opciones</ListSubheader>
         <ListItem disablePadding>
           <ListItemButton onClick={() => setOption(1)}>
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
             <ListItemText primary="Editar perfil" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton onClick={() => setOption(2)}>
+            <ListItemIcon>
+              <DeleteIcon />
+            </ListItemIcon>
             <ListItemText primary="Borrar usuario" />
           </ListItemButton>
         </ListItem>
