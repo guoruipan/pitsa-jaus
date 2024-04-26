@@ -17,6 +17,7 @@ import Stack from "@mui/material/Stack";
 import { update as updateUser } from "#/models/user";
 import type { User } from "#/models/user";
 import { AlertSuccess } from "#/components/ui/Alert";
+import H1 from "#/components/texts/H1";
 
 interface Props {
   user: User;
@@ -79,6 +80,7 @@ export default function ProfileForm({ user }: Props) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
+        <H1>Editar perfil</H1>
         {showAlert && <AlertSuccess>Se han actualizado los datos</AlertSuccess>}
         <TextField
           fullWidth

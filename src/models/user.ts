@@ -51,6 +51,18 @@ export async function update(user: User, newPwd: boolean) {
   }
 }
 
+// delete es una palabra reservada en ts
+export async function deleteWithId(id: number) {
+  try {
+    await sql<User>`
+    DELETE FROM users WHERE id=${id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to delete user.");
+  }
+}
+
 export async function getWithEmail(email: string) {
   try {
     const data = await sql<User>`SELECT * FROM users WHERE email=${email}`;
