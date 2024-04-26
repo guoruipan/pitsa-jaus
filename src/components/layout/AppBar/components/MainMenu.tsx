@@ -81,7 +81,6 @@ function MainMenuXS({
           display: { xs: "block", md: "none" },
         }}
       >
-        {/* implementados los enlaces */}
         {pages.map((page) => (
           <MenuItem
             key={page.href}

@@ -36,6 +36,21 @@ export async function insert(user: User) {
   redirect("/auth/register-success");
 }
 
+export async function update(user: User, newPwd: boolean) {
+  try {
+    // si mantienen la vieja contraseña no quiero hacer hash otra vez
+    const hashedPassword = newPwd ? await bcrypt.hash(user.pwd, 10) : user.pwd;
+
+    await sql<User>`
+    UPDATE users SET name=${user.name}, email=${user.email}, pwd=${hashedPassword}, home_address=${user.home_address}, role=${user.role}
+    WHERE id=${user.id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update user.");
+  }
+}
+
 export async function getWithEmail(email: string) {
   try {
     const data = await sql<User>`SELECT * FROM users WHERE email=${email}`;
@@ -44,5 +59,17 @@ export async function getWithEmail(email: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch user with email");
+  }
+}
+
+export async function getWithId(id: number) {
+  // unused
+  try {
+    const data = await sql<User>`SELECT * FROM users WHERE id=${id}`;
+
+    return data.rowCount > 0 ? data.rows[0] : null;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch user with id");
   }
 }

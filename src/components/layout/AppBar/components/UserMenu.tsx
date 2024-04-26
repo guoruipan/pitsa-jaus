@@ -8,13 +8,12 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { logout } from "#/lib/session";
-import Link from "#/components/texts/Link";
+
+import { Typography } from "@mui/material";
 
 const settings: { name: string; href: string }[] = [
   { name: "Mi perfil", href: "/dashboard" },
 ];
-
-// https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#supported-pattern-passing-server-components-to-client-components-as-props
 
 export default function UserMenu() {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -22,9 +21,13 @@ export default function UserMenu() {
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+  console.log(
+    "Consider just nesting a link inside menuitems for more optimized routing",
+  );
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (href?: string) => {
     setAnchorElUser(null);
+    href && (window.location.href = href);
   };
   return (
     <Box sx={{ flexGrow: 0 }}>
@@ -47,21 +50,17 @@ export default function UserMenu() {
           horizontal: "right",
         }}
         open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
+        onClose={() => handleCloseUserMenu()}
       >
         {settings.map((setting) => (
-          <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
-            <Link
-              href={setting.href}
-              textAlign={"center"}
-              color={"inherit"}
-              underline="none"
-            >
-              {setting.name}
-            </Link>
+          <MenuItem
+            key={setting.name}
+            onClick={() => handleCloseUserMenu(setting.href)}
+          >
+            <Typography textAlign="center">{setting.name}</Typography>
           </MenuItem>
         ))}
-        <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+        <MenuItem key={"logout"} onClick={() => handleCloseUserMenu()}>
           <form action={logout}>
             <button
               type="submit"
