@@ -1,10 +1,10 @@
 import React from "react";
 import { auth } from "#/auth";
 import { Metadata } from "next";
-import DashboardScreen from "#/screens/Dashboard";
+import MyAccountScreen from "#/screens/MyAccount";
 import { getWithEmail as getUser } from "#/models/user";
 
-const pageTitle = "Dashboard";
+const pageTitle = "Mi cuenta";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -18,5 +18,5 @@ export default async function Page() {
   const user = await getUser(session.user.email as string);
   if (!user) throw new Error();
 
-  return <DashboardScreen user={user} />;
+  return <MyAccountScreen user={user} />;
 }

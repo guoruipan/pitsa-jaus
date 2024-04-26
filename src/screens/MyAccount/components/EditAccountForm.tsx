@@ -23,7 +23,7 @@ interface Props {
   user: User;
 }
 
-export default function ProfileForm({ user }: Props) {
+export default function EditAccountForm({ user }: Props) {
   const [showAlert, setShowAlert] = useState(false);
 
   const validationSchema = yup.object({
@@ -80,7 +80,7 @@ export default function ProfileForm({ user }: Props) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
-        <H1>Editar perfil</H1>
+        <H1>Editar cuenta</H1>
         {showAlert && <AlertSuccess>Se han actualizado los datos</AlertSuccess>}
         <TextField
           fullWidth
