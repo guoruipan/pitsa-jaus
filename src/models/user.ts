@@ -67,7 +67,7 @@ export async function getWithEmail(email: string) {
   try {
     const data = await sql<User>`SELECT * FROM users WHERE email=${email}`;
 
-    return data.rowCount > 0 ? data.rows[0] : null;
+    return data.rowCount > 0 ? data.rows[0] : undefined;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch user with email");
@@ -79,7 +79,7 @@ export async function getWithId(id: number) {
   try {
     const data = await sql<User>`SELECT * FROM users WHERE id=${id}`;
 
-    return data.rowCount > 0 ? data.rows[0] : null;
+    return data.rowCount > 0 ? data.rows[0] : undefined;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch user with id");

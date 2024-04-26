@@ -1,6 +1,8 @@
 import React from "react";
 import { Metadata } from "next";
 import MenuItemScreen from "#/screens/MenuItem";
+import { auth } from "#/auth";
+import { getWithEmail as getUser } from "#/models/user";
 
 const pageTitle = "Pizza";
 
@@ -14,6 +16,9 @@ interface Props {
   params: { id: number };
 }
 
-export default function Page({ params }: Props) {
-  return <MenuItemScreen id={params.id} />;
+export default async function Page({ params }: Props) {
+  const session = await auth();
+  const user = await getUser(session?.user?.email as string);
+
+  return <MenuItemScreen id={params.id} user={user} />;
 }
