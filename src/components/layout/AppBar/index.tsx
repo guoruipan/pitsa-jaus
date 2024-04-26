@@ -26,20 +26,8 @@ export default async function MyAppBar() {
           {/* tamaño grande */}
           <Logo breakpoint="md" />
           <MainMenu breakpoint="md" />
-          {(() => {
-            switch (user?.role) {
-              case "customer":
-                return <>Cliente</>;
-              case "manager":
-                return <>Gerente</>;
-              case "admin":
-                return <>Admin</>;
-              default:
-                return <></>;
-            }
-          })()}
 
-          {user ? <UserMenu /> : <LoginButton />}
+          {user ? <UserMenu user={user} /> : <LoginButton />}
         </Toolbar>
       </Container>
     </AppBar>

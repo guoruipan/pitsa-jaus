@@ -12,11 +12,6 @@ const nextConfig = {
         destination: "/dashboard/my-account",
         permanent: true,
       },
-      {
-        source: "/dashboard/my-profile",
-        destination: "/dashboard/my-account",
-        permanent: true,
-      },
     ];
   },
 };

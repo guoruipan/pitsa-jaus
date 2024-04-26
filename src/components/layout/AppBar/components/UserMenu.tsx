@@ -8,14 +8,18 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { logout } from "#/lib/session";
-
 import { Typography } from "@mui/material";
+import type { User } from "#/models/user";
 
 const settings: { name: string; href: string }[] = [
   { name: "Mi perfil", href: "/dashboard" },
 ];
 
-export default function UserMenu() {
+interface Props {
+  user: User;
+}
+
+export default function UserMenu({ user }: Props) {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
@@ -60,6 +64,43 @@ export default function UserMenu() {
             <Typography textAlign="center">{setting.name}</Typography>
           </MenuItem>
         ))}
+
+        {(() => {
+          switch (user?.role) {
+            case "customer":
+              return (
+                <MenuItem
+                  key={"my-orders"}
+                  onClick={() => handleCloseUserMenu("/dashboard/my-orders")}
+                >
+                  <Typography textAlign="center">Mis pedidos</Typography>
+                </MenuItem>
+              );
+            case "manager":
+              return (
+                <MenuItem
+                  key={"manage-orders"}
+                  onClick={() =>
+                    handleCloseUserMenu("/dashboard/manage-orders")
+                  }
+                >
+                  <Typography textAlign="center">Gestionar pedidos</Typography>
+                </MenuItem>
+              );
+            case "admin":
+              return (
+                <MenuItem
+                  key={"manage-users"}
+                  onClick={() => handleCloseUserMenu("/dashboard/manage-users")}
+                >
+                  <Typography textAlign="center">Gestionar usuarios</Typography>
+                </MenuItem>
+              );
+            default:
+              return <></>;
+          }
+        })()}
+
         <MenuItem key={"logout"} onClick={() => handleCloseUserMenu()}>
           <form action={logout}>
             <button
