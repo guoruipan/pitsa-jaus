@@ -7,11 +7,11 @@ interface Props {
   breakpoint: "xs" | "md";
 }
 
-export default function LogoAndTitle({ breakpoint }: Props) {
-  return breakpoint === "xs" ? <LogoAndTitleXS /> : <LogoAndTitleMD />;
+export default function Logo({ breakpoint }: Props) {
+  return breakpoint === "xs" ? <LogoXS /> : <LogoMD />;
 }
 
-const LogoAndTitleXS = () => {
+const LogoXS = () => {
   return (
     <>
       <LocalPizzaIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -30,13 +30,13 @@ const LogoAndTitleXS = () => {
           textDecoration: "none",
         }}
       >
-        PITSAJAUS
+        PJ
       </Typography>
     </>
   );
 };
 
-const LogoAndTitleMD = () => {
+const LogoMD = () => {
   return (
     <>
       <LocalPizzaIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

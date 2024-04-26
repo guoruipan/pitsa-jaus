@@ -33,7 +33,7 @@ export default function UserMenu() {
     <Box sx={{ flexGrow: 0 }}>
       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
         {/* TODO implementar avatar imagen */}
-        <Avatar alt="Usuario" />
+        <Avatar src="/face.png" alt="Usuario" />
       </IconButton>
 
       <Menu

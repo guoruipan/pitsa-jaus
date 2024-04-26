@@ -4,9 +4,9 @@ import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import LoginButton from "./components/LoginButton";
 import UserMenu from "./components/UserMenu";
-import LogoAndTitle from "./components/LogoAndTitle";
 import MainMenu from "./components/MainMenu";
 import { auth } from "#/auth";
+import Logo from "./components/Logo";
 
 // basado en la plantilla "App bar with responsive menu" de aquí
 // https://mui.com/material-ui/react-app-bar/
@@ -20,9 +20,9 @@ export default async function MyAppBar() {
         <Toolbar disableGutters>
           {/* tamaño pequeño */}
           <MainMenu breakpoint="xs" />
-          <LogoAndTitle breakpoint="xs" />
+          <Logo breakpoint="xs" />
           {/* tamaño grande */}
-          <LogoAndTitle breakpoint="md" />
+          <Logo breakpoint="md" />
           <MainMenu breakpoint="md" />
 
           {session ? <UserMenu /> : <LoginButton />}
