@@ -19,9 +19,8 @@ export async function list(currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
-    // TODO DELETE BELOW
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
     // await new Promise((resolve) => setTimeout(resolve, 3000));
-    //TODO DELETE ABOVE
 
     const data =
       await sql<Pizza>`SELECT * FROM pizzas ORDER BY id LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
@@ -35,11 +34,10 @@ export async function list(currentPage = 1) {
 
 export async function getTotalPages() {
   try {
-    const count = await sql`SELECT COUNT(*) FROM pizzas;`;
+    const res = await sql`SELECT COUNT(*) FROM pizzas;`;
 
-    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
-
-    return totalPages;
+    // total pages
+    return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of pizzas.");
@@ -47,17 +45,14 @@ export async function getTotalPages() {
 }
 
 export async function getWithId(id: number) {
-  // devuevlve la pizza con el id especificado
   try {
-    // TODO DELETE BELOW
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
     // await new Promise((resolve) => setTimeout(resolve, 3000));
-    //TODO DELETE ABOVE
 
     const data = await sql<Pizza>`SELECT * FROM pizzas WHERE id=${id}`;
 
-    if (data.rowCount > 0) {
-      return data.rows[0]; // Devuelve la primera pizza encontrada
-    }
+    // Devuelve la primera pizza encontrada
+    if (data.rowCount > 0) return data.rows[0];
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch pizza with specified ID");

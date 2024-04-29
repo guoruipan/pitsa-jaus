@@ -5,7 +5,7 @@ interface Props extends AlertProps {
   children: React.ReactNode;
 }
 
-// variant: por defecto "outlined". Para filled indicar al llamar <AlertError variant="filled">
+// variant: por defecto "outlined". Para "filled" indicar al llamar <AlertError variant="filled">
 
 export function AlertError({ children, ...rest }: Props) {
   return (

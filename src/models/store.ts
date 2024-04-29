@@ -18,20 +18,16 @@ export async function list(term = "", currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
-    // TODO DELETE BELOW
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
     // await new Promise((resolve) => setTimeout(resolve, 3000));
-    //TODO DELETE ABOVE
-
-    let data;
 
     // el param term es opcional. Si está, filtra por él. Si no, muestra la lista completa
-    if (term !== "") {
-      data =
-        await sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%' LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
-    } else {
-      data =
-        await sql<Store>`SELECT * FROM stores LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
-    }
+    const query =
+      term !== ""
+        ? sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%' LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`
+        : sql<Store>`SELECT * FROM stores LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`;
+
+    const data = await query;
 
     // si no encuentra registros, devolver array vacío
     return data?.rows || [];
@@ -43,18 +39,14 @@ export async function list(term = "", currentPage = 1) {
 
 export async function getTotalPages(term = "") {
   try {
-    let count;
+    const query =
+      term !== ""
+        ? sql`SELECT COUNT(*) FROM stores WHERE postcode ILIKE '%' || ${term} || '%';`
+        : sql`SELECT COUNT(*) FROM stores;`;
 
-    if (term !== "") {
-      count =
-        await sql`SELECT COUNT(*) FROM stores WHERE postcode ILIKE '%' || ${term} || '%';`;
-    } else {
-      count = await sql`SELECT COUNT(*) FROM stores;`;
-    }
+    const res = await query;
 
-    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
-
-    return totalPages;
+    return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of stores.");
