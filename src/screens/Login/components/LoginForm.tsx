@@ -39,10 +39,8 @@ export default function LoginForm() {
       setIsSubmitting(true);
 
       const error = await authenticate(values);
+      if (error) setErrorMessage(error);
 
-      if (error) {
-        setErrorMessage(error);
-      }
       setIsSubmitting(false);
     },
   });
@@ -74,7 +72,6 @@ export default function LoginForm() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-
         <Button
           color="primary"
           variant="contained"

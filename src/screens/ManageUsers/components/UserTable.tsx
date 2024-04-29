@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { list as listUsers } from "#/models/user";
 
 interface Props {
-  query: string;
+  query?: string;
   currentPage: number;
 }
 

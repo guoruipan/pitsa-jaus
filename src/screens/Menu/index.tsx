@@ -6,6 +6,7 @@ import MenuGrid from "./components/MenuGrid";
 import { Stack } from "@mui/material";
 import Pagination from "#/components/ui/Pagination";
 import { getTotalPages as getPizzaPages } from "#/models/pizza";
+import { clamp } from "#/lib/utils";
 
 interface Props {
   pageTitle: string;
@@ -17,11 +18,7 @@ interface Props {
 
 export default async function MenuScreen({ pageTitle, page }: Props) {
   const totalPages = await getPizzaPages();
-
-  // Number(page) || 1 -> Recibe el param page, si es NaN o undefined por defecto es 1
-  // Math.min(..., totalPages) -> devuelve el menor de los dos nums, para asegurarme de que page no exceda totalPages
-  // Max.max(1, ...) -> devuelve el mayor de los dos nums, para asegurarme de que page no sea menor que 1
-  const currentPage = Math.max(1, Math.min(Number(page) || 1, totalPages));
+  const currentPage = clamp(Number(page) || 1, 1, totalPages);
 
   return (
     <Stack spacing={3}>

@@ -11,7 +11,7 @@ import { list as listStores } from "#/models/store";
 // paper le da apariencia de estar elevado a la tabla
 
 interface Props {
-  query: string;
+  query?: string;
   currentPage: number;
 }
 

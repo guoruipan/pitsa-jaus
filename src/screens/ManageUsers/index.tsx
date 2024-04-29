@@ -7,6 +7,7 @@ import UserTable from "./components/UserTable";
 import { Suspense } from "react";
 import TableSkeleton from "#/components/ui/TableSkeleton";
 import Pagination from "#/components/ui/Pagination";
+import { clamp } from "#/lib/utils";
 
 interface Props {
   pageTitle: string;
@@ -16,15 +17,11 @@ interface Props {
 
 export default async function ManageUsersScreen({
   pageTitle,
-  query = "",
+  query,
   page,
 }: Props) {
   const totalPages = await getUserPages(query);
-
-  // Number(page) || 1 -> Recibe el param page, si es NaN o undefined por defecto es 1
-  // Math.min(..., totalPages) -> devuelve el menor de los dos nums, para asegurarme de que page no exceda totalPages
-  // Max.max(1, ...) -> devuelve el mayor de los dos nums, para asegurarme de que page no sea menor que 1
-  const currentPage = Math.max(1, Math.min(Number(page) || 1, totalPages));
+  const currentPage = clamp(Number(page) || 1, 1, totalPages);
 
   return (
     <Stack spacing={3}>
