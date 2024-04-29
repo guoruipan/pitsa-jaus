@@ -17,6 +17,7 @@ import { authenticate } from "#/lib/session";
 
 export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validationSchema = yup.object({
     email: yup
@@ -35,12 +36,14 @@ export default function LoginForm() {
     onSubmit: async (values) => {
       // quitamos los mensajes de error previos
       setErrorMessage("");
+      setIsSubmitting(true);
 
       const error = await authenticate(values);
 
       if (error) {
         setErrorMessage(error);
       }
+      setIsSubmitting(false);
     },
   });
 
@@ -72,8 +75,14 @@ export default function LoginForm() {
           helperText={formik.touched.password && formik.errors.password}
         />
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Iniciar sesión
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Iniciando..." : "Iniciar sesión"}
         </Button>
       </Stack>
     </form>

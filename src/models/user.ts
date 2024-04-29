@@ -2,8 +2,6 @@
 
 import { sql } from "@vercel/postgres";
 import bcrypt from "bcrypt";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 // bcrypt example
 // https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
@@ -79,11 +77,6 @@ export async function insert(user: User) {
     console.error("Database Error:", error);
     throw new Error("Failed to register new user.");
   }
-
-  console.log("find a better way to redirect after insert user");
-  // tiene que estar en un componente de servidor
-  revalidatePath("/auth/register-success");
-  redirect("/auth/register-success");
 }
 
 export async function update(user: User, newPwd: boolean) {

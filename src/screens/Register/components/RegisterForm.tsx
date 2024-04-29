@@ -9,6 +9,7 @@
 // https://mui.com/material-ui/react-select/
 
 import React from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -25,8 +26,11 @@ import {
 import Stack from "@mui/material/Stack";
 import { insert as createUser, getWithEmail as getUser } from "#/models/user";
 import type { User } from "#/models/user";
+import { authenticate } from "#/lib/session";
 
 export default function RegisterForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const validationSchema = yup.object({
     name: yup
       .string()
@@ -70,6 +74,8 @@ export default function RegisterForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setIsSubmitting(true);
+
       const user: User = {
         id: 0,
         name: values.name,
@@ -82,11 +88,18 @@ export default function RegisterForm() {
       /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
 
       if (!(await getUser(user.email))) {
-        createUser(user);
+        await createUser(user);
+        // esto no debería de dar error nunca
+        await authenticate({
+          email: values.email,
+          password: values.pwd,
+        });
       } else {
         formik.touched.email = true;
         formik.errors.email = "Ya existe un usuario con el email introducido";
       }
+
+      setIsSubmitting(false);
     },
   });
 
@@ -197,8 +210,14 @@ export default function RegisterForm() {
           </FormHelperText>
         </FormControl>
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Enviar
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Enviando..." : "Enviar"}
         </Button>
       </Stack>
     </form>
