@@ -84,7 +84,7 @@ export default function UserMenu({ user }: Props) {
                     handleCloseUserMenu("/dashboard/manage-orders")
                   }
                 >
-                  <Typography textAlign="center">Gestionar pedidos</Typography>
+                  <Typography textAlign="center">Gestión de pedidos</Typography>
                 </MenuItem>
               );
             case "admin":
@@ -93,7 +93,9 @@ export default function UserMenu({ user }: Props) {
                   key={"manage-users"}
                   onClick={() => handleCloseUserMenu("/dashboard/manage-users")}
                 >
-                  <Typography textAlign="center">Gestionar usuarios</Typography>
+                  <Typography textAlign="center">
+                    Gestión de usuarios
+                  </Typography>
                 </MenuItem>
               );
             default:

@@ -3,7 +3,7 @@ import { auth } from "#/auth";
 import { Metadata } from "next";
 import { getWithEmail as getUser } from "#/models/user";
 
-const pageTitle = "Gestionar pedidos";
+const pageTitle = "Gestión de pedidos";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -17,5 +17,5 @@ export default async function Page() {
   const user = await getUser(session.user.email as string);
   if (!user) throw new Error();
 
-  return <>Gestionar pedidos</>;
+  return <>Gestión pedidos</>;
 }
