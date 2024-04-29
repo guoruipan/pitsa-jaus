@@ -8,11 +8,23 @@ import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { logout } from "#/lib/session";
-import { Typography } from "@mui/material";
 import type { User } from "#/models/user";
+import Link from "#/components/texts/Link";
+import { Typography } from "@mui/material";
 
-const settings: { name: string; href: string }[] = [
+const settings = [
   { name: "Mi perfil", href: "/dashboard" },
+  { name: "Mis pedidos", href: "/dashboard/my-orders", role: "customer" },
+  {
+    name: "Gestión de pedidos",
+    href: "/dashboard/manage-orders",
+    role: "manager",
+  },
+  {
+    name: "Gestión de usuarios",
+    href: "/dashboard/manage-users",
+    role: "admin",
+  },
 ];
 
 interface Props {
@@ -21,22 +33,20 @@ interface Props {
 
 export default function UserMenu({ user }: Props) {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-  console.log(
-    "Consider just nesting a link inside menuitems for more optimized routing",
-  );
-
-  const handleCloseUserMenu = (href?: string) => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    href && (window.location.href = href);
   };
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-        {/* TODO implementar avatar imagen */}
         <Avatar src="/customer.png" alt="Usuario" />
       </IconButton>
 
@@ -54,71 +64,31 @@ export default function UserMenu({ user }: Props) {
           horizontal: "right",
         }}
         open={Boolean(anchorElUser)}
-        onClose={() => handleCloseUserMenu()}
+        onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem
-            key={setting.name}
-            onClick={() => handleCloseUserMenu(setting.href)}
-          >
-            <Typography textAlign="center">{setting.name}</Typography>
-          </MenuItem>
-        ))}
+        {settings.map(
+          (setting) =>
+            // en jsx no puedes meter un if, hay que usar operador lógico o ternario
+            (!setting.role || setting.role === user.role) && (
+              <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                <Link
+                  href={setting.href}
+                  color={"inherit"}
+                  underline="none"
+                  width={"100%"}
+                  height={"100%"}
+                >
+                  {setting.name}
+                </Link>
+              </MenuItem>
+            ),
+        )}
 
-        {(() => {
-          switch (user?.role) {
-            case "customer":
-              return (
-                <MenuItem
-                  key={"my-orders"}
-                  onClick={() => handleCloseUserMenu("/dashboard/my-orders")}
-                >
-                  <Typography textAlign="center">Mis pedidos</Typography>
-                </MenuItem>
-              );
-            case "manager":
-              return (
-                <MenuItem
-                  key={"manage-orders"}
-                  onClick={() =>
-                    handleCloseUserMenu("/dashboard/manage-orders")
-                  }
-                >
-                  <Typography textAlign="center">Gestión de pedidos</Typography>
-                </MenuItem>
-              );
-            case "admin":
-              return (
-                <MenuItem
-                  key={"manage-users"}
-                  onClick={() => handleCloseUserMenu("/dashboard/manage-users")}
-                >
-                  <Typography textAlign="center">
-                    Gestión de usuarios
-                  </Typography>
-                </MenuItem>
-              );
-            default:
-              return <></>;
-          }
-        })()}
-
-        <MenuItem key={"logout"} onClick={() => handleCloseUserMenu()}>
-          <form action={logout}>
-            <button
-              type="submit"
-              style={{
-                background: "none",
-                border: "none",
-                margin: 0,
-                padding: 0,
-                font: "inherit",
-                cursor: "pointer",
-              }}
-            >
-              Cierra sesión
-            </button>
-          </form>
+        <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+          {/* width y height a 100% para que el texto de enlace ocupe el contenedor entero (más o menos) */}
+          <Typography onClick={handleLogout} width={"100%"} height={"100%"}>
+            Cerrar sesión
+          </Typography>
         </MenuItem>
       </Menu>
     </Box>

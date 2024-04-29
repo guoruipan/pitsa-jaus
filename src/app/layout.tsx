@@ -45,7 +45,7 @@ export default function RootLayout({
   );
 }
 
-// creado para intentar evitar un warning, no funcionó.
+// separado de RootLayout para intentar evitar un warning, no funcionó.
 function InnerLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

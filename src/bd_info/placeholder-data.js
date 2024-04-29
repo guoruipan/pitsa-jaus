@@ -121,7 +121,7 @@ const stores = [
     manager_id: 3,
   },
   {
-    name: "Supermercado Estrella",
+    name: "PitsaJaus Estrella",
     address: "Calle Mayor, 123",
     city: "Zaragoza",
     state: "España",
@@ -130,7 +130,7 @@ const stores = [
     manager_id: 4,
   },
   {
-    name: "Librería Cervantes",
+    name: "PitsaJaus Cervantes",
     address: "Calle Libertad, 45",
     city: "Zaragoza",
     state: "España",
@@ -139,7 +139,7 @@ const stores = [
     manager_id: 5,
   },
   {
-    name: "Farmacia San Marcos",
+    name: "PitsaJaus San Marcos",
     address: "Calle Independencia, 78",
     city: "Zaragoza",
     state: "España",
@@ -148,7 +148,7 @@ const stores = [
     manager_id: 6,
   },
   {
-    name: "Cafetería La Pausa",
+    name: "PitsaJaus La Pausa",
     address: "Calle Aragon, 21",
     city: "Zaragoza",
     state: "España",
@@ -157,7 +157,7 @@ const stores = [
     manager_id: 7,
   },
   {
-    name: "Tienda de Ropa Moda",
+    name: "PitsaJaus Delicias",
     address: "Calle Delicias, 34",
     city: "Zaragoza",
     state: "España",
@@ -166,7 +166,7 @@ const stores = [
     manager_id: 8,
   },
   {
-    name: "Panadería La Espiga Dorada",
+    name: "PitsaJaus La Espiga Dorada",
     address: "Calle Huesca, 56",
     city: "Zaragoza",
     state: "España",
@@ -175,7 +175,7 @@ const stores = [
     manager_id: 9,
   },
   {
-    name: "Joyería Brillante",
+    name: "PitsaJaus Brillante",
     address: "Calle Teruel, 7",
     city: "Zaragoza",
     state: "España",
@@ -184,7 +184,7 @@ const stores = [
     manager_id: 10,
   },
   {
-    name: "Carnicería El Toro",
+    name: "PitsaJaus El Toro",
     address: "Calle Valencia, 89",
     city: "Zaragoza",
     state: "España",
@@ -193,7 +193,7 @@ const stores = [
     manager_id: 11,
   },
   {
-    name: "Frutería La Huerta",
+    name: "PitsaJaus La Huerta",
     address: "Calle Mallorca, 23",
     city: "Zaragoza",
     state: "España",
@@ -202,7 +202,7 @@ const stores = [
     manager_id: 12,
   },
   {
-    name: "Pescadería El Mar",
+    name: "PitsaJaus El Mar",
     address: "Calle Menorca, 45",
     city: "Zaragoza",
     state: "España",

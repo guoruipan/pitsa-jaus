@@ -16,6 +16,7 @@ export default async function Page() {
 
   const user = await getUser(session.user.email as string);
   if (!user) throw new Error();
+  if (user.role !== "customer") throw new Error();
 
   return <>Mis pedidos</>;
 }
