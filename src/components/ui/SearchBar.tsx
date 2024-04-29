@@ -9,20 +9,20 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function SearchBar() {
+interface Props {
+  label: string;
+}
+
+export default function SearchBar({ label }: Props) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
-    params.set("page", "1");
 
-    if (term) {
-      params.set("query", term);
-    } else {
-      params.delete("query");
-    }
+    params.set("page", "1");
+    term ? params.set("query", term) : params.delete("query");
 
     replace(`${pathname}?${params.toString()}`);
   }, 300);
@@ -31,8 +31,8 @@ export default function SearchBar() {
     <Box sx={{ display: "flex", alignItems: "flex-end" }}>
       <SearchIcon sx={{ mr: 1, my: 0.5 }} />
       <TextField
-        id="inputEmail"
-        label="Escribe la dirección de email"
+        id="inputSearchBar"
+        label={label}
         variant="standard"
         fullWidth
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

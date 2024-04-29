@@ -1,10 +1,10 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
 import H1 from "#/components/texts/H1";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "#/components/ui/SearchBar";
 import StoreTable from "./components/StoreTable";
 import { Suspense } from "react";
-import StoreTableSkeleton from "./components/StoreTableSkeleton";
+import TableSkeleton from "#/components/ui/TableSkeleton";
 import { getTotalPages as getStorePages } from "#/models/store";
 import Pagination from "#/components/ui/Pagination";
 
@@ -26,10 +26,10 @@ export default async function FindUsScreen({ pageTitle, query, page }: Props) {
   return (
     <Stack spacing={3}>
       <H1>{pageTitle}</H1>
-      <SearchBar />
+      <SearchBar label="Busca por código postal" />
       <Suspense
         key={`${searchTerm} ${currentPage}`}
-        fallback={<StoreTableSkeleton />}
+        fallback={<TableSkeleton rows={5} cols={6} />}
       >
         <StoreTable query={searchTerm} currentPage={currentPage} />
       </Suspense>
