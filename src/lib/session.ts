@@ -1,8 +1,10 @@
 "use server";
 
-import { signIn, signOut } from "#/auth";
+import { auth, signIn, signOut } from "#/auth";
 import { AuthError } from "next-auth";
 import bcrypt from "bcrypt";
+import { User } from "#/models/user";
+import { getWithEmail as getUser } from "#/models/user";
 
 export async function checkPassword(
   plainPassword: string,
@@ -36,4 +38,13 @@ export async function authenticate(credentials: {
 
 export async function logout() {
   await signOut();
+}
+
+export async function getSessionUser(): Promise<User | undefined> {
+  const session = await auth();
+  if (!session || !session.user) return;
+
+  const user = await getUser(session.user.email as string);
+  // user: User | undefined
+  return user;
 }

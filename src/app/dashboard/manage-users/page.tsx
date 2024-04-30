@@ -1,8 +1,7 @@
 import React from "react";
-import { auth } from "#/auth";
 import { Metadata } from "next";
-import { getWithEmail as getUser } from "#/models/user";
 import ManageUsersScreen from "#/screens/ManageUsers";
+import { getSessionUser } from "#/lib/session";
 
 const pageTitle = "Gestión de usuarios";
 
@@ -18,14 +17,12 @@ interface Props {
 }
 
 export default async function Page({ searchParams }: Props) {
-  const session = await auth();
+  const user = await getSessionUser();
   // en principio con middleware valido que no emtre en /dashboard/:slug si no hay sessión, pero no está de más
-  if (session === null || !session.user) throw new Error();
+  if (!user) throw new Error("No hay usuario logueado");
 
-  const user = await getUser(session.user.email as string);
-  if (!user) throw new Error();
-
-  if (user.role !== "admin") throw new Error();
+  if (user.role !== "admin")
+    throw new Error("Este usuario no tiene permiso para ver esta página");
 
   return (
     <ManageUsersScreen

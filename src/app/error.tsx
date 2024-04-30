@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import Button from "@mui/material/Button";
 import H1 from "#/components/texts/H1";
 import { Typography } from "@mui/material";
-import { PaperStack } from "#/components/containers/PaperStack";
+import { CenteredPaperStack } from "#/components/containers/PaperStack";
 
 export default function Error({
   error,
@@ -22,8 +22,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <PaperStack>
-      <H1>¡Ups! Algo ha ido mal</H1>
+    <CenteredPaperStack>
+      <H1>Algo ha ido mal</H1>
       <Typography variant="h6" component={"p"}>
         Lo sentimos, se ha producido un error inesperado. Por favor, inténtalo
         de nuevo más tarde.
@@ -37,6 +37,6 @@ export default function Error({
       >
         Inténtalo de nuevo
       </Button>
-    </PaperStack>
+    </CenteredPaperStack>
   );
 }

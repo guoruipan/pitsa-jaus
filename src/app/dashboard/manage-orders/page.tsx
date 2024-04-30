@@ -1,7 +1,6 @@
 import React from "react";
-import { auth } from "#/auth";
 import { Metadata } from "next";
-import { getWithEmail as getUser } from "#/models/user";
+import { getSessionUser } from "#/lib/session";
 
 const pageTitle = "Gestión de pedidos";
 
@@ -10,13 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const session = await auth();
   // en principio con middleware valido que no emtre en /dashboard/:slug si no hay sessión, pero no está de más
-  if (session === null || !session.user) throw new Error();
+  const user = await getSessionUser();
+  if (!user) throw new Error("No hay usuario logueado");
 
-  const user = await getUser(session.user.email as string);
-  if (!user) throw new Error();
-  if (user.role !== "manager") throw new Error();
+  if (user.role !== "manager")
+    throw new Error("Este usuario no tiene permiso para ver esta página");
 
   return <>Gestión pedidos</>;
 }
