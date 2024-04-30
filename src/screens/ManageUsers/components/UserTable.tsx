@@ -7,6 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { list as listUsers } from "#/models/user";
+import { Chip } from "@mui/material";
+import PendingChip from "./PendingChip";
 
 interface Props {
   query?: string;
@@ -31,7 +33,7 @@ export default async function UserTable({ query, currentPage }: Props) {
             <TableCell align="right">Email</TableCell>
             <TableCell align="right">Dirección</TableCell>
             <TableCell align="right">Rol</TableCell>
-            <TableCell align="right">Estado (Por implementar)</TableCell>
+            <TableCell align="right">Estado</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -48,7 +50,13 @@ export default async function UserTable({ query, currentPage }: Props) {
                 {user.home_address || "Sin especificar"}
               </TableCell>
               <TableCell align="right">{roles[user.role]}</TableCell>
-              <TableCell align="right">Por implementar</TableCell>
+              <TableCell align="right">
+                {user.status === "validated" ? (
+                  <Chip label="Validado" color="success" />
+                ) : (
+                  <PendingChip user_id={user.id} />
+                )}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
