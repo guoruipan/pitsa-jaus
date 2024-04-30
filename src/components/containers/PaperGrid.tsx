@@ -1,16 +1,22 @@
 import React from "react";
-import { Paper, Grid, GridProps } from "@mui/material";
+import { Paper, Grid, GridProps, SxProps, Theme } from "@mui/material";
 
 interface Props extends GridProps {
   children: React.ReactNode;
+  sx?: SxProps<Theme>;
 }
 
-export function PaperGrid({ children, ...rest }: Props) {
+export function PaperGrid({ children, sx, ...rest }: Props) {
   return (
-    <Paper elevation={6} sx={{ borderRadius: "1rem", p: "3rem" }}>
-      <Grid container spacing={3} {...rest}>
-        {children}
-      </Grid>
-    </Paper>
+    <Grid
+      container
+      component={Paper}
+      elevation={6}
+      spacing={3}
+      sx={{ borderRadius: "1rem", p: "3rem", ...sx }}
+      {...rest}
+    >
+      {children}
+    </Grid>
   );
 }
