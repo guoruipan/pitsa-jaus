@@ -8,6 +8,7 @@ import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { AlertError } from "#/components/ui/Alert";
 import { authenticate } from "#/lib/session";
+import { getWithEmail as getUser } from "#/models/user";
 
 // https://formik.org/docs/examples/with-material-ui
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61
@@ -38,8 +39,14 @@ export default function LoginForm() {
       setErrorMessage("");
       setIsSubmitting(true);
 
-      const error = await authenticate(values);
-      if (error) setErrorMessage(error);
+      console.log("avoid giving hints in login errors");
+      const user = await getUser(values.email);
+      if (!user || user.status === "pending") {
+        setErrorMessage("Algo fue mal");
+      } else {
+        const error = await authenticate(values);
+        if (error) setErrorMessage(error);
+      }
 
       setIsSubmitting(false);
     },

@@ -27,28 +27,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Stack
-        component="body"
-        sx={{
-          minHeight: "100vh",
-        }}
-      >
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <InnerLayout>{children}</InnerLayout>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
-      </Stack>
+    <html lang="es-ES">
+      <AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <InnerLayout>{children as React.ReactNode}</InnerLayout>
+        </ThemeProvider>
+      </AppRouterCacheProvider>
     </html>
   );
 }
 
-// separado de RootLayout para intentar evitar un warning, no funcionó.
 function InnerLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <Stack
+      component="body"
+      sx={{
+        minHeight: "100vh",
+      }}
+    >
       <AppBar />
       <Container
         component="main"
@@ -58,6 +55,6 @@ function InnerLayout({ children }: { children: React.ReactNode }) {
         {children}
       </Container>
       <Footer />
-    </>
+    </Stack>
   );
 }
