@@ -26,7 +26,7 @@ import {
 import Stack from "@mui/material/Stack";
 import { insert as createUser, getWithEmail as getUser } from "#/models/user";
 import type { User } from "#/models/user";
-import { authenticate } from "#/lib/session";
+import { redirectTo } from "#/lib/navigation";
 
 export default function RegisterForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,11 +90,11 @@ export default function RegisterForm() {
 
       if (!(await getUser(user.email))) {
         await createUser(user);
-        // esto no debería de dar error nunca
-        await authenticate({
-          email: values.email,
-          password: values.pwd,
-        });
+        await redirectTo(
+          user.status === "validated"
+            ? "/auth/register/success"
+            : "/auth/register/pending",
+        );
       } else {
         formik.touched.email = true;
         formik.errors.email = "Ya existe un usuario con el email introducido";

@@ -3,7 +3,7 @@ import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { getWithEmail as getUser } from "./models/user";
-import { checkPassword } from "./lib/session";
+import { checkPassword } from "./lib/security";
 import z from "zod";
 
 // https://stackoverflow.com/questions/74089665/next-auth-credentials-provider-authorize-type-error

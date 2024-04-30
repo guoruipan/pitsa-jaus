@@ -10,7 +10,7 @@ import { AlertError } from "#/components/ui/Alert";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { TextField } from "@mui/material";
-import { checkPassword } from "#/lib/session";
+import { checkPassword } from "#/lib/security";
 
 interface Props {
   user: User;

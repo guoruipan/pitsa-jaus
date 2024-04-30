@@ -94,7 +94,6 @@ export default function ContactForm() {
           helperText={formik.touched.body && formik.errors.body}
           multiline
           rows={4}
-          maxRows={8}
         />
         <FormControl>
           <FormControlLabel

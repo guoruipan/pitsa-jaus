@@ -1,7 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { hashPassword } from "#/lib/session";
+import { hashPassword } from "#/lib/security";
 
 export type User = {
   id: number;

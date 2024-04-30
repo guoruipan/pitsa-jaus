@@ -2,23 +2,8 @@
 
 import { auth, signIn, signOut } from "#/auth";
 import { AuthError } from "next-auth";
-import bcrypt from "bcrypt";
 import { User } from "#/models/user";
 import { getWithEmail as getUser } from "#/models/user";
-
-export async function hashPassword(plainPassword: string) {
-  return bcrypt.hash(plainPassword, 10);
-}
-
-export async function checkPassword(
-  plainPassword: string,
-  hashedPassword: string,
-): Promise<boolean> {
-  // https://www.npmjs.com/package/bcrypt
-  // tenerlo directamente en componentes de lado del Cliente parece dar problemas
-  const result = await bcrypt.compare(plainPassword, hashedPassword);
-  return result;
-}
 
 export async function authenticate(credentials: {
   email: string;
