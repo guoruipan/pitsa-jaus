@@ -1,7 +1,6 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import { hashPassword } from "#/lib/security";
 
 export type User = {
   id: number;
@@ -57,11 +56,9 @@ export async function getTotalPages(term = "") {
 
 export async function insert(user: User) {
   try {
-    const hashedPassword = await hashPassword(user.pwd);
-
     await sql<User>`
     INSERT INTO users (name, email, pwd, home_address, role, status)
-    VALUES (${user.name}, ${user.email}, ${hashedPassword}, ${user.home_address}, ${user.role}, ${user.status})
+    VALUES (${user.name}, ${user.email}, ${user.pwd}, ${user.home_address}, ${user.role}, ${user.status})
   `;
   } catch (error) {
     console.error("Database Error:", error);
@@ -69,13 +66,10 @@ export async function insert(user: User) {
   }
 }
 
-export async function update(user: User, newPwd: boolean) {
+export async function update(user: User) {
   try {
-    // si mantienen la vieja contraseña no quiero hacer hash otra vez
-    const hashedPassword = newPwd ? await hashPassword(user.pwd) : user.pwd;
-
     await sql<User>`
-    UPDATE users SET name=${user.name}, email=${user.email}, pwd=${hashedPassword}, home_address=${user.home_address}, role=${user.role}, status=${user.status}
+    UPDATE users SET name=${user.name}, email=${user.email}, pwd=${user.pwd}, home_address=${user.home_address}, role=${user.role}, status=${user.status}
     WHERE id=${user.id}
   `;
   } catch (error) {

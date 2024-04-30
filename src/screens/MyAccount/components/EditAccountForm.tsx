@@ -18,6 +18,7 @@ import { update as updateUser } from "#/models/user";
 import type { User } from "#/models/user";
 import { AlertSuccess } from "#/components/ui/Alert";
 import H1 from "#/components/texts/H1";
+import { hashPassword } from "#/lib/security";
 
 interface Props {
   user: User;
@@ -65,15 +66,21 @@ export default function EditAccountForm({ user }: Props) {
       const updatedUser: User = {
         id: user.id,
         name: values.name,
-        email: values.email,
-        pwd: values.pwd || user.pwd,
+        email: user.email,
+        pwd: values.pwd,
         home_address: values.home_address || undefined,
-        role: values.role as "admin" | "manager" | "customer",
+        role: user.role,
         status: user.status,
       };
 
+      if (updatedUser.pwd !== "") {
+        updatedUser.pwd = await hashPassword(updatedUser.pwd);
+      } else {
+        updatedUser.pwd = user.pwd;
+      }
+
       // en principio como no permito editar el email no habrá problema
-      updateUser(updatedUser, values.pwd === user.pwd);
+      updateUser(updatedUser);
       setShowAlert(true);
     },
   });

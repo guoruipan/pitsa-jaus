@@ -27,6 +27,7 @@ import Stack from "@mui/material/Stack";
 import { insert as createUser, getWithEmail as getUser } from "#/models/user";
 import type { User } from "#/models/user";
 import { redirectTo } from "#/lib/navigation";
+import { hashPassword } from "#/lib/security";
 
 export default function RegisterForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,6 +90,7 @@ export default function RegisterForm() {
       /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
 
       if (!(await getUser(user.email))) {
+        user.pwd = await hashPassword(user.pwd);
         await createUser(user);
         await redirectTo(
           user.status === "validated"
