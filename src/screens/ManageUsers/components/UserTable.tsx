@@ -54,7 +54,7 @@ export default async function UserTable({ query, currentPage }: Props) {
                 {user.status === "validated" ? (
                   <Chip label="Validado" color="success" />
                 ) : (
-                  <PendingChip user_id={user.id} />
+                  <PendingChip user={user} />
                 )}
               </TableCell>
             </TableRow>

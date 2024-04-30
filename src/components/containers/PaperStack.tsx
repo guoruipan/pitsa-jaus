@@ -6,6 +6,9 @@ interface Props extends StackProps {
   sx?: SxProps<Theme>;
 }
 
+// puedes sobreescribir incluso las propiedades sx existentes
+// <PaperStack sx={{p: 4}} >
+
 export function PaperStack({ children, sx, ...rest }: Props) {
   return (
     <Stack
