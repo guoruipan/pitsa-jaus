@@ -1,10 +1,7 @@
 "use server";
 
 import { sql } from "@vercel/postgres";
-import bcrypt from "bcrypt";
-
-// bcrypt example
-// https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
+import { hashPassword } from "#/lib/session";
 
 export type User = {
   id: number;
@@ -13,6 +10,7 @@ export type User = {
   pwd: string;
   home_address?: string;
   role: "admin" | "manager" | "customer";
+  status: "validated" | "pending";
 };
 
 const ITEMS_PER_PAGE = 5;
@@ -59,11 +57,11 @@ export async function getTotalPages(term = "") {
 
 export async function insert(user: User) {
   try {
-    const hashedPassword = await bcrypt.hash(user.pwd, 10);
+    const hashedPassword = await hashPassword(user.pwd);
 
     await sql<User>`
-    INSERT INTO users (name, email, pwd, home_address, role)
-    VALUES (${user.name}, ${user.email}, ${hashedPassword}, ${user.home_address}, ${user.role})
+    INSERT INTO users (name, email, pwd, home_address, role, status)
+    VALUES (${user.name}, ${user.email}, ${hashedPassword}, ${user.home_address}, ${user.role}, ${user.status})
   `;
   } catch (error) {
     console.error("Database Error:", error);
@@ -74,10 +72,10 @@ export async function insert(user: User) {
 export async function update(user: User, newPwd: boolean) {
   try {
     // si mantienen la vieja contraseña no quiero hacer hash otra vez
-    const hashedPassword = newPwd ? await bcrypt.hash(user.pwd, 10) : user.pwd;
+    const hashedPassword = newPwd ? await hashPassword(user.pwd) : user.pwd;
 
     await sql<User>`
-    UPDATE users SET name=${user.name}, email=${user.email}, pwd=${hashedPassword}, home_address=${user.home_address}, role=${user.role}
+    UPDATE users SET name=${user.name}, email=${user.email}, pwd=${hashedPassword}, home_address=${user.home_address}, role=${user.role}, status=${user.status}
     WHERE id=${user.id}
   `;
   } catch (error) {

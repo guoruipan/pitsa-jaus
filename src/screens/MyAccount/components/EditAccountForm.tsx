@@ -69,6 +69,7 @@ export default function EditAccountForm({ user }: Props) {
         pwd: values.pwd || user.pwd,
         home_address: values.home_address || undefined,
         role: values.role as "admin" | "manager" | "customer",
+        status: user.status,
       };
 
       // en principio como no permito editar el email no habrá problema

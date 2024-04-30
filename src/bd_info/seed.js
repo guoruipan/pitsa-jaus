@@ -12,6 +12,8 @@ const {
 } = require("./placeholder-data.js");
 const bcrypt = require("bcrypt");
 
+// no utilizo la función /src/lib/session/hashPassword por evitar importar rutas relativas sin alias #
+
 // https://github.com/vercel/next-learn/blob/main/dashboard/final-example/scripts/seed.js
 // https://nextjs.org/learn/dashboard-app/setting-up-your-database
 

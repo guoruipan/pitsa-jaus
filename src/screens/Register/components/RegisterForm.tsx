@@ -83,6 +83,7 @@ export default function RegisterForm() {
         pwd: values.pwd,
         home_address: values.home_address || undefined,
         role: values.role as "admin" | "manager" | "customer",
+        status: values.role === "customer" ? "validated" : "pending",
       };
 
       /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
