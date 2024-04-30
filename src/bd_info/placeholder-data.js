@@ -7,6 +7,7 @@ const users = [
     pwd: "admin123",
     home_address: null,
     role: "admin",
+    status: "validated",
   },
   {
     name: "Ana",
@@ -14,6 +15,7 @@ const users = [
     pwd: "ana",
     home_address: "Plaza Central, Ciudad",
     role: "manager",
+    status: "validated",
   },
   {
     name: "Bea",
@@ -21,6 +23,7 @@ const users = [
     pwd: "bea",
     home_address: "Avenida Principal, Ciudad",
     role: "manager",
+    status: "validated",
   },
   {
     name: "Carlos",
@@ -28,6 +31,7 @@ const users = [
     pwd: "carlos123",
     home_address: "Calle Mayor, 45",
     role: "manager",
+    status: "validated",
   },
   {
     name: "Diana",
@@ -35,6 +39,7 @@ const users = [
     pwd: "diana456",
     home_address: "Calle Libertad, 10",
     role: "manager",
+    status: "validated",
   },
   {
     name: "Elena",
@@ -42,6 +47,7 @@ const users = [
     pwd: "elena789",
     home_address: "Avenida del Sol, 21",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Francisco",
@@ -49,6 +55,7 @@ const users = [
     pwd: "francisco00",
     home_address: "Calle Luna, 32",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Gloria",
@@ -56,6 +63,7 @@ const users = [
     pwd: "gloria111",
     home_address: "Calle Estacion, 1",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Hugo",
@@ -63,6 +71,7 @@ const users = [
     pwd: "hugo222",
     home_address: null,
     role: "manager",
+    status: "pending",
   },
   {
     name: "Irene",
@@ -70,6 +79,7 @@ const users = [
     pwd: "irene333",
     home_address: "Calle Principal, 7",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Javier",
@@ -77,6 +87,7 @@ const users = [
     pwd: "javier444",
     home_address: "Calle Norte, 56",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Karina",
@@ -84,6 +95,7 @@ const users = [
     pwd: "karina555",
     home_address: "Calle Sur, 89",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Luis",
@@ -91,6 +103,7 @@ const users = [
     pwd: "luis666",
     home_address: "Calle Oriente, 23",
     role: "manager",
+    status: "pending",
   },
   {
     name: "Pepe",
@@ -98,119 +111,11 @@ const users = [
     pwd: "pepe",
     home_address: "Calle 123, Ciudad",
     role: "customer",
+    status: "validated",
   },
 ];
 
-const stores = [
-  {
-    name: "PitsaJaus Ana",
-    address: "Plaza Central",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50002,
-    phone_number: "611611611",
-    manager_id: 2,
-  },
-  {
-    name: "PitsaJaus Bea",
-    address: "Avenida Principal",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50010,
-    phone_number: "622622622",
-    manager_id: 3,
-  },
-  {
-    name: "PitsaJaus Estrella",
-    address: "Calle Mayor, 123",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50003,
-    phone_number: "633633633",
-    manager_id: 4,
-  },
-  {
-    name: "PitsaJaus Cervantes",
-    address: "Calle Libertad, 45",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50004,
-    phone_number: "644644644",
-    manager_id: 5,
-  },
-  {
-    name: "PitsaJaus San Marcos",
-    address: "Calle Independencia, 78",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50005,
-    phone_number: "655655655",
-    manager_id: 6,
-  },
-  {
-    name: "PitsaJaus La Pausa",
-    address: "Calle Aragon, 21",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50006,
-    phone_number: "666666666",
-    manager_id: 7,
-  },
-  {
-    name: "PitsaJaus Delicias",
-    address: "Calle Delicias, 34",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50007,
-    phone_number: "677677677",
-    manager_id: 8,
-  },
-  {
-    name: "PitsaJaus La Espiga Dorada",
-    address: "Calle Huesca, 56",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50008,
-    phone_number: "688688688",
-    manager_id: 9,
-  },
-  {
-    name: "PitsaJaus Brillante",
-    address: "Calle Teruel, 7",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50009,
-    phone_number: "699699699",
-    manager_id: 10,
-  },
-  {
-    name: "PitsaJaus El Toro",
-    address: "Calle Valencia, 89",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50011,
-    phone_number: "700700700",
-    manager_id: 11,
-  },
-  {
-    name: "PitsaJaus La Huerta",
-    address: "Calle Mallorca, 23",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50012,
-    phone_number: "711711711",
-    manager_id: 12,
-  },
-  {
-    name: "PitsaJaus El Mar",
-    address: "Calle Menorca, 45",
-    city: "Zaragoza",
-    state: "España",
-    postcode: 50013,
-    phone_number: "722722722",
-    manager_id: 13,
-  },
-];
+const stores = [];
 
 const pizzas = [
   {

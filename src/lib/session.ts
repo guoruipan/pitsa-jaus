@@ -6,13 +6,17 @@ import bcrypt from "bcrypt";
 import { User } from "#/models/user";
 import { getWithEmail as getUser } from "#/models/user";
 
+export async function hashPassword(plainPassword: string) {
+  return bcrypt.hash(plainPassword, 10);
+}
+
 export async function checkPassword(
   plainPassword: string,
-  hash: string,
+  hashedPassword: string,
 ): Promise<boolean> {
   // https://www.npmjs.com/package/bcrypt
   // tenerlo directamente en componentes de lado del Cliente parece dar problemas
-  const result = await bcrypt.compare(plainPassword, hash);
+  const result = await bcrypt.compare(plainPassword, hashedPassword);
   return result;
 }
 
