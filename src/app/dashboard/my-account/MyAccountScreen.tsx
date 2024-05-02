@@ -3,7 +3,7 @@
 import React from "react";
 import { useState } from "react";
 import { PaperStack } from "#/components/containers/PaperStack";
-import EditAccountForm from "./components/EditAccountForm";
+import EditAccountForm from "./EditAccountForm";
 import {
   Grid,
   List,
@@ -14,9 +14,9 @@ import {
   ListSubheader,
 } from "@mui/material";
 import type { User } from "#/models/user";
-import DeleteUser from "./components/DeleteUser";
+import DeleteUser from "./DeleteUser";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
-import WelcomeUser from "./components/WelcomeUser";
+import WelcomeUser from "./WelcomeUser";
 
 interface Props {
   user: User;

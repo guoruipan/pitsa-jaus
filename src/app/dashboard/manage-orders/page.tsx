@@ -2,7 +2,6 @@ import React from "react";
 import { Metadata } from "next";
 import { getSessionUser } from "#/lib/session";
 import { getWithManagerId as getStore } from "#/models/store";
-import ManageOrdersScreen from "#/screens/ManageOrders";
 import { CenteredPaperStack } from "#/components/containers/PaperStack";
 import H1 from "#/components/texts/H1";
 import { Button, Typography } from "@mui/material";
@@ -24,7 +23,7 @@ export default async function Page() {
 
   const store = await getStore(user.id);
 
-  return store ? <ManageOrdersScreen store={store} /> : <NoStoreYet />;
+  return store ? <>Gestión de pedidos</> : <NoStoreYet />;
 }
 
 function NoStoreYet() {

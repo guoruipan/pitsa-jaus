@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import MyAccountScreen from "#/screens/MyAccount";
+import MyAccountScreen from "#/app/dashboard/my-account/MyAccountScreen";
 import { getSessionUser } from "#/lib/session";
 
 const pageTitle = "Mi cuenta";
