@@ -6,6 +6,11 @@ import { useState } from "react";
 import { Modal, Typography } from "@mui/material";
 import { PaperStack } from "#/components/containers/PaperStack";
 import { User } from "#/models/user";
+import {
+  update as updateUser,
+  deleteWithId as deleteUser,
+} from "#/models/user";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 // https://mui.com/material-ui/react-modal/
 
@@ -20,13 +25,31 @@ const roles = {
 };
 
 export default function PendingChip({ user }: Props) {
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const searchParams = useSearchParams();
 
+  function handleReload() {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
+    replace(`${pathname}?${params.toString()}`);
+  }
+
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  function accept() {}
-  function reject() {}
+  function accept() {
+    user.status = "validated";
+    updateUser(user);
+    handleClose();
+    handleReload();
+  }
+  function reject() {
+    deleteUser(user.id);
+    handleClose();
+    handleReload();
+  }
 
   return (
     <>

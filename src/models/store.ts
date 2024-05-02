@@ -13,7 +13,6 @@ export type Store = {
 
 const ITEMS_PER_PAGE = 5;
 
-// TODO make noStore??
 export async function list(term = "", currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
