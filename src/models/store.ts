@@ -66,6 +66,19 @@ export async function insert(store: Store) {
   }
 }
 
+export async function update(store: Store) {
+  try {
+    await sql<Store>`
+    UPDATE stores SET name=${store.name}, address=${store.address}, city=${store.city}, state=${store.state}, 
+    postcode=${store.postcode}, phone_number=${store.phone_number}, manager_id=${store.manager_id}
+    WHERE id=${store.id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update store.");
+  }
+}
+
 export async function getWithManagerId(manager_id: number) {
   try {
     const data =

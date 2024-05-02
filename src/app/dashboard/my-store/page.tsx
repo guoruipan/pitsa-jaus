@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { getSessionUser } from "#/lib/session";
 import { getWithManagerId as getStore } from "#/models/store";
 import RegisterStoreScreen from "#/screens/RegisterStore";
+import MyStoreScreen from "#/screens/MyStore";
 
 const pageTitle = "Mi tienda";
 
@@ -20,5 +21,9 @@ export default async function Page() {
 
   const store = await getStore(user.id);
 
-  return store ? <>Mi tienda</> : <RegisterStoreScreen user={user} />;
+  return store ? (
+    <MyStoreScreen store={store} />
+  ) : (
+    <RegisterStoreScreen user={user} />
+  );
 }

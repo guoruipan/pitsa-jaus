@@ -25,6 +25,7 @@ interface Props {
 }
 
 export default function EditAccountForm({ user }: Props) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const validationSchema = yup.object({
@@ -59,6 +60,7 @@ export default function EditAccountForm({ user }: Props) {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setIsSubmitting(true);
       setShowAlert(false);
       // si el campo pwd está vacío, mantener la vieja.
       // si el campo home_address está vacío, guardarlo vacío
@@ -81,6 +83,8 @@ export default function EditAccountForm({ user }: Props) {
 
       // en principio como no permito editar el email no habrá problema
       updateUser(updatedUser);
+
+      setIsSubmitting(false);
       setShowAlert(true);
     },
   });
@@ -159,8 +163,14 @@ export default function EditAccountForm({ user }: Props) {
           </FormHelperText>
         </FormControl>
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Enviar
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Enviando..." : "Editar"}
         </Button>
       </Stack>
     </form>
