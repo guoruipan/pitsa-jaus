@@ -3,13 +3,14 @@ import { Metadata } from "next";
 import { getSessionUser } from "#/lib/session";
 import H1 from "#/components/texts/H1";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { getWithId as getPizza } from "#/models/pizza";
 import { getPizzaPhoto } from "#/lib/utils";
-import Breadcrumbs from "./Breadcrumbs";
 import { PaperGrid } from "#/components/containers/PaperGrid";
 import { Box, Button, Stack } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "#/components/texts/Link";
 
 const pageTitle = "Pizza";
 
@@ -35,7 +36,12 @@ export default async function Page({ params }: Props) {
 
   return (
     <Stack spacing={3}>
-      <Breadcrumbs currentPageName={pizza.name} />
+      <Breadcrumbs>
+        <Link href="/menu" underline="hover">
+          Nuestra carta
+        </Link>
+        <Typography color="text.primary">{pizza.name}</Typography>
+      </Breadcrumbs>
       <PaperGrid>
         <Grid item xs={12} md={6}>
           <Box

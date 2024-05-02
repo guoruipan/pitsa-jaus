@@ -1,14 +1,18 @@
 import React from "react";
 import { list as listPizzas } from "#/models/pizza";
 import { getPizzaPhoto } from "#/lib/utils";
-import MenuCard from "./MenuCard";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import CardActionArea from "@mui/material/CardActionArea";
+import Typography from "@mui/material/Typography";
 
-interface Props {
+interface GridProps {
   currentPage: number;
 }
 
-export default async function MenuGrid({ currentPage }: Props) {
+export default async function MenuGrid({ currentPage }: GridProps) {
   const pizzas = await listPizzas(currentPage);
 
   return (
@@ -23,5 +27,29 @@ export default async function MenuGrid({ currentPage }: Props) {
         </Grid>
       ))}
     </Grid>
+  );
+}
+
+interface CardProps {
+  imgUrl: string;
+  text: string;
+  href?: string;
+}
+
+function MenuCard({ imgUrl, text, href }: CardProps) {
+  return (
+    <Card sx={{ minWidth: 275 }}>
+      <CardActionArea href={href || "#"}>
+        <CardMedia
+          component={"img"}
+          sx={{ height: 140 }}
+          image={imgUrl}
+          alt={`Foto de una pizza ${text}`}
+        />
+        <CardContent>
+          <Typography variant="h6">{text}</Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 }
