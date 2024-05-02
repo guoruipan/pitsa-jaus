@@ -7,7 +7,7 @@ export type Store = {
   city: string;
   state: string;
   postcode: string;
-  phone_number: string;
+  phone_number: string | undefined;
   manager_id: number;
 };
 
@@ -49,5 +49,40 @@ export async function getTotalPages(term = "") {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of stores.");
+  }
+}
+
+export async function insert(store: Store) {
+  try {
+    await sql<Store>`
+    INSERT INTO stores (name, address, city, state, postcode, phone_number, manager_id)
+    VALUES (${store.name}, ${store.address}, ${store.city}, ${store.state}, ${store.postcode}, ${store.phone_number}, ${store.manager_id})
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to register new store.");
+  }
+}
+
+export async function getWithManagerId(manager_id: number) {
+  try {
+    const data =
+      await sql<Store>`SELECT * FROM stores WHERE manager_id=${manager_id}`;
+
+    if (data.rowCount > 0) return data.rows[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch store with manager id");
+  }
+}
+
+export async function getWithName(name: string) {
+  try {
+    const data = await sql<Store>`SELECT * FROM stores WHERE name=${name}`;
+
+    if (data.rowCount > 0) return data.rows[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch store with name");
   }
 }

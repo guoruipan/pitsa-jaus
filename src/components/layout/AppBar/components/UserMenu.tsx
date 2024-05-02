@@ -16,6 +16,11 @@ const settings = [
   { name: "Mi perfil", href: "/dashboard" },
   { name: "Mis pedidos", href: "/dashboard/my-orders", role: "customer" },
   {
+    name: "Mi tienda",
+    href: "/dashboard/my-store",
+    role: "manager",
+  },
+  {
     name: "Gestión de pedidos",
     href: "/dashboard/manage-orders",
     role: "manager",
