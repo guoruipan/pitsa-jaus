@@ -31,7 +31,7 @@ function NoStoreYet() {
   return (
     <CenteredPaperStack>
       <H1>¡Vaya!</H1>
-      <Typography variant="body1">
+      <Typography variant="h6" component={"p"}>
         Parece que no has creado tu tienda todavía
       </Typography>
       <Button component={Link} href="/dashboard/my-store" variant="contained">
