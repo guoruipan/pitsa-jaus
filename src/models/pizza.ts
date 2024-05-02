@@ -12,10 +12,6 @@ export type Pizza = {
 
 const ITEMS_PER_PAGE = 8;
 
-export function getPhotoRoute(pizza: Pizza) {
-  return `/pizza/${pizza.id}_${pizza.photo}`;
-}
-
 export async function list(currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 

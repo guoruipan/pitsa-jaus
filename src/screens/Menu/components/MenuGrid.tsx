@@ -1,8 +1,6 @@
 import React from "react";
-import {
-  list as listPizzas,
-  getPhotoRoute as getPizzaPhoto,
-} from "#/models/pizza";
+import { list as listPizzas } from "#/models/pizza";
+import { getPizzaPhoto } from "#/lib/utils";
 import MenuCard from "./MenuCard";
 import Grid from "@mui/material/Grid";
 

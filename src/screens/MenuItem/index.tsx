@@ -3,10 +3,8 @@ import H1 from "#/components/texts/H1";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import {
-  getWithId as getPizza,
-  getPhotoRoute as getPizzaPhoto,
-} from "#/models/pizza";
+import { getWithId as getPizza } from "#/models/pizza";
+import { getPizzaPhoto } from "#/lib/utils";
 import Breadcrumbs from "./components/Breadcrumbs";
 import { PaperGrid } from "#/components/containers/PaperGrid";
 import { Box, Button, Stack } from "@mui/material";
