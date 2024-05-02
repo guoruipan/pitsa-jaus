@@ -6,7 +6,7 @@ import ManageOrdersScreen from "#/screens/ManageOrders";
 import { CenteredPaperStack } from "#/components/containers/PaperStack";
 import H1 from "#/components/texts/H1";
 import { Button, Typography } from "@mui/material";
-import Link from "#/components/texts/Link";
+import Link from "next/link";
 
 const pageTitle = "Gestión de pedidos";
 
@@ -34,10 +34,8 @@ function NoStoreYet() {
       <Typography variant="body1">
         Parece que no has creado tu tienda todavía
       </Typography>
-      <Button variant="contained">
-        <Link color={"inherit"} underline="none" href="/dashboard/my-store">
-          Crear mi tienda
-        </Link>
+      <Button component={Link} href="/dashboard/my-store" variant="contained">
+        Crear mi tienda
       </Button>
     </CenteredPaperStack>
   );
