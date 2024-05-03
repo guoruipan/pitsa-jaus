@@ -7,10 +7,11 @@ import Image from "next/image";
 import { getWithId as getPizza } from "#/models/pizza";
 import { getPizzaPhoto } from "#/lib/utils";
 import { PaperGrid } from "#/components/containers/PaperGrid";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "#/components/texts/Link";
+import AddToCartButton from "./AddToCartButton";
 
 const pageTitle = "Pizza";
 
@@ -56,7 +57,7 @@ export default async function Page({ params }: Props) {
               src={getPizzaPhoto(pizza)}
               alt={`Imagen de una pizza ${pizza.name}`}
               fill
-              objectFit="cover"
+              style={{ objectFit: "cover" }}
               priority
             />
           </Box>
@@ -72,9 +73,7 @@ export default async function Page({ params }: Props) {
           >
             <H1>{pizza.name}</H1>
             <Typography variant={"body1"}>{pizza.description}</Typography>
-            {user?.role === "customer" && (
-              <Button variant="contained">Añadir</Button>
-            )}
+            {user?.role === "customer" && <AddToCartButton pizza={pizza} />}
           </Stack>
         </Grid>
       </PaperGrid>

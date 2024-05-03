@@ -184,8 +184,7 @@ async function seedOrderLines(client) {
                 id SERIAL PRIMARY KEY,
                 order_id INT NOT NULL REFERENCES Orders(id),
                 pizza_id INT NOT NULL REFERENCES Pizzas(id),
-                quantity INT NOT NULL CHECK (quantity > 0) DEFAULT 1,
-                line_total DECIMAL(10, 2) NOT NULL
+                quantity INT NOT NULL CHECK (quantity > 0) DEFAULT 1
             );
           `;
 
@@ -195,8 +194,8 @@ async function seedOrderLines(client) {
     const insertedOrderLines = await Promise.all(
       order_lines.map(
         (order_line) => client.sql`
-              INSERT INTO order_lines (order_id, pizza_id, quantity, line_total)
-              VALUES (${order_line.order_id}, ${order_line.pizza_id}, ${order_line.quantity}, ${order_line.line_total})
+              INSERT INTO order_lines (order_id, pizza_id, quantity)
+              VALUES (${order_line.order_id}, ${order_line.pizza_id}, ${order_line.quantity})
               ON CONFLICT (id) DO NOTHING;
             `,
       ),

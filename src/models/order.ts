@@ -19,5 +19,4 @@ export type OrderLine = {
   order_id: number;
   pizza: Pizza;
   quantity: number;
-  line_total: number; // TODO deprecated
 };

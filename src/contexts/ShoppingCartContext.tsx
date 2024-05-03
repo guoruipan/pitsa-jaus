@@ -33,7 +33,7 @@ export const ShoppingCartProvider = ({
   const [cart, setCart] = useState<OrderLine[]>([]);
 
   const addToCart = (item: OrderLine) => {
-    setCart((prevCart) => prevCart.concat(item));
+    setCart((prevCart) => [...prevCart, item]);
   };
 
   const removeFromCart = (position: number) => {
