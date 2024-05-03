@@ -11,6 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "#/theme";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
+import { ShoppingCartProvider } from "#/contexts/ShoppingCartContext";
 
 export const metadata: Metadata = {
   title: {
@@ -30,8 +31,10 @@ export default function RootLayout({
     <html lang="es-ES">
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <InnerLayout>{children as React.ReactNode}</InnerLayout>
+          <ShoppingCartProvider>
+            <CssBaseline />
+            <InnerLayout>{children as React.ReactNode}</InnerLayout>
+          </ShoppingCartProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>
