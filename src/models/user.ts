@@ -1,5 +1,6 @@
 "use server";
 
+import { hashPassword } from "#/lib/security";
 import { sql } from "@vercel/postgres";
 
 export type User = {
@@ -54,10 +55,12 @@ export async function getTotalPages(term = "") {
 }
 
 export async function insert(user: User) {
+  const hashedPassword = await hashPassword(user.pwd);
+
   try {
     await sql<User>`
     INSERT INTO users (name, email, pwd, home_address, role, status)
-    VALUES (${user.name}, ${user.email}, ${user.pwd}, ${user.home_address}, ${user.role}, ${user.status})
+    VALUES (${user.name}, ${user.email}, ${hashedPassword}, ${user.home_address}, ${user.role}, ${user.status})
   `;
   } catch (error) {
     console.error("Database Error:", error);
@@ -66,14 +69,27 @@ export async function insert(user: User) {
 }
 
 export async function update(user: User) {
+  // NO actualiza contraseña. Usar changePassword.
   try {
     await sql<User>`
-    UPDATE users SET name=${user.name}, email=${user.email}, pwd=${user.pwd}, home_address=${user.home_address}, role=${user.role}, status=${user.status}
+    UPDATE users SET name=${user.name}, email=${user.email}, home_address=${user.home_address}, role=${user.role}, status=${user.status}
     WHERE id=${user.id}
   `;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to update user.");
+  }
+}
+
+export async function changePassword(user_id: number, newPassword: string) {
+  const hashedPassword = await hashPassword(newPassword);
+  try {
+    await sql<User>`
+    UPDATE users SET pwd=${hashedPassword} WHERE id=${user_id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update user password.");
   }
 }
 

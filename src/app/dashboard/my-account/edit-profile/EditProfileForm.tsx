@@ -18,7 +18,6 @@ import { update as updateUser } from "#/models/user";
 import type { User } from "#/models/user";
 import { AlertSuccess } from "#/components/ui/Alert";
 import H1 from "#/components/texts/H1";
-import { hashPassword } from "#/lib/security";
 
 interface Props {
   user: User;
@@ -38,9 +37,6 @@ export default function EditProfileForm({ user }: Props) {
       .email("Introduce una dirección de email válida")
       .max(100, "Este campo no puede exceder los 100 caracteres")
       .required("Este campo es obligatorio"),
-    pwd: yup
-      .string()
-      .max(100, "Este campo no puede exceder los 100 caracteres"),
     home_address: yup
       .string()
       .max(255, "Este campo no puede exceder los 255 caracteres"),
@@ -54,7 +50,6 @@ export default function EditProfileForm({ user }: Props) {
     initialValues: {
       name: user.name,
       email: user.email,
-      pwd: "",
       home_address: user.home_address || "",
       role: user.role,
     },
@@ -69,17 +64,11 @@ export default function EditProfileForm({ user }: Props) {
         id: user.id,
         name: values.name,
         email: user.email,
-        pwd: values.pwd,
+        pwd: user.pwd,
         home_address: values.home_address || undefined,
         role: user.role,
         status: user.status,
       };
-
-      if (updatedUser.pwd !== "") {
-        updatedUser.pwd = await hashPassword(updatedUser.pwd);
-      } else {
-        updatedUser.pwd = user.pwd;
-      }
 
       // en principio como no permito editar el email no habrá problema
       updateUser(updatedUser);
@@ -116,18 +105,6 @@ export default function EditProfileForm({ user }: Props) {
           onBlur={formik.handleBlur}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
-        />
-        <TextField
-          fullWidth
-          id="pwd"
-          name="pwd"
-          label="Contraseña"
-          type="password"
-          value={formik.values.pwd}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.pwd && Boolean(formik.errors.pwd)}
-          helperText={formik.touched.pwd && formik.errors.pwd}
         />
         <TextField
           fullWidth
