@@ -25,7 +25,7 @@ export function PaperStack({ children, sx, ...rest }: Props) {
 
 export function CenteredPaperStack({ children, sx, ...rest }: Props) {
   return (
-    <PaperStack sx={{ width: "50%", mx: "auto", ...sx }} {...rest}>
+    <PaperStack sx={{ width: { sm: "50%" }, mx: "auto", ...sx }} {...rest}>
       {children}
     </PaperStack>
   );
