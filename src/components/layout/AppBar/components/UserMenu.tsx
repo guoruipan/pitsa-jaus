@@ -11,6 +11,7 @@ import { logout } from "#/lib/session";
 import type { User } from "#/models/user";
 import Link from "#/components/texts/Link";
 import { Typography } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const settings = [
   { name: "Mi perfil", href: "/dashboard" },
@@ -90,6 +91,7 @@ export default function UserMenu({ user }: Props) {
         )}
 
         <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+          <LogoutIcon sx={{ mr: 0.5 }} />
           {/* width y height a 100% para que el texto de enlace ocupe el contenedor entero (más o menos) */}
           <Typography onClick={handleLogout} width={"100%"} height={"100%"}>
             Cerrar sesión

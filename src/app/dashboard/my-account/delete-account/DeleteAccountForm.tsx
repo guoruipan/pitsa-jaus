@@ -16,7 +16,7 @@ interface Props {
   user: User;
 }
 
-export default function DeleteUser({ user }: Props) {
+export default function DeleteAccountForm({ user }: Props) {
   const validationSchema = yup.object({
     pwd: yup
       .string()

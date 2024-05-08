@@ -24,7 +24,7 @@ interface Props {
   user: User;
 }
 
-export default function EditAccountForm({ user }: Props) {
+export default function EditProfileForm({ user }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
