@@ -9,12 +9,15 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { TextField } from "@mui/material";
 import { checkPassword } from "#/lib/security";
+import { useState } from "react";
 
 interface Props {
   user: User;
 }
 
 export default function ChangePasswordForm({ user }: Props) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const validationSchema = yup.object({
     pwd: yup
       .string()
@@ -38,6 +41,8 @@ export default function ChangePasswordForm({ user }: Props) {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setIsSubmitting(true);
+
       if (values.newPwd !== values.newPwd2) {
         formik.touched.newPwd = true;
         formik.touched.newPwd2 = true;
@@ -53,6 +58,8 @@ export default function ChangePasswordForm({ user }: Props) {
         formik.touched.pwd = true;
         formik.errors.pwd = "Contraseña incorrecta";
       }
+
+      setIsSubmitting(false);
     },
   });
 
@@ -99,8 +106,14 @@ export default function ChangePasswordForm({ user }: Props) {
             helperText={formik.touched.newPwd2 && formik.errors.newPwd2}
           />
 
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Cambiar mi contraseña
+          <Button
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Enviando..." : "Cambiar mi contraseña"}
           </Button>
         </Stack>
       </form>

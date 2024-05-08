@@ -57,7 +57,6 @@ export default function EditProfileForm({ user }: Props) {
     onSubmit: async (values) => {
       setIsSubmitting(true);
       setShowAlert(false);
-      // si el campo pwd está vacío, mantener la vieja.
       // si el campo home_address está vacío, guardarlo vacío
 
       const updatedUser: User = {
