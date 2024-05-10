@@ -22,32 +22,6 @@ export const authConfig = {
     },
     // https://authjs.dev/concepts/session-strategies
     // https://authjs.dev/guides/extending-the-session
-    jwt({ token, user }) {
-      if (user) {
-        // User is available during sign-in
-        token.id = user.id;
-      }
-      return token;
-    },
-    session({ session, token }) {
-      session.user.id = token.id as any;
-      session.user.cart = [
-        {
-          id: 1, // Replace with actual ID
-          order_id: 2, // Replace with actual order ID
-          pizza: {
-            id: 3, // Replace with actual pizza ID
-            name: "Margherita",
-            description:
-              "A classic pizza with tomato sauce and mozzarella cheese.",
-            price: 12.99,
-            photo: "https://example.com/pizza_margherita.jpg",
-          },
-          quantity: 1,
-        },
-      ];
-      return session;
-    },
   },
   providers: [], // Add providers with an empty array for now
 } satisfies NextAuthConfig;

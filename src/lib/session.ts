@@ -4,7 +4,6 @@ import { auth, signIn, signOut } from "#/auth";
 import { AuthError } from "next-auth";
 import { User } from "#/models/user";
 import { getWithEmail as getUser } from "#/models/user";
-import { OrderLine } from "#/models/order";
 
 export async function authenticate(credentials: {
   email: string;
@@ -37,11 +36,4 @@ export async function getSessionUser(): Promise<User | undefined> {
   const user = await getUser(session.user.email as string);
   // user: User | undefined
   return user;
-}
-
-export async function getSessionCart(): Promise<OrderLine[] | undefined> {
-  const session = await auth();
-  if (!session || !session.user) return;
-
-  return session.user.cart;
 }

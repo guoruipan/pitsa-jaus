@@ -1,7 +1,13 @@
 "use client";
 
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { OrderLine } from "#/models/order";
+import {
+  getSessionCart,
+  clearSessionCart,
+  addToSessionCart,
+  removeFromSessionCart,
+} from "#/lib/cart";
 
 interface ShoppingCartContextProps {
   cart: OrderLine[];
@@ -32,12 +38,23 @@ export const ShoppingCartProvider = ({
 }) => {
   const [cart, setCart] = useState<OrderLine[]>([]);
 
+  useEffect(() => {
+    const fetchCart = async () => {
+      const fetchedCart = await getSessionCart(); // Call the server action
+      setCart(fetchedCart || []); // Set cart state with fetched data (or empty array)
+    };
+
+    fetchCart();
+  }, []);
+
   const addToCart = (item: OrderLine) => {
     setCart((prevCart) => [...prevCart, item]);
+    addToSessionCart(item);
   };
 
   const removeFromCart = (position: number) => {
     setCart((prevCart) => prevCart.splice(position, 1));
+    removeFromSessionCart(position);
   };
 
   const getCartTotal = () => {
@@ -50,6 +67,7 @@ export const ShoppingCartProvider = ({
 
   const clearCart = () => {
     setCart([]);
+    clearSessionCart();
   };
 
   const value = {
