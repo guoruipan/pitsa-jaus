@@ -14,8 +14,7 @@ export default function AddToCartButton({ pizza }: Props) {
   const { addToCart } = useShoppingCart();
   function handleClick() {
     addToCart({ id: 0, order_id: 0, pizza: pizza, quantity: 1 });
-    console.log("add option to not revalidate Path");
-    //  redirectTo("/menu");
+    // redirectTo("/menu");
   }
 
   return (

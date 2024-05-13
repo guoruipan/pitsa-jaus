@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { OrderLine } from "#/models/order";
 
 interface ShoppingCartContextProps {
@@ -32,12 +32,19 @@ export const ShoppingCartProvider = ({
 }) => {
   const [cart, setCart] = useState<OrderLine[]>([]);
 
+  useEffect(() => {
+    const initialCart = getCartFromLocalStorage();
+    setCart(initialCart);
+  }, []);
+
   const addToCart = (item: OrderLine) => {
     setCart((prevCart) => [...prevCart, item]);
+    saveCartToLocalStorage(cart);
   };
 
   const removeFromCart = (position: number) => {
     setCart((prevCart) => prevCart.splice(position, 1));
+    saveCartToLocalStorage(cart);
   };
 
   const getCartTotal = () => {
@@ -50,6 +57,7 @@ export const ShoppingCartProvider = ({
 
   const clearCart = () => {
     setCart([]);
+    saveCartToLocalStorage(cart);
   };
 
   const value = {
@@ -66,3 +74,19 @@ export const ShoppingCartProvider = ({
     </ShoppingCartContext.Provider>
   );
 };
+
+function saveCartToLocalStorage(cart: OrderLine[]) {
+  // localStorage solo puede almacenar strings
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function getCartFromLocalStorage(): OrderLine[] {
+  const cartString = localStorage.getItem("cart");
+  try {
+    return cartString ? JSON.parse(cartString) : [];
+  } catch (error) {
+    console.error("Error parsing OrderLines from local storage:", error);
+
+    return [];
+  }
+}
