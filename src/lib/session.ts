@@ -30,10 +30,13 @@ export async function logout() {
 }
 
 export async function getSessionUser(): Promise<User | undefined> {
-  const session = await auth();
-  if (!session || !session.user) return;
+  try {
+    const session = await auth();
+    if (!session?.user) return;
 
-  const user = await getUser(session.user.email as string);
-  // user: User | undefined
-  return user;
+    return await getUser(session.user.email as string);
+  } catch (error) {
+    console.error("Error getting session user:", error);
+    throw error;
+  }
 }
