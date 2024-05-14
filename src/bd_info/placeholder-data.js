@@ -2,6 +2,7 @@
 
 const users = [
   {
+    id: 1,
     name: "admin",
     email: "admin@example.com",
     pwd: "admin123",
@@ -10,6 +11,7 @@ const users = [
     status: "validated",
   },
   {
+    id: 2,
     name: "Ana",
     email: "ana@example.com",
     pwd: "ana",
@@ -18,6 +20,7 @@ const users = [
     status: "validated",
   },
   {
+    id: 3,
     name: "Bea",
     email: "bea@example.com",
     pwd: "bea",
@@ -26,6 +29,7 @@ const users = [
     status: "validated",
   },
   {
+    id: 4,
     name: "Carlos",
     email: "carlos@example.com",
     pwd: "carlos123",
@@ -34,6 +38,7 @@ const users = [
     status: "validated",
   },
   {
+    id: 5,
     name: "Diana",
     email: "diana@store.com",
     pwd: "diana456",
@@ -42,6 +47,7 @@ const users = [
     status: "validated",
   },
   {
+    id: 6,
     name: "Elena",
     email: "elena@company.com",
     pwd: "elena789",
@@ -50,6 +56,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 7,
     name: "Francisco",
     email: "francisco@email.com",
     pwd: "francisco00",
@@ -58,6 +65,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 8,
     name: "Gloria",
     email: "gloria@store.com",
     pwd: "gloria111",
@@ -66,6 +74,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 9,
     name: "Hugo",
     email: "hugo@company.com",
     pwd: "hugo222",
@@ -74,6 +83,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 10,
     name: "Irene",
     email: "irene@email.com",
     pwd: "irene333",
@@ -82,6 +92,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 11,
     name: "Javier",
     email: "javier@store.com",
     pwd: "javier444",
@@ -90,6 +101,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 12,
     name: "Karina",
     email: "karina@company.com",
     pwd: "karina555",
@@ -98,6 +110,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 13,
     name: "Luis",
     email: "luis@email.com",
     pwd: "luis666",
@@ -106,6 +119,7 @@ const users = [
     status: "pending",
   },
   {
+    id: 14,
     name: "Pepe",
     email: "pepe@example.com",
     pwd: "pepe",
@@ -115,7 +129,116 @@ const users = [
   },
 ];
 
-const stores = [];
+const stores = [
+  {
+    name: "Store 1",
+    address: "123 Main St",
+    city: "City 1",
+    state: "State 1",
+    postcode: "12345",
+    phone_number: "123-456-7890",
+    manager_id: 2,
+  },
+  {
+    name: "Store 2",
+    address: "456 Elm St",
+    city: "City 2",
+    state: "State 2",
+    postcode: "23456",
+    phone_number: "234-567-8901",
+    manager_id: 3,
+  },
+  {
+    name: "Store 3",
+    address: "789 Oak St",
+    city: "City 3",
+    state: "State 3",
+    postcode: "34567",
+    phone_number: "345-678-9012",
+    manager_id: 4,
+  },
+  {
+    name: "Store 4",
+    address: "1011 Pine St",
+    city: "City 4",
+    state: "State 4",
+    postcode: "45678",
+    phone_number: "456-789-0123",
+    manager_id: 5,
+  },
+  {
+    name: "Store 5",
+    address: "1213 Cedar St",
+    city: "City 5",
+    state: "State 5",
+    postcode: "56789",
+    phone_number: "567-890-1234",
+    manager_id: 6,
+  },
+  {
+    name: "Store 6",
+    address: "1415 Maple St",
+    city: "City 6",
+    state: "State 6",
+    postcode: "67890",
+    phone_number: "678-901-2345",
+    manager_id: 7,
+  },
+  {
+    name: "Store 7",
+    address: "1617 Birch St",
+    city: "City 7",
+    state: "State 7",
+    postcode: "78901",
+    phone_number: "789-012-3456",
+    manager_id: 8,
+  },
+  {
+    name: "Store 8",
+    address: "1819 Walnut St",
+    city: "City 8",
+    state: "State 8",
+    postcode: "89012",
+    phone_number: "890-123-4567",
+    manager_id: 9,
+  },
+  {
+    name: "Store 9",
+    address: "2021 Ash St",
+    city: "City 9",
+    state: "State 9",
+    postcode: "90123",
+    phone_number: "901-234-5678",
+    manager_id: 10,
+  },
+  {
+    name: "Store 10",
+    address: "2223 Spruce St",
+    city: "City 10",
+    state: "State 10",
+    postcode: "01234",
+    phone_number: "012-345-6789",
+    manager_id: 11,
+  },
+  {
+    name: "Store 11",
+    address: "2425 Fir St",
+    city: "City 11",
+    state: "State 11",
+    postcode: "12345",
+    phone_number: "123-456-7890",
+    manager_id: 12,
+  },
+  {
+    name: "Store 12",
+    address: "2627 Cedar St",
+    city: "City 12",
+    state: "State 12",
+    postcode: "23456",
+    phone_number: "234-567-8901",
+    manager_id: 13,
+  },
+];
 
 const pizzas = [
   {
