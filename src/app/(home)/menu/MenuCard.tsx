@@ -8,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
-import { formatCurrency, getPizzaPhoto } from "#/lib/utils";
+import { getPizzaPhoto } from "#/lib/utils";
 import { Pizza } from "#/models/pizza";
 import { useShoppingCart } from "#/contexts/ShoppingCartContext";
 import { Button, Grid, Stack } from "@mui/material";
