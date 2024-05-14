@@ -8,7 +8,7 @@ import MainMenu from "./components/MainMenu";
 import { auth } from "#/auth";
 import Logo from "./components/Logo";
 import { getWithEmail as getUser } from "#/models/user";
-import ShoppingCart from "./components/ShoppingCart";
+import ShoppingCartIcon from "./components/ShoppingCartIcon";
 
 // basado en la plantilla "App bar with responsive menu" de aquí
 // https://mui.com/material-ui/react-app-bar/
@@ -28,7 +28,7 @@ export default async function MyAppBar() {
           <Logo breakpoint="md" />
           <MainMenu breakpoint="md" />
 
-          {user && user.role === "customer" && <ShoppingCart />}
+          {user && user.role === "customer" && <ShoppingCartIcon />}
           {user ? <UserMenu user={user} /> : <LoginButton />}
         </Toolbar>
       </Container>

@@ -43,7 +43,10 @@ export const ShoppingCartProvider = ({
   };
 
   const removeFromCart = (position: number) => {
-    setCart((prevCart) => prevCart.splice(position, 1));
+    const updatedCart = [...cart];
+    // splice devuelve el elemento quitado, no los restantes
+    updatedCart.splice(position, 1);
+    setCart(updatedCart);
     saveCartToLocalStorage(cart);
   };
 
