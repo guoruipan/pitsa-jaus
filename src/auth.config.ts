@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
@@ -19,6 +20,8 @@ export const authConfig = {
       }
       return true;
     },
+    // https://authjs.dev/concepts/session-strategies
+    // https://authjs.dev/guides/extending-the-session
   },
   providers: [], // Add providers with an empty array for now
 } satisfies NextAuthConfig;

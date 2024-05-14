@@ -2,6 +2,12 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { OrderLine } from "#/models/order";
+import {
+  getSessionCart,
+  clearSessionCart,
+  addToSessionCart,
+  removeFromSessionCart,
+} from "#/lib/cart";
 
 interface ShoppingCartContextProps {
   cart: OrderLine[];
