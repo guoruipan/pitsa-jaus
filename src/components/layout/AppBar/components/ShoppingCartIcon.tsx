@@ -15,7 +15,7 @@ export default function ShoppingCart() {
       color="secondary"
       sx={{ mr: 2, color: "inherit" }}
       component={NextLink}
-      href={"/cart"}
+      href={"/dashboard/cart"}
     >
       <ShoppingCartIcon />
     </Badge>
