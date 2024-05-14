@@ -10,8 +10,9 @@ export default function CheckoutSection() {
 
   return (
     <PaperStack>
+      <Typography variant="h6">Total</Typography>
       <Typography>{formatCurrency(getCartTotal())}</Typography>
-      <Button>Completar la compra</Button>
+      <Button variant="contained">Continuar</Button>
     </PaperStack>
   );
 }

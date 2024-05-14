@@ -5,6 +5,7 @@ import ShoppingCartTable from "./ShoppingCartTable";
 import CheckoutSection from "./CheckoutSection";
 import Link from "#/components/texts/Link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { getSessionUser } from "#/lib/session";
 
 const pageTitle = "Carrito";
 
@@ -12,7 +13,15 @@ export const metadata: Metadata = {
   title: pageTitle,
 };
 
-export default function Page() {
+export default async function Page() {
+  const user = await getSessionUser();
+  if (!user) throw new Error("No hay usuario logueado");
+
+  if (user.role !== "customer")
+    throw new Error(
+      "Tienes que iniciar sesión como cliente para ver esta página",
+    );
+
   return (
     <Grid container spacing={5}>
       <Grid item xs={12}>
