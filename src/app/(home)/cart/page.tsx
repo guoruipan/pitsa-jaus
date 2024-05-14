@@ -1,9 +1,10 @@
 import React from "react";
 import { Metadata } from "next";
-import { Grid, Stack } from "@mui/material";
-import H1 from "#/components/texts/H1";
+import { Grid } from "@mui/material";
 import ShoppingCartTable from "./ShoppingCartTable";
 import CheckoutSection from "./CheckoutSection";
+import Link from "#/components/texts/Link";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const pageTitle = "Carrito";
 
@@ -13,17 +14,18 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Stack spacing={3}>
-      <H1>{pageTitle}</H1>
-
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
-          <ShoppingCartTable />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <CheckoutSection />
-        </Grid>
+    <Grid container spacing={5}>
+      <Grid item xs={12}>
+        <Link href="/menu" underline="hover">
+          <ArrowBackIcon /> Seguir comprando
+        </Link>
       </Grid>
-    </Stack>
+      <Grid item xs={12} md={9}>
+        <ShoppingCartTable />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <CheckoutSection />
+      </Grid>
+    </Grid>
   );
 }

@@ -6,7 +6,7 @@ import { OrderLine } from "#/models/order";
 interface ShoppingCartContextProps {
   cart: OrderLine[];
   addToCart: (item: OrderLine) => void;
-  removeFromCart: (position: number) => void;
+  removeFromCart: (position: number, quantity: number) => void;
   getCartTotal: () => number;
   clearCart: () => void;
 }
@@ -38,16 +38,43 @@ export const ShoppingCartProvider = ({
   }, []);
 
   const addToCart = (item: OrderLine) => {
-    setCart((prevCart) => [...prevCart, item]);
+    const itemIndex = cart.findIndex(
+      (cartItem) => cartItem.pizza.id === item.pizza.id,
+    );
+
+    if (itemIndex !== -1) {
+      // ya está el item en el carrito
+      const updatedCart = [...cart];
+      updatedCart[itemIndex].quantity++;
+      setCart(updatedCart);
+    } else {
+      // no está todavía en en carrito, lo añadimos
+      setCart((prevCart) => [...prevCart, item]);
+    }
+
     saveCartToLocalStorage(cart);
   };
 
-  const removeFromCart = (position: number) => {
+  const removeFromCart = (position: number, quantity: number) => {
     const updatedCart = [...cart];
-    // splice devuelve el elemento quitado, no los restantes
-    updatedCart.splice(position, 1);
+
+    if (quantity === -1) {
+      // quitar el item entero del carrito
+      updatedCart.splice(position, 1);
+    } else {
+      // reducir la cantidad especificada
+      const item = updatedCart[position];
+      if (item) {
+        if (quantity >= item.quantity) {
+          updatedCart.splice(position, 1);
+        } else {
+          item.quantity -= quantity;
+        }
+      }
+    }
+
     setCart(updatedCart);
-    saveCartToLocalStorage(cart);
+    saveCartToLocalStorage(updatedCart);
   };
 
   const getCartTotal = () => {
