@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function StoreSelect({ stores }: Props) {
-  const { store, setStore } = useState<Store | undefined>();
+  const [store, setStore] = useState<Store | undefined>();
 
   const handleChange = (event: SelectChangeEvent) => {
     const selectedStoreId = Number(event.target.value);
