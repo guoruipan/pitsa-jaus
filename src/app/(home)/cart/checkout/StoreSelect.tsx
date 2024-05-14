@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useShoppingCart } from "#/contexts/ShoppingCartContext";
 import { Store } from "#/models/store";
 
 interface Props {
@@ -13,12 +13,12 @@ interface Props {
 }
 
 export default function StoreSelect({ stores }: Props) {
-  const { store, selectStore } = useShoppingCart();
+  const { store, setStore } = useState<Store | undefined>();
 
   const handleChange = (event: SelectChangeEvent) => {
     const selectedStoreId = Number(event.target.value);
     const selectedStore = stores.find((store) => store.id === selectedStoreId);
-    if (selectedStore) selectStore(selectedStore);
+    if (selectedStore) setStore(selectedStore);
   };
 
   return (

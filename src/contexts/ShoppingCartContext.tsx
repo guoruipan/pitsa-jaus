@@ -2,7 +2,6 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { OrderLine } from "#/models/order";
-import { Store } from "#/models/store";
 
 interface ShoppingCartContextProps {
   cart: OrderLine[];
@@ -10,8 +9,6 @@ interface ShoppingCartContextProps {
   removeFromCart: (position: number, quantity: number) => void;
   getCartTotal: () => number;
   clearCart: () => void;
-  store: Store | undefined;
-  selectStore: (store: Store) => void;
 }
 
 // https://react.dev/reference/react/createContext
@@ -22,8 +19,6 @@ const ShoppingCartContext = createContext<ShoppingCartContextProps>({
   removeFromCart: () => {},
   getCartTotal: () => 0,
   clearCart: () => {},
-  store: undefined,
-  selectStore: () => {},
 });
 
 // https://react.dev/reference/react/useContext
@@ -36,13 +31,10 @@ export const ShoppingCartProvider = ({
   children: React.ReactNode;
 }) => {
   const [cart, setCart] = useState<OrderLine[]>([]);
-  const [store, setStore] = useState<Store | undefined>();
 
   useEffect(() => {
     const initialCart = getCartFromLocalStorage();
     setCart(initialCart);
-    const initialStore = getStoreFromLocalStorage();
-    setStore(initialStore);
   }, []);
 
   const addToCart = (item: OrderLine) => {
@@ -98,19 +90,12 @@ export const ShoppingCartProvider = ({
     saveCartToLocalStorage(cart);
   };
 
-  const selectStore = (store: Store) => {
-    setStore(store);
-    saveStoreToLocalStorage(store);
-  };
-
   const value = {
     cart,
     addToCart,
     removeFromCart,
     getCartTotal,
     clearCart,
-    store,
-    selectStore,
   };
 
   return (
@@ -133,19 +118,5 @@ function getCartFromLocalStorage(): OrderLine[] {
     console.error("Error parsing OrderLines from local storage:", error);
 
     return [];
-  }
-}
-
-function saveStoreToLocalStorage(store: Store) {
-  // localStorage solo puede almacenar strings
-  localStorage.setItem("store", JSON.stringify(store));
-}
-
-function getStoreFromLocalStorage(): Store | undefined {
-  const storeString = localStorage.getItem("store");
-  try {
-    return storeString ? JSON.parse(storeString) : undefined;
-  } catch (error) {
-    console.error("Error parsing Store from local storage:", error);
   }
 }
