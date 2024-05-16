@@ -12,16 +12,20 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { PaperStack } from "#/components/containers/PaperStack";
 import H2 from "#/components/texts/H2";
 
-export default function ShoppingCartTable() {
+export default function ShoppingCartList() {
   const { cart, addToCart, removeFromCart } = useShoppingCart();
 
-  return (
-    // TODO refactor return statement
-    <Stack spacing={3}>
-      {cart.length === 0 ? (
-        <NoItemsYet />
-      ) : (
-        cart.map((item, index) => (
+  if (cart.length === 0) {
+    return (
+      <PaperStack>
+        <H2>No hay elementos todavía</H2>
+        <Typography>Cuando añadas algo al carrito, aparecerá aquí.</Typography>
+      </PaperStack>
+    );
+  } else {
+    return (
+      <Stack spacing={3}>
+        {cart.map((item, index) => (
           <PaperStack
             direction={{ xs: "column", sm: "row" }}
             alignItems={"center"}
@@ -73,17 +77,8 @@ export default function ShoppingCartTable() {
               </Button>
             </Stack>
           </PaperStack>
-        ))
-      )}
-    </Stack>
-  );
-}
-
-function NoItemsYet() {
-  return (
-    <PaperStack>
-      <H2>No hay elementos todavía</H2>
-      <Typography>Cuando añadas algo al carrito, aparecerá aquí.</Typography>
-    </PaperStack>
-  );
+        ))}
+      </Stack>
+    );
+  }
 }

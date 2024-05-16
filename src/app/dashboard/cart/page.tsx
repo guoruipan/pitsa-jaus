@@ -1,10 +1,10 @@
 import React from "react";
 import { Metadata } from "next";
 import { getSessionUser } from "#/lib/session";
-import { Grid } from "@mui/material";
-import Link from "#/components/texts/Link";
+import { Box, Grid, Typography } from "@mui/material";
+import NextLink from "next/link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ShoppingCartTable from "./ShoppingCartTable";
+import ShoppingCartList from "./ShoppingCartList";
 import CheckoutSection from "./CheckoutSection";
 
 const pageTitle = "Carrito";
@@ -25,12 +25,20 @@ export default async function Page() {
   return (
     <Grid container spacing={5}>
       <Grid item xs={12}>
-        <Link href="/menu" underline="hover">
-          <ArrowBackIcon /> Seguir comprando
-        </Link>
+        <Box
+          display={"flex"}
+          component={NextLink}
+          href={"/menu"}
+          sx={{ color: "primary.main", textDecoration: "none" }}
+        >
+          <ArrowBackIcon sx={{ mr: 1, display: "flex" }} />
+          <Typography variant="body1" noWrap sx={{ fontWeight: 700 }}>
+            Seguir comprando
+          </Typography>
+        </Box>
       </Grid>
       <Grid item xs={12} md={9}>
-        <ShoppingCartTable />
+        <ShoppingCartList />
       </Grid>
       <Grid item xs={12} md={3}>
         <CheckoutSection />
