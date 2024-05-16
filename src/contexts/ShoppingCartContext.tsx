@@ -116,7 +116,6 @@ function getCartFromLocalStorage(): OrderLine[] {
     return cartString ? JSON.parse(cartString) : [];
   } catch (error) {
     console.error("Error parsing OrderLines from local storage:", error);
-
     return [];
   }
 }

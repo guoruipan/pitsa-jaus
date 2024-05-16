@@ -14,6 +14,5 @@ export async function checkPassword(
 ): Promise<boolean> {
   // https://www.npmjs.com/package/bcrypt
   // tenerlo directamente en componentes de lado del Cliente parece dar problemas
-  const result = await bcrypt.compare(plainPassword, hashedPassword);
-  return result;
+  return await bcrypt.compare(plainPassword, hashedPassword);
 }

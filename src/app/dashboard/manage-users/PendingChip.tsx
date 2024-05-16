@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Chip } from "@mui/material";
+import { Button, Chip, Stack } from "@mui/material";
 import { useState } from "react";
 import { Modal, Typography } from "@mui/material";
 import { PaperStack } from "#/components/containers/PaperStack";
@@ -79,12 +79,14 @@ export default function PendingChip({ user }: Props) {
             Rol solicitado: {roles[user.role]}
           </Typography>
 
-          <Button variant="contained" color="success" onClick={accept}>
-            Aceptar
-          </Button>
-          <Button variant="contained" color="error" onClick={reject}>
-            Rechazar
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained" color="success" onClick={accept}>
+              Aceptar
+            </Button>
+            <Button variant="contained" color="error" onClick={reject}>
+              Rechazar
+            </Button>
+          </Stack>
         </PaperStack>
       </Modal>
     </>
