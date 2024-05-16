@@ -39,10 +39,11 @@ export default function LoginForm() {
       setErrorMessage("");
       setIsSubmitting(true);
 
-      console.log("avoid giving hints in login errors");
       const user = await getUser(values.email);
-      if (!user || user.status === "pending") {
-        setErrorMessage("Algo fue mal");
+      if (!user) {
+        setErrorMessage("Usuario o contraseña incorrectos");
+      } else if (user.status === "pending") {
+        setErrorMessage("Esperando validación. Contacte a un administrador");
       } else {
         const error = await authenticate(values);
         if (error) setErrorMessage(error);

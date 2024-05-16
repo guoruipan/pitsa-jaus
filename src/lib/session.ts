@@ -9,7 +9,6 @@ export async function authenticate(credentials: {
   email: string;
   password: string;
 }) {
-  // el tipo de retorno implícito es : Promise<"Usuario o contraseña incorrectos" | "Algo fue mal" | undefined>
   try {
     await signIn("credentials", credentials);
   } catch (error) {

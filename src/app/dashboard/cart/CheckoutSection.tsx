@@ -1,4 +1,5 @@
 "use client";
+
 import { PaperStack } from "#/components/containers/PaperStack";
 import { useShoppingCart } from "#/contexts/ShoppingCartContext";
 import { formatCurrency } from "#/lib/utils";
