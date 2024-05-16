@@ -12,6 +12,7 @@ import theme from "#/theme";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import { ShoppingCartProvider } from "#/contexts/ShoppingCartContext";
+import { SnackBarProvider } from "#/contexts/SnackbarContext";
 
 export const metadata: Metadata = {
   title: {
@@ -32,8 +33,10 @@ export default function RootLayout({
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <ShoppingCartProvider>
-            <CssBaseline />
-            <InnerLayout>{children as React.ReactNode}</InnerLayout>
+            <SnackBarProvider>
+              <CssBaseline />
+              <InnerLayout>{children as React.ReactNode}</InnerLayout>
+            </SnackBarProvider>
           </ShoppingCartProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>

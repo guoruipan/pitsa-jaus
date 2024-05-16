@@ -16,6 +16,7 @@ import Image from "next/image";
 import H1 from "#/components/texts/H1";
 import { User } from "#/models/user";
 import { PaperStack } from "#/components/containers/PaperStack";
+import { useSnackBar } from "#/contexts/SnackbarContext";
 
 interface Props {
   pizza: Pizza;
@@ -23,6 +24,8 @@ interface Props {
 }
 
 export default function MenuCard({ pizza, user }: Props) {
+  const { showSnackbar } = useSnackBar();
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -32,6 +35,7 @@ export default function MenuCard({ pizza, user }: Props) {
   function handleClick() {
     addToCart({ id: 0, order_id: 0, pizza: pizza, quantity: 1 });
     handleClose();
+    showSnackbar(`${pizza.name}`, "success");
   }
 
   return (
