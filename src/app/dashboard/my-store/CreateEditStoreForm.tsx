@@ -22,7 +22,7 @@ interface Props {
 
 // si store === undefined, es nuevo. Si no, es editar
 
-export default function EditStoreForm({ store, manager_id }: Props) {
+export default function CreateEditStoreForm({ store, manager_id }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { showSnackbar } = useSnackBar();
   const router = useRouter();

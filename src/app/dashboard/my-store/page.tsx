@@ -5,7 +5,7 @@ import { getWithManagerId as getStore } from "#/models/store";
 import H1 from "#/components/texts/H1";
 import { Stack, Typography } from "@mui/material";
 import { PaperStack } from "#/components/containers/PaperStack";
-import EditStoreForm from "./EditStoreForm";
+import CreateEditStoreForm from "./CreateEditStoreForm";
 
 const pageTitle = "Mi tienda";
 
@@ -26,7 +26,7 @@ export default async function Page() {
   return store ? (
     <PaperStack>
       <H1>Mi tienda</H1>
-      <EditStoreForm manager_id={user.id} store={store} />
+      <CreateEditStoreForm manager_id={user.id} store={store} />
     </PaperStack>
   ) : (
     <PaperStack spacing={4}>
@@ -37,7 +37,7 @@ export default async function Page() {
         </Typography>
       </Stack>
 
-      <EditStoreForm manager_id={user.id} store={undefined} />
+      <CreateEditStoreForm manager_id={user.id} store={undefined} />
     </PaperStack>
   );
 }
