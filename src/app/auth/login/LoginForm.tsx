@@ -24,8 +24,12 @@ export default function LoginForm() {
     email: yup
       .string()
       .email("Introduce una dirección de email válida")
+      .max(100, "Este campo no puede exceder los 100 caracteres")
       .required("Este campo es obligatorio"),
-    password: yup.string().required("Este campo es obligatorio"),
+    password: yup
+      .string()
+      .max(100, "Este campo no puede exceder los 100 caracteres")
+      .required("Este campo es obligatorio"),
   });
 
   const formik = useFormik({
