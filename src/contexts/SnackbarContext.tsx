@@ -3,7 +3,15 @@
 import React, { createContext, useState, useContext } from "react";
 import { Snackbar, Alert } from "@mui/material";
 
+// https://mui.com/material-ui/react-snackbar/#introduction
+// https://mui.com/material-ui/react-snackbar/#consecutive-snackbars
+
 type Severity = "success" | "info" | "warning" | "error" | undefined;
+
+interface SnackbarMessage {
+  message: string;
+  key: number;
+}
 
 interface SnackbarContextProps {
   showSnackbar: (message: string, severity: Severity) => void;
@@ -20,17 +28,31 @@ export const SnackBarProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>(
+    [],
+  );
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [messageInfo, setMessageInfo] = React.useState<
+    SnackbarMessage | undefined
+  >(undefined);
   const [severity, setSeverity] = useState<Severity>();
 
-  // controlo el timeout manualmente en lugar de utilizar autoHideDuration de Snackbar para evitar un error
-  // donde al crear varios snacks consecutivos no se resetea el timeout (al ser realmente un sólo snack)
+  React.useEffect(() => {
+    if (snackPack.length && !messageInfo) {
+      // Set a new snack when we don't have an active one
+      setMessageInfo({ ...snackPack[0] });
+      setSnackPack((prev) => prev.slice(1));
+      setOpen(true);
+    } else if (snackPack.length && messageInfo && open) {
+      // Close an active snack when a new one is added
+      setOpen(false);
+    }
+  }, [snackPack, messageInfo, open]);
 
   const showSnackbar = (message: string, severity: Severity) => {
-    setMessage(message);
+    setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
     setSeverity(severity);
-    setOpen(true);
+    // setOpen(true);
   };
 
   const handleClose = (
@@ -44,11 +66,21 @@ export const SnackBarProvider = ({
     setOpen(false);
   };
 
+  const handleExited = () => {
+    setMessageInfo(undefined);
+  };
+
   return (
     <SnackbarContext.Provider value={{ showSnackbar }}>
-      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+      <Snackbar
+        key={messageInfo ? messageInfo.key : undefined}
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        TransitionProps={{ onExited: handleExited }}
+      >
         <Alert onClose={handleClose} severity={severity}>
-          {message}
+          {messageInfo ? messageInfo.message : undefined}
         </Alert>
       </Snackbar>
       {children}
