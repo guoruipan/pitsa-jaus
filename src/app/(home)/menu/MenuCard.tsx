@@ -35,7 +35,7 @@ export default function MenuCard({ pizza, user }: Props) {
   function handleClick() {
     addToCart({ id: 0, order_id: 0, pizza: pizza, quantity: 1 });
     handleClose();
-    showSnackbar(`${pizza.name}`, "success");
+    showSnackbar(`Se ha añadido 1 ${pizza.name} al carrito`, "success");
   }
 
   return (

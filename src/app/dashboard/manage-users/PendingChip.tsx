@@ -11,6 +11,7 @@ import {
   deleteWithId as deleteUser,
 } from "#/models/user";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSnackBar } from "#/contexts/SnackbarContext";
 
 // https://mui.com/material-ui/react-modal/
 
@@ -29,6 +30,8 @@ export default function PendingChip({ user }: Props) {
   const { replace } = useRouter();
   const searchParams = useSearchParams();
 
+  const { showSnackbar } = useSnackBar();
+
   function handleReload() {
     const params = new URLSearchParams(searchParams);
     params.set("page", "1");
@@ -44,11 +47,13 @@ export default function PendingChip({ user }: Props) {
     updateUser(user);
     handleClose();
     handleReload();
+    showSnackbar(`Has aceptado a ${user.email}`, "success");
   }
   function reject() {
     deleteUser(user.id);
     handleClose();
     handleReload();
+    showSnackbar(`Has rechazado a ${user.email}`, "error");
   }
 
   return (

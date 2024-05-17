@@ -11,9 +11,12 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ClearIcon from "@mui/icons-material/Clear";
 import { PaperStack } from "#/components/containers/PaperStack";
 import H2 from "#/components/texts/H2";
+import { useSnackBar } from "#/contexts/SnackbarContext";
 
 export default function ShoppingCartList() {
   const { cart, addToCart, removeFromCart } = useShoppingCart();
+
+  const { showSnackbar } = useSnackBar();
 
   if (cart.length === 0) {
     return (
@@ -72,7 +75,15 @@ export default function ShoppingCartList() {
                   <AddCircleOutlineIcon />
                 </Button>
               </Box>
-              <Button onClick={() => removeFromCart(index, -1)}>
+              <Button
+                onClick={() => {
+                  removeFromCart(index, -1);
+                  showSnackbar(
+                    `Has quitado la pizza ${item.pizza.name} del carrito`,
+                    "warning",
+                  );
+                }}
+              >
                 <ClearIcon /> Quitar
               </Button>
             </Stack>

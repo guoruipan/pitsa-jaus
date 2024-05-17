@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { Store, update as updateStore } from "#/models/store";
-import { AlertSuccess } from "#/components/ui/Alert";
+import { useSnackBar } from "#/contexts/SnackbarContext";
 
 interface Props {
   store: Store;
@@ -15,7 +15,7 @@ interface Props {
 
 export default function EditStoreForm({ store }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const { showSnackbar } = useSnackBar();
 
   const validationSchema = yup.object({
     name: yup
@@ -55,7 +55,6 @@ export default function EditStoreForm({ store }: Props) {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsSubmitting(true);
-      setShowAlert(false);
 
       const updatedStore: Store = {
         id: store.id,
@@ -71,14 +70,13 @@ export default function EditStoreForm({ store }: Props) {
       updateStore(updatedStore);
 
       setIsSubmitting(false);
-      setShowAlert(true);
+      showSnackbar("Se han actualizado los datos", "success");
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
-        {showAlert && <AlertSuccess>Se han actualizado los datos</AlertSuccess>}
         <TextField
           fullWidth
           id="name"

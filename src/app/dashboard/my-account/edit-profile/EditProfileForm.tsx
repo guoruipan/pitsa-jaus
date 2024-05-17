@@ -16,7 +16,7 @@ import {
 import Stack from "@mui/material/Stack";
 import { update as updateUser } from "#/models/user";
 import type { User } from "#/models/user";
-import { AlertSuccess } from "#/components/ui/Alert";
+import { useSnackBar } from "#/contexts/SnackbarContext";
 import H1 from "#/components/texts/H1";
 
 interface Props {
@@ -25,7 +25,7 @@ interface Props {
 
 export default function EditProfileForm({ user }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const { showSnackbar } = useSnackBar();
 
   const validationSchema = yup.object({
     name: yup
@@ -56,7 +56,6 @@ export default function EditProfileForm({ user }: Props) {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsSubmitting(true);
-      setShowAlert(false);
       // si el campo home_address está vacío, guardarlo vacío
 
       const updatedUser: User = {
@@ -73,7 +72,7 @@ export default function EditProfileForm({ user }: Props) {
       updateUser(updatedUser);
 
       setIsSubmitting(false);
-      setShowAlert(true);
+      showSnackbar("Se han actualizado los datos", "success");
     },
   });
 
@@ -81,7 +80,6 @@ export default function EditProfileForm({ user }: Props) {
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
         <H1>Editar cuenta</H1>
-        {showAlert && <AlertSuccess>Se han actualizado los datos</AlertSuccess>}
         <TextField
           fullWidth
           id="name"

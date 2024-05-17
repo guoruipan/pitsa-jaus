@@ -24,6 +24,9 @@ export const SnackBarProvider = ({
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState<Severity>();
 
+  // controlo el timeout manualmente en lugar de utilizar autoHideDuration de Snackbar para evitar un error
+  // donde al crear varios snacks consecutivos no se resetea el timeout (al ser realmente un sólo snack)
+
   const showSnackbar = (message: string, severity: Severity) => {
     setMessage(message);
     setSeverity(severity);
