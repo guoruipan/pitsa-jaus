@@ -3,11 +3,8 @@ import { Metadata } from "next";
 import { getSessionUser } from "#/lib/session";
 import { getWithManagerId as getStore } from "#/models/store";
 import H1 from "#/components/texts/H1";
-import { User } from "#/models/user";
 import { Stack, Typography } from "@mui/material";
-import RegisterStoreForm from "./RegisterStoreForm";
 import { PaperStack } from "#/components/containers/PaperStack";
-import { Store } from "#/models/store";
 import EditStoreForm from "./EditStoreForm";
 
 const pageTitle = "Mi tienda";
@@ -27,14 +24,11 @@ export default async function Page() {
   const store = await getStore(user.id);
 
   return store ? (
-    <MyStoreScreen store={store} />
+    <PaperStack>
+      <H1>Mi tienda</H1>
+      <EditStoreForm manager_id={user.id} store={store} />
+    </PaperStack>
   ) : (
-    <RegisterStoreScreen user={user} />
-  );
-}
-
-function RegisterStoreScreen({ user }: { user: User }) {
-  return (
     <PaperStack spacing={4}>
       <Stack spacing={2}>
         <H1>Registra tu tienda</H1>
@@ -43,16 +37,7 @@ function RegisterStoreScreen({ user }: { user: User }) {
         </Typography>
       </Stack>
 
-      <RegisterStoreForm manager_id={user.id} />
-    </PaperStack>
-  );
-}
-
-function MyStoreScreen({ store }: { store: Store }) {
-  return (
-    <PaperStack>
-      <H1>Mi tienda</H1>
-      <EditStoreForm store={store} />
+      <EditStoreForm manager_id={user.id} store={undefined} />
     </PaperStack>
   );
 }

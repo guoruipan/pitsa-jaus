@@ -6,16 +6,26 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { Store, update as updateStore } from "#/models/store";
+import {
+  Store,
+  update as updateStore,
+  getWithName as getStore,
+  insert as insertStore,
+} from "#/models/store";
 import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useRouter } from "next/navigation";
 
 interface Props {
-  store: Store;
+  store: Store | undefined;
+  manager_id: number;
 }
 
-export default function EditStoreForm({ store }: Props) {
+// si store === undefined, es nuevo. Si no, es editar
+
+export default function EditStoreForm({ store, manager_id }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { showSnackbar } = useSnackBar();
+  const router = useRouter();
 
   const validationSchema = yup.object({
     name: yup
@@ -45,29 +55,39 @@ export default function EditStoreForm({ store }: Props) {
 
   const formik = useFormik({
     initialValues: {
-      name: store.name,
-      address: store.address,
-      city: store.city,
-      state: store.state,
-      postcode: store.postcode,
-      phone_number: store.phone_number,
+      name: store?.name || "",
+      address: store?.address || "",
+      city: store?.city || "",
+      state: store?.state || "",
+      postcode: store?.postcode || "",
+      phone_number: store?.phone_number || "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsSubmitting(true);
 
       const updatedStore: Store = {
-        id: store.id,
+        id: store?.id || 0,
         name: values.name,
         address: values.address,
         city: values.city,
         state: values.state,
         postcode: values.postcode,
         phone_number: values.phone_number || undefined,
-        manager_id: store.manager_id,
+        manager_id: store?.manager_id || manager_id,
       };
 
-      updateStore(updatedStore);
+      if (!store) {
+        if (!(await getStore(updatedStore.name))) {
+          insertStore(updatedStore);
+          router.refresh();
+        } else {
+          formik.touched.name = true;
+          formik.errors.name = "Ya existe una tienda con el nombre introducido";
+        }
+      } else {
+        updateStore(updatedStore);
+      }
 
       setIsSubmitting(false);
       showSnackbar("Se han actualizado los datos", "success");
@@ -87,7 +107,7 @@ export default function EditStoreForm({ store }: Props) {
           onBlur={formik.handleBlur}
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
-          disabled
+          disabled={!!store} // si hay tienda, no permitimos editar
         />
         <TextField
           fullWidth
@@ -154,7 +174,7 @@ export default function EditStoreForm({ store }: Props) {
           type="submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Enviando..." : "Editar"}
+          {isSubmitting ? "Enviando..." : "Enviar"}
         </Button>
       </Stack>
     </form>
