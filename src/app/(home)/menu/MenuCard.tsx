@@ -11,12 +11,12 @@ import Typography from "@mui/material/Typography";
 import { getPizzaPhoto } from "#/lib/utils";
 import { Pizza } from "#/models/pizza";
 import { useShoppingCart } from "#/contexts/ShoppingCartContext";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import Image from "next/image";
-import H1 from "#/components/texts/H1";
 import { User } from "#/models/user";
 import { PaperStack } from "#/components/containers/PaperStack";
 import { useSnackBar } from "#/contexts/SnackbarContext";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
   pizza: Pizza;
@@ -65,17 +65,28 @@ export default function MenuCard({ pizza, user }: Props) {
             top: "50%",
             left: "50%",
             width: {
-              xs: "100%",
-              sm: "75%",
+              xs: "95%",
+              sm: "70%",
               md: "50%",
             },
             transform: "translate(-50%, -50%)",
+            pt: "1.5rem",
           }}
         >
+          <Box display="flex" flexDirection={"row-reverse"}>
+            <IconButton
+              size="small"
+              aria-label="close-modal"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Box>
           <Box
             sx={{
               position: "relative",
-              height: { xs: "200px", sm: "300px", md: "400px" },
+              height: { xs: "200px", sm: "250px", md: "275px", lg: "300px" },
               borderRadius: "1rem",
               overflow: "hidden",
             }}
@@ -88,10 +99,12 @@ export default function MenuCard({ pizza, user }: Props) {
               priority
             />
           </Box>
-          <H1>{pizza.name}</H1>
+          <Typography sx={{ typography: { xs: "h4", md: "h3", lg: "h2" } }}>
+            {pizza.name}
+          </Typography>
           <Typography variant={"body1"}>{pizza.description}</Typography>
-          <Typography variant={"body1"}>{pizza.price}</Typography>
           {/* format currency */}
+          <Typography variant={"body1"}>{pizza.price}</Typography>
           <Button variant="contained" onClick={handleClick} disabled={!user}>
             Añadir
           </Button>
