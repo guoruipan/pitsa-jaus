@@ -23,7 +23,9 @@ function HomeXS() {
       justifyContent={"center"}
       textAlign={"center"}
     >
-      <Typography variant="h4">Felicidad en cada bocado</Typography>
+      <Typography variant="h2" component={"h1"}>
+        Felicidad en cada bocado
+      </Typography>
       <Image
         src={photo}
         sizes="100vw"
@@ -53,7 +55,7 @@ function HomeMD() {
         />
       </Grid>
       <Grid item xs={12} sm={8} alignContent={"center"}>
-        <Typography variant="h4">
+        <Typography variant="h4" component={"h1"}>
           PitsaJaus, donde la tradición se fusiona con el sabor.
         </Typography>
         <OrderNowButton sx={{ px: 3, mt: 3 }} />

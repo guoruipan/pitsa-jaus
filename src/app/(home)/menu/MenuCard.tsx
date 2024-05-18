@@ -99,14 +99,11 @@ export default function MenuCard({ pizza, user }: Props) {
               priority
             />
           </Box>
-          <Typography sx={{ typography: { xs: "h4", md: "h3", lg: "h2" } }}>
-            {pizza.name}
-          </Typography>
-          <Typography variant={"body1"}>{pizza.description}</Typography>
-          {/* format currency */}
-          <Typography variant={"body1"}>{pizza.price}</Typography>
+          <Typography variant="h4">{pizza.name}</Typography>
+          <Typography variant={"subtitle1"}>{pizza.description}</Typography>
+          {/* la función formatCurrency no funciona aquí, no sé por qué */}
           <Button variant="contained" onClick={handleClick} disabled={!user}>
-            Añadir
+            Añadir por {pizza.price}€
           </Button>
         </PaperStack>
       </Modal>
