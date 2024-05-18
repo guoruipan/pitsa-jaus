@@ -31,6 +31,11 @@ const settings = [
     href: "/dashboard/manage-users",
     role: "admin",
   },
+  {
+    name: "Gestión de pizzas",
+    href: "/dashboard/manage-pizzas",
+    role: "admin",
+  },
 ];
 
 interface Props {

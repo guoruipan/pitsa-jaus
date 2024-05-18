@@ -46,13 +46,8 @@ export default function Footer() {
         </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
-        <Link
-          variant="body1"
-          color="inherit"
-          href="/contact-us"
-          underline="hover"
-        >
-          Contáctanos
+        <Link variant="body1" color="inherit" href="/" underline="hover">
+          Próximamente...
         </Link>
       </Grid>
       <Grid item xs={12} md={6} lg={3}>
