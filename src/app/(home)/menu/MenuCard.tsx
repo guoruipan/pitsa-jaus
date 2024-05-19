@@ -8,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
-import { getPizzaPhoto } from "#/lib/utils";
+import { formatCurrency, getPizzaPhoto } from "#/lib/utils";
 import { Pizza } from "#/models/pizza";
 import { useShoppingCart } from "#/contexts/ShoppingCartContext";
 import { Button, IconButton } from "@mui/material";
@@ -101,9 +101,8 @@ export default function MenuCard({ pizza, user }: Props) {
           </Box>
           <Typography variant="h4">{pizza.name}</Typography>
           <Typography variant={"subtitle1"}>{pizza.description}</Typography>
-          {/* la función formatCurrency no funciona aquí, no sé por qué */}
           <Button variant="contained" onClick={handleClick} disabled={!user}>
-            Añadir por {pizza.price}€
+            Añadir por {formatCurrency(pizza.price)}
           </Button>
         </PaperStack>
       </Modal>

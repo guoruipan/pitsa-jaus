@@ -15,12 +15,15 @@ export function getPizzaPhoto(pizza: Pizza) {
   return `/pizza/${pizza.id}_${pizza.photo}`;
 }
 
-export function formatCurrency(amount: number): string {
-  const formattedAmount = amount.toFixed(2);
+export function formatCurrency(
+  value: number,
+  options?: { precision?: number },
+): string {
+  const formatter = new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    ...options,
+  });
 
-  // separador de miles
-  const parts = formattedAmount.split(",");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-  return `${parts.join(",")}€`;
+  return formatter.format(value);
 }
