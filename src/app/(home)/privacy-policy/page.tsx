@@ -17,13 +17,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Stack spacing={8}>
+    <Stack spacing={8} textAlign={"center"}>
       <Stack spacing={2}>
-        <H1 sx={{ textAlign: "center" }}>{pageTitle} de PitsaJaus &#174;</H1>
-        <Typography
-          variant="body1"
-          sx={{ textAlign: "center", fontStyle: "italic" }}
-        >
+        <H1>{pageTitle} de PitsaJaus &#174;</H1>
+        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
           Modificado por última vez: 28/03/2024
         </Typography>
         <Typography variant="body1">
@@ -36,7 +33,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>Información que recopilamos</H2>
+        <H2>Información que recopilamos</H2>
         <Typography variant="body1">
           Recopilamos información personal de usted cuando:
         </Typography>
@@ -73,7 +70,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>Cómo utilizamos su información</H2>
+        <H2>Cómo utilizamos su información</H2>
         <Typography variant="body1">
           Utilizamos su información personal para:
         </Typography>
@@ -112,7 +109,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>Cómo compartimos su información</H2>
+        <H2>Cómo compartimos su información</H2>
         <Typography variant="body1">
           No compartimos su información personal con terceros sin su
           consentimiento. Sin embargo, podemos compartir su información con:
@@ -142,7 +139,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>Seguridad de su información</H2>
+        <H2>Seguridad de su información</H2>
         <Typography variant="body1">
           Tomamos medidas de seguridad razonables para proteger su información
           personal contra el acceso no autorizado, el uso indebido, la
@@ -151,7 +148,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>Sus derechos</H2>
+        <H2>Sus derechos</H2>
         <Typography variant="body1">Usted tiene derecho a:</Typography>
         <List>
           <ListItem>
@@ -193,9 +190,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>
-          Cambios en esta Política de Privacidad
-        </H2>
+        <H2>Cambios en esta Política de Privacidad</H2>
         <Typography variant="body1">
           Nos reservamos el derecho de modificar esta Política de Privacidad en
           cualquier momento. Si realizamos cambios sustanciales a esta Política
@@ -205,7 +200,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>Contacto</H2>
+        <H2>Contacto</H2>
         <Typography variant="body1">
           Si tiene alguna pregunta sobre esta Política de Privacidad, puede
           contactarnos a través de:

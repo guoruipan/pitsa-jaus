@@ -19,13 +19,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Stack spacing={8}>
+    <Stack spacing={8} textAlign={"center"}>
       <Stack spacing={2}>
-        <H1 sx={{ textAlign: "center" }}>{pageTitle} de PitsaJaus ®</H1>
-        <Typography
-          variant="body1"
-          sx={{ textAlign: "center", fontStyle: "italic" }}
-        >
+        <H1>{pageTitle} de PitsaJaus ®</H1>
+        <Typography variant="body1" sx={{ fontStyle: "italic" }}>
           Modificado por última vez: 28/03/2024
         </Typography>
         <Typography variant="body1">
@@ -37,7 +34,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>1. Pedidos y Pagos:</H2>
+        <H2>1. Pedidos y Pagos:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -73,7 +70,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>2. Entregas y Recogidas:</H2>
+        <H2>2. Entregas y Recogidas:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -109,7 +106,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>3. Promociones y Descuentos:</H2>
+        <H2>3. Promociones y Descuentos:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -136,7 +133,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>4. Política de Cancelaciones:</H2>
+        <H2>4. Política de Cancelaciones:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -163,7 +160,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>5. Reembolsos:</H2>
+        <H2>5. Reembolsos:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -191,9 +188,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>
-          6. Modificación de Términos y Condiciones:
-        </H2>
+        <H2>6. Modificación de Términos y Condiciones:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -213,7 +208,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>7. Ley Aplicable y Jurisdicción:</H2>
+        <H2>7. Ley Aplicable y Jurisdicción:</H2>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -234,7 +229,7 @@ export default function Page() {
       </Stack>
 
       <Stack spacing={2}>
-        <H2 sx={{ textAlign: "center" }}>8. Contacto</H2>
+        <H2>8. Contacto</H2>
         <Typography variant="body1">
           Si tiene alguna pregunta sobre estos Términos y Condiciones, puede
           contactarnos a través de:

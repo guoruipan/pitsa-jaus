@@ -13,7 +13,7 @@ export default async function MenuGrid({ currentPage }: GridProps) {
   const user = await getSessionUser();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       {pizzas.map((pizza) => (
         <Grid item key={pizza.id} xs={12} sm={6} md={4} lg={3}>
           <MenuCard pizza={pizza} user={user} />
