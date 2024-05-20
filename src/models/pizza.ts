@@ -12,15 +12,20 @@ export type Pizza = {
 
 const ITEMS_PER_PAGE = 8;
 
-export async function list(currentPage = 1) {
+export async function list(term = "", currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
     // FOR TESTING ONLY, NEVER IN PRODUCTION
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const data =
-      await sql<Pizza>`SELECT * FROM pizzas ORDER BY id LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
+    // el param term es opcional. Si está, filtra por él. Si no, muestra la lista completa
+    const query =
+      term !== ""
+        ? sql<Pizza>`SELECT * FROM pizzas WHERE name ILIKE '%' || ${term} || '%' LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}`
+        : sql<Pizza>`SELECT * FROM pizzas LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
+
+    const data = await query;
 
     // si no encuentra registros, devolver array vacío
     return data?.rows || [];
@@ -30,9 +35,14 @@ export async function list(currentPage = 1) {
   }
 }
 
-export async function getTotalPages() {
+export async function getTotalPages(term = "") {
   try {
-    const res = await sql`SELECT COUNT(*) FROM pizzas;`;
+    const query =
+      term !== ""
+        ? sql`SELECT COUNT(*) FROM pizzas WHERE name ILIKE '%' || ${term} || '%';`
+        : sql`SELECT COUNT(*) FROM pizzas;`;
+
+    const res = await query;
 
     // total pages
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
