@@ -52,7 +52,7 @@ export default function ChangePasswordForm({ user }: Props) {
       }
 
       if (await checkPassword(values.pwd, user.pwd)) {
-        changePassword(user.id, values.pwd);
+        changePassword(user.id, values.newPwd);
         logout();
       } else {
         formik.touched.pwd = true;
