@@ -34,6 +34,7 @@ function HomeXS() {
           height: "auto",
         }}
         alt="Logo pitsajaus"
+        placeholder="blur"
       />
       <OrderNowButton />
     </Stack>
@@ -51,7 +52,8 @@ function HomeMD() {
             width: "100%",
             height: "auto",
           }}
-          alt="Imagen logo"
+          alt="Logo pitsajaus"
+          placeholder="blur"
         />
       </Grid>
       <Grid item xs={12} sm={8} alignContent={"center"}>
