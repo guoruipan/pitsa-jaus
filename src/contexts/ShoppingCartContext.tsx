@@ -1,11 +1,16 @@
 "use client";
 
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { OrderLine } from "#/models/order";
+import { Pizza } from "#/models/pizza";
+
+interface CartItem {
+  pizza: Pizza;
+  quantity: number;
+}
 
 interface ShoppingCartContextProps {
-  cart: OrderLine[];
-  addToCart: (item: OrderLine) => void;
+  cart: CartItem[];
+  addToCart: (item: CartItem) => void;
   removeFromCart: (position: number, quantity: number) => void;
   getCartTotal: () => number;
   clearCart: () => void;
@@ -30,14 +35,14 @@ export const ShoppingCartProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [cart, setCart] = useState<OrderLine[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   useEffect(() => {
     const initialCart = getCartFromLocalStorage();
     setCart(initialCart);
   }, []);
 
-  const addToCart = (item: OrderLine) => {
+  const addToCart = (item: CartItem) => {
     const itemIndex = cart.findIndex(
       (cartItem) => cartItem.pizza.id === item.pizza.id,
     );
@@ -45,7 +50,7 @@ export const ShoppingCartProvider = ({
     if (itemIndex !== -1) {
       // ya está el item en el carrito
       const updatedCart = [...cart];
-      updatedCart[itemIndex].quantity++;
+      updatedCart[itemIndex].quantity++; // no voy a necesitar aumentar varios de golpe
       setCart(updatedCart);
     } else {
       // no está todavía en en carrito, lo añadimos
@@ -105,17 +110,17 @@ export const ShoppingCartProvider = ({
   );
 };
 
-function saveCartToLocalStorage(cart: OrderLine[]) {
+function saveCartToLocalStorage(cart: CartItem[]) {
   // localStorage solo puede almacenar strings
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function getCartFromLocalStorage(): OrderLine[] {
+function getCartFromLocalStorage(): CartItem[] {
   const cartString = localStorage.getItem("cart");
   try {
     return cartString ? JSON.parse(cartString) : [];
   } catch (error) {
-    console.error("Error parsing OrderLines from local storage:", error);
+    console.error("Error parsing CartItem from local storage:", error);
     return [];
   }
 }

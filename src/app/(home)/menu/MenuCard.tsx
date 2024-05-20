@@ -33,7 +33,7 @@ export default function MenuCard({ pizza, user }: Props) {
   const { addToCart } = useShoppingCart();
 
   function handleClick() {
-    addToCart({ id: 0, order_id: 0, pizza: pizza, quantity: 1 });
+    addToCart({ pizza: pizza, quantity: 1 });
     handleClose();
     showSnackbar(`Se ha añadido 1 ${pizza.name} al carrito`, "success");
   }

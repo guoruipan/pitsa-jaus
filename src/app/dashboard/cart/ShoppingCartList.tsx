@@ -32,7 +32,7 @@ export default function ShoppingCartList() {
           <PaperStack
             direction={{ xs: "column", sm: "row" }}
             alignItems={"center"}
-            key={item.id}
+            key={item.pizza.id}
             spacing={{ xs: 3, sm: "auto" }}
           >
             <Image
