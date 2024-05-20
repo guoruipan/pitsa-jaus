@@ -25,7 +25,7 @@ export default function Footer() {
           &copy; {currentYear} - Todos los derechos reservados.
         </Typography>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={4}>
         <Link
           variant="body1"
           color="inherit"
@@ -35,7 +35,7 @@ export default function Footer() {
           Política de privacidad
         </Link>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={4}>
         <Link
           variant="body1"
           color="inherit"
@@ -45,12 +45,7 @@ export default function Footer() {
           Términos y condiciones
         </Link>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
-        <Link variant="body1" color="inherit" href="/" underline="hover">
-          Próximamente...
-        </Link>
-      </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={4}>
         <InstagramIcon />
         <FacebookIcon />
       </Grid>
