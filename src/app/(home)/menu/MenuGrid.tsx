@@ -9,7 +9,7 @@ interface GridProps {
 }
 
 export default async function MenuGrid({ currentPage }: GridProps) {
-  const pizzas = await listPizzas(currentPage);
+  const pizzas = await listPizzas("", currentPage);
   const user = await getSessionUser();
 
   return (
