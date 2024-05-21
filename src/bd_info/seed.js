@@ -106,7 +106,7 @@ async function seedPizzas(client) {
         CREATE TABLE IF NOT EXISTS pizzas (
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) NOT NULL,
-            description TEXT NOT NULL,
+            description VARCHAR(255) NOT NULL,
             price DECIMAL(10, 2) NOT NULL,
             photo VARCHAR(100) NOT NULL
         );

@@ -4,7 +4,9 @@ import { getSessionUser } from "#/lib/session";
 import { getWithId as getPizza } from "#/models/pizza";
 import { Stack } from "@mui/material";
 import ReturnLink from "#/components/texts/ReturnLink";
-import EditPizzaForm from "./EditPizzaForm";
+import CreateEditPizzaForm from "./CreateEditPizzaForm";
+import H1 from "#/components/texts/H1";
+import { PaperStack } from "#/components/containers/PaperStack";
 
 const pageTitle = "Gestión de pizzas";
 
@@ -27,15 +29,19 @@ export default async function Page({ params }: Props) {
     throw new Error("Este usuario no tiene permiso para ver esta página");
 
   const { id } = params || {};
+
+  // si no encuentra la pizza será crear pizza nueva.
   const pizza = await getPizza(id);
-  if (!pizza) throw new Error("No se ha podido encontrar la pizza");
 
   return (
     <Stack spacing={3}>
       <ReturnLink href="/dashboard/manage-pizzas">
         Volver a todas las pizzas
       </ReturnLink>
-      <EditPizzaForm />
+      <PaperStack>
+        <H1>{pizza ? "Editar" : "Nueva"} pizza</H1>
+        <CreateEditPizzaForm pizza={pizza} />
+      </PaperStack>
     </Stack>
   );
 }

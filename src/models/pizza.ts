@@ -12,6 +12,30 @@ export type Pizza = {
 
 const ITEMS_PER_PAGE = 8;
 
+export async function insert(pizza: Pizza) {
+  try {
+    await sql<Pizza>`
+    INSERT INTO pizzas (name, description, price, photo)
+    VALUES (${pizza.name}, ${pizza.description}, ${pizza.price}, ${pizza.photo})
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to register new pizza.");
+  }
+}
+
+export async function update(pizza: Pizza) {
+  try {
+    await sql<Pizza>`
+    UPDATE pizzas SET name=${pizza.name}, description=${pizza.description}, price=${pizza.price}, photo=${pizza.photo}
+    WHERE id=${pizza.id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update pizza.");
+  }
+}
+
 export async function list(term = "", currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
