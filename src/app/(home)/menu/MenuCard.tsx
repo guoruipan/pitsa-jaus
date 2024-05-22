@@ -101,7 +101,11 @@ export default function MenuCard({ pizza, user }: Props) {
           </Box>
           <Typography variant="h4">{pizza.name}</Typography>
           <Typography variant={"subtitle1"}>{pizza.description}</Typography>
-          <Button variant="contained" onClick={handleClick} disabled={!user}>
+          <Button
+            variant="contained"
+            onClick={handleClick}
+            disabled={!user || user.role !== "customer"}
+          >
             Añadir por {formatCurrency(pizza.price)}
           </Button>
         </PaperStack>
