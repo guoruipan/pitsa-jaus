@@ -43,6 +43,7 @@ export default function PendingChip({ user }: Props) {
   const handleClose = () => setOpen(false);
 
   function accept() {
+    console.log("not sure why it works worse when async await");
     user.status = "validated";
     updateUser(user);
     handleClose();
@@ -50,6 +51,7 @@ export default function PendingChip({ user }: Props) {
     showSnackbar(`Has aceptado a ${user.email}`, "success");
   }
   function reject() {
+    console.log("not sure why it works worse when async await");
     deleteUser(user.id);
     handleClose();
     handleReload();

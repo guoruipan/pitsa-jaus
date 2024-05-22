@@ -36,6 +36,18 @@ export async function update(pizza: Pizza) {
   }
 }
 
+// delete es una palabra reservada en ts
+export async function deleteWithId(id: number) {
+  try {
+    await sql<Pizza>`
+    DELETE FROM pizzas WHERE id=${id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to delete pizza.");
+  }
+}
+
 export async function list(term = "", currentPage = 1) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 

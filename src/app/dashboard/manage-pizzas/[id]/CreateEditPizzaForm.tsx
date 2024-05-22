@@ -118,6 +118,28 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
           error={formik.touched.photo && Boolean(formik.errors.photo)}
           helperText={formik.touched.photo && formik.errors.photo}
         />
+        {/*  <FormControl fullWidth>
+          <Button
+            component="label"
+            variant="outlined"
+            startIcon={<FileUploadIcon />}
+            sx={{ mr: "1rem" }}
+          >
+            Subir foto
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              id="photoFile"
+              name="photoFile"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </Button>
+          <FormHelperText sx={{ color: "red" }}>
+            {formik.touched.photoFile && formik.errors.photoFile}
+          </FormHelperText>
+        </FormControl> */}
 
         <Button
           color="primary"
