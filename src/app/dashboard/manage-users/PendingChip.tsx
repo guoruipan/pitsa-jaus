@@ -1,10 +1,16 @@
 "use client";
 
 import React from "react";
-import { Button, Chip, Stack } from "@mui/material";
+import {
+  Button,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import { useState } from "react";
-import { Modal, Typography } from "@mui/material";
-import { PaperStack } from "#/components/containers/PaperStack";
 import { User } from "#/models/user";
 import {
   update as updateUser,
@@ -13,11 +19,7 @@ import {
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useSnackBar } from "#/contexts/SnackbarContext";
 
-// https://mui.com/material-ui/react-modal/
-
-interface Props {
-  user: User;
-}
+// https://mui.com/material-ui/react-dialog/
 
 const roles = {
   admin: "Administrador",
@@ -25,7 +27,28 @@ const roles = {
   customer: "Cliente",
 };
 
-export default function PendingChip({ user }: Props) {
+export default function PendingChip({ user }: { user: User }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <>
+      <Chip label="Pendiente" color="warning" onClick={handleOpen} />
+      <ValidateUserDialog open={open} onClose={handleClose} user={user} />
+    </>
+  );
+}
+
+function ValidateUserDialog({
+  open,
+  onClose,
+  user,
+}: {
+  open: boolean;
+  onClose: () => void;
+  user: User;
+}) {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -38,64 +61,43 @@ export default function PendingChip({ user }: Props) {
     replace(`${pathname}?${params.toString()}`);
   }
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    onClose();
+  };
 
-  function accept() {
+  const accept = () => {
     console.log("not sure why it works worse when async await");
     user.status = "validated";
     updateUser(user);
     handleClose();
     handleReload();
     showSnackbar(`Has aceptado a ${user.email}`, "success");
-  }
-  function reject() {
+  };
+  const reject = () => {
     console.log("not sure why it works worse when async await");
     deleteUser(user.id);
     handleClose();
     handleReload();
     showSnackbar(`Has rechazado a ${user.email}`, "error");
-  }
+  };
 
   return (
-    <>
-      <Chip label="Pendiente" color="warning" onClick={handleOpen} />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <PaperStack
-          spacing={2}
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: { xs: 275, sm: 400 },
-            p: 4,
-          }}
-        >
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Validar usuario
-          </Typography>
-          <Typography id="modal-modal-description">{user.email}</Typography>
-          <Typography id="modal-modal-description-2">
-            Rol solicitado: {roles[user.role]}
-          </Typography>
-
-          <Stack direction="row" spacing={2}>
-            <Button variant="contained" color="success" onClick={accept}>
-              Aceptar
-            </Button>
-            <Button variant="contained" color="error" onClick={reject}>
-              Rechazar
-            </Button>
-          </Stack>
-        </PaperStack>
-      </Modal>
-    </>
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Validar usuario</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Usuario: {user.email}</DialogContentText>
+        <DialogContentText>
+          Rol solicitado: {roles[user.role]}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="contained" color={"success"} onClick={accept}>
+          Aceptar
+        </Button>
+        <Button variant="contained" color="error" onClick={reject}>
+          Rechazar
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
