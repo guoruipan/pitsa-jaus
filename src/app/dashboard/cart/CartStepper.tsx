@@ -7,8 +7,14 @@ import StoreSelection from "./StoreSelection";
 import ActualCart from "./ActualCart";
 import CheckoutScreen from "./CheckoutScreen";
 import { Store } from "#/models/store";
+import { User } from "#/models/user";
 
-export default function CartStepper({ stores }: { stores: Store[] }) {
+interface Props {
+  stores: Store[];
+  user: User;
+}
+
+export default function CartStepper({ stores, user }: Props) {
   const { store } = useShoppingCart();
 
   const steps = [
@@ -17,7 +23,7 @@ export default function CartStepper({ stores }: { stores: Store[] }) {
       screen: <StoreSelection stores={stores} />,
     },
     { name: "Llena tu carrito", screen: <ActualCart /> },
-    { name: "Completa la compra", screen: <CheckoutScreen /> },
+    { name: "Completa la compra", screen: <CheckoutScreen user={user} /> },
   ];
 
   return <HorizontalLinearStepper steps={steps} initialStep={store ? 1 : 0} />;

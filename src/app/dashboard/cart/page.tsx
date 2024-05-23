@@ -21,5 +21,5 @@ export default async function Page() {
 
   const stores = await listStores();
 
-  return <CartStepper stores={stores} />;
+  return <CartStepper stores={stores} user={user} />;
 }
