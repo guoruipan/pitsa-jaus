@@ -8,15 +8,9 @@ import ActualCart from "./ActualCart";
 import CheckoutScreen from "./CheckoutScreen";
 
 const steps = [
-  "Selecciona una tienda",
-  "Llena tu carrito",
-  "Completa la compra",
-];
-
-const screens = [
-  <StoreSelection key={0} />,
-  <ActualCart key={1} />,
-  <CheckoutScreen key={2} />,
+  { name: "Selecciona una tienda", screen: <StoreSelection /> },
+  { name: "Llena tu carrito", screen: <ActualCart /> },
+  { name: "Completa la compra", screen: <CheckoutScreen /> },
 ];
 
 export default function CartStepper() {
@@ -26,7 +20,6 @@ export default function CartStepper() {
   return (
     <HorizontalLinearStepper
       steps={steps}
-      screens={screens}
       activeStep={activeStep}
       setActiveStep={setActiveStep}
     />
