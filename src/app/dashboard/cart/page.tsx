@@ -2,6 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { getSessionUser } from "#/lib/session";
 import CartStepper from "./CartStepper";
+import { completeList as listStores } from "#/models/store";
 
 const pageTitle = "Carrito";
 
@@ -18,5 +19,7 @@ export default async function Page() {
       "Tienes que iniciar sesión como cliente para ver esta página",
     );
 
-  return <CartStepper />;
+  const stores = await listStores();
+
+  return <CartStepper stores={stores} />;
 }

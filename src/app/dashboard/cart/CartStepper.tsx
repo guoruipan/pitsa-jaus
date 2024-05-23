@@ -6,15 +6,19 @@ import { useShoppingCart } from "#/contexts/ShoppingCartContext";
 import StoreSelection from "./StoreSelection";
 import ActualCart from "./ActualCart";
 import CheckoutScreen from "./CheckoutScreen";
+import { Store } from "#/models/store";
 
-const steps = [
-  { name: "Selecciona una tienda", screen: <StoreSelection /> },
-  { name: "Llena tu carrito", screen: <ActualCart /> },
-  { name: "Completa la compra", screen: <CheckoutScreen /> },
-];
-
-export default function CartStepper() {
+export default function CartStepper({ stores }: { stores: Store[] }) {
   const { store } = useShoppingCart();
+
+  const steps = [
+    {
+      name: "Selecciona una tienda",
+      screen: <StoreSelection stores={stores} />,
+    },
+    { name: "Llena tu carrito", screen: <ActualCart /> },
+    { name: "Completa la compra", screen: <CheckoutScreen /> },
+  ];
 
   return <HorizontalLinearStepper steps={steps} initialStep={store ? 1 : 0} />;
 }

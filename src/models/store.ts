@@ -38,6 +38,27 @@ export async function list(term = "", currentPage = 1) {
   }
 }
 
+export async function completeList(term = "") {
+  try {
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    // el param term es opcional. Si está, filtra por él. Si no, muestra la lista completa
+    const query =
+      term !== ""
+        ? sql<Store>`SELECT * FROM stores WHERE postcode ILIKE '%' || ${term} || '%'`
+        : sql<Store>`SELECT * FROM stores`;
+
+    const data = await query;
+
+    // si no encuentra registros, devolver array vacío
+    return data?.rows || [];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data about stores");
+  }
+}
+
 export async function getTotalPages(term = "") {
   try {
     const query =
