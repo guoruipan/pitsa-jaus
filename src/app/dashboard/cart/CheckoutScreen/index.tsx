@@ -25,6 +25,10 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { AlertError } from "#/components/ui/Alert";
 import Link from "#/components/texts/Link";
 import { formatCurrency } from "#/lib/utils";
+import { Order } from "#/models/order";
+import { useSnackBar } from "#/contexts/SnackbarContext";
+import { insertOrder, insertOrderLine } from "#/models/order";
+import { redirectTo } from "#/lib/navigation";
 
 interface Props {
   user: User;
@@ -43,13 +47,66 @@ export default function CheckoutScreen({ user }: Props) {
       <H1>Comprueba tus datos</H1>
       <UserData user={user} />
       <OrderData />
-      <CompleteOrderButton />
+      <CompleteOrderButton user={user} />
     </PaperStack>
   );
 }
 
-function CompleteOrderButton() {
-  return <Button variant="contained">Completar la compra</Button>;
+function CompleteOrderButton({ user }: { user: User }) {
+  const { cart, getCartTotal, store, clearCart, changeStore } =
+    useShoppingCart();
+  const { showSnackbar } = useSnackBar();
+
+  const handleClick = async () => {
+    if (!store) {
+      showSnackbar("Aún no has seleccionado una tienda", "error");
+      return;
+    }
+    if (cart.length === 0) {
+      showSnackbar("Aún no hay nada en el carrito", "error");
+      return;
+    }
+    if (!user.home_address) {
+      showSnackbar("No hay dirección de envío especificada", "error");
+      return;
+    }
+
+    const order: Order = {
+      id: 0,
+      user_id: user.id,
+      store_id: store.id,
+      total: getCartTotal(),
+      order_date: new Date(),
+      sent_date: undefined,
+      address: user.home_address,
+    };
+
+    const order_id = await insertOrder(order);
+
+    if (!order_id) {
+      showSnackbar("No se pudo crear el pedido", "error");
+      return;
+    }
+
+    cart.map((cartItem) => {
+      insertOrderLine({
+        id: 0,
+        order_id: order_id,
+        pizza: cartItem.pizza,
+        quantity: cartItem.quantity,
+      });
+    });
+
+    showSnackbar("Se ha creado el pedido", "success");
+    clearCart();
+    changeStore(undefined);
+    redirectTo("/dashboard/my-orders");
+  };
+  return (
+    <Button variant="contained" onClick={handleClick}>
+      Completar la compra
+    </Button>
+  );
 }
 
 function OrderData() {
