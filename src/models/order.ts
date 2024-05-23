@@ -10,6 +10,7 @@ export type Order = {
   total: number;
   order_date: Date;
   sent_date: Date | undefined;
+  address: string;
 };
 
 // en lugar de guardar pizza_id: number, guardo un objeto de tipo Pizza para tener acceso directamente a

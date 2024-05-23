@@ -33,8 +33,10 @@ interface Props {
 export default function CheckoutScreen({ user }: Props) {
   // TODO validar que
   // usuario tenga home_address
-  // haya realmente un carrito con al menos 1 item, y que haya tienda seleccionada
-  //
+  // haya realmente un carrito con al menos 1 item,
+  // que haya tienda seleccionada
+
+  // TODO modificar Orders table para que tenga la dirección de envío tb
 
   return (
     <PaperStack spacing={4}>
