@@ -2,6 +2,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { Pizza } from "#/models/pizza";
+import { Store } from "#/models/store";
 
 interface CartItem {
   pizza: Pizza;
@@ -14,6 +15,8 @@ interface ShoppingCartContextProps {
   removeFromCart: (position: number, quantity: number) => void;
   getCartTotal: () => number;
   clearCart: () => void;
+  store: Store | undefined;
+  changeStore: (store: Store | undefined) => void;
 }
 
 // https://react.dev/reference/react/createContext
@@ -24,6 +27,8 @@ const ShoppingCartContext = createContext<ShoppingCartContextProps>({
   removeFromCart: () => {},
   getCartTotal: () => 0,
   clearCart: () => {},
+  store: undefined,
+  changeStore: () => {},
 });
 
 // https://react.dev/reference/react/useContext
@@ -95,12 +100,26 @@ export const ShoppingCartProvider = ({
     saveCartToLocalStorage(cart);
   };
 
+  const [store, setStore] = useState<Store | undefined>();
+
+  const changeStore = (store: Store | undefined) => {
+    setStore(store);
+    saveStoreToLocalStorage(store);
+  };
+
+  useEffect(() => {
+    const initialStore = getStoreFromLocalStorage();
+    setStore(initialStore);
+  }, []);
+
   const value = {
     cart,
     addToCart,
     removeFromCart,
     getCartTotal,
     clearCart,
+    store,
+    changeStore,
   };
 
   return (
@@ -122,5 +141,20 @@ function getCartFromLocalStorage(): CartItem[] {
   } catch (error) {
     console.error("Error parsing CartItem from local storage:", error);
     return [];
+  }
+}
+
+function saveStoreToLocalStorage(store: Store | undefined) {
+  localStorage.setItem("store", JSON.stringify(store));
+}
+
+function getStoreFromLocalStorage(): Store | undefined {
+  // JSON.stringify convierte undefined a null
+  const storeString = localStorage.getItem("store");
+  try {
+    return storeString ? JSON.parse(storeString) : undefined;
+  } catch (error) {
+    console.error("Error parsing Store from local storage:", error);
+    return;
   }
 }

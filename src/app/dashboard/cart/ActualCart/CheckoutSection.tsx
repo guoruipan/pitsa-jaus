@@ -13,11 +13,7 @@ export default function CheckoutSection() {
     <PaperStack>
       <Typography variant="h6">Total</Typography>
       <Typography>{formatCurrency(getCartTotal())}</Typography>
-      <Button
-        href="/dashboard/cart/checkout"
-        variant="contained"
-        disabled={cart.length === 0}
-      >
+      <Button variant="contained" disabled={cart.length === 0}>
         Continuar
       </Button>
     </PaperStack>

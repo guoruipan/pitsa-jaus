@@ -19,6 +19,7 @@ export default function StoreSelect({ stores }: Props) {
     const selectedStoreId = Number(event.target.value);
     const selectedStore = stores.find((store) => store.id === selectedStoreId);
     if (selectedStore) setStore(selectedStore);
+    // TODO actually save it to localstorage
   };
 
   return (
@@ -32,6 +33,7 @@ export default function StoreSelect({ stores }: Props) {
         onChange={handleChange}
       >
         {stores.map((s) => {
+          // TOOD get non paginated list
           return (
             <MenuItem key={s.id} value={s.id}>
               {s.name}
