@@ -51,7 +51,7 @@ function CompleteOrderButton() {
 }
 
 function OrderData() {
-  const { cart, getCartTotal } = useShoppingCart();
+  const { cart, getCartTotal, store } = useShoppingCart();
 
   return (
     <Stack spacing={2}>
@@ -63,6 +63,11 @@ function OrderData() {
           <Typography variant="h6">
             Total: {formatCurrency(getCartTotal())}
           </Typography>
+          {!store ? (
+            <AlertError>Aún no has seleccionado una tienda</AlertError>
+          ) : (
+            <Typography variant="h6">Tienda: {store.name}</Typography>
+          )}
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="cart table">
               <TableHead>
