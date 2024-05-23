@@ -1,20 +1,16 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import ReturnLink from "#/components/texts/ReturnLink";
 import ShoppingCartList from "./ShoppingCartList";
-import CheckoutSection from "./CheckoutSection";
+import ActualCartActions from "./ActualCartActions";
 
 export default function ActualCart() {
   return (
     <Grid container spacing={5}>
-      <Grid item xs={12}>
-        <ReturnLink href="/menu">Seguir comprando</ReturnLink>
-      </Grid>
-      <Grid item xs={12} md={9}>
+      <Grid item xs={12} md={8}>
         <ShoppingCartList />
       </Grid>
-      <Grid item xs={12} md={3}>
-        <CheckoutSection />
+      <Grid item xs={12} md={4}>
+        <ActualCartActions />
       </Grid>
     </Grid>
   );

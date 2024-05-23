@@ -26,7 +26,7 @@ export default function HorizontalLinearStepper({ steps, initialStep }: Props) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper activeStep={activeStep} alternativeLabel sx={{ pb: 4 }}>
         {steps.map((step) => {
           const stepProps: { completed?: boolean } = {};
           return (
@@ -37,7 +37,7 @@ export default function HorizontalLinearStepper({ steps, initialStep }: Props) {
         })}
       </Stepper>
       {steps[activeStep].screen}
-      <Stack direction={"row"} pt={2} justifyContent={"space-between"}>
+      <Stack direction={"row"} pt={4} justifyContent={"space-between"}>
         <Button onClick={handleBack} disabled={activeStep === 0}>
           Anterior
         </Button>
