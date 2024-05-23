@@ -15,13 +15,6 @@ const steps = [
 
 export default function CartStepper() {
   const { store } = useShoppingCart();
-  const [activeStep, setActiveStep] = React.useState(store ? 1 : 0);
 
-  return (
-    <HorizontalLinearStepper
-      steps={steps}
-      activeStep={activeStep}
-      setActiveStep={setActiveStep}
-    />
-  );
+  return <HorizontalLinearStepper steps={steps} initialStep={store ? 1 : 0} />;
 }

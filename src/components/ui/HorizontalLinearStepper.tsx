@@ -10,15 +10,12 @@ interface Step {
 
 interface Props {
   steps: Step[];
-  activeStep: number; // React.useState<number>(0)
-  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  initialStep: number;
 }
 
-export default function HorizontalLinearStepper({
-  steps,
-  activeStep,
-  setActiveStep,
-}: Props) {
+export default function HorizontalLinearStepper({ steps, initialStep }: Props) {
+  const [activeStep, setActiveStep] = React.useState(initialStep);
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
