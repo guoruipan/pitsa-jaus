@@ -25,8 +25,8 @@ export default async function PizzaTable({ query, currentPage }: Props) {
         <TableHead>
           <TableRow>
             <TableCell>Foto</TableCell>
-            <TableCell align="right">Nombre</TableCell>
-            <TableCell align="right">Descripción</TableCell>
+            <TableCell>Nombre</TableCell>
+            <TableCell>Descripción</TableCell>
             <TableCell align="right">Precio</TableCell>
             <TableCell align="right">Acciones</TableCell>
           </TableRow>
@@ -46,8 +46,8 @@ export default async function PizzaTable({ query, currentPage }: Props) {
                   style={{ borderRadius: "0.5rem" }}
                 />
               </TableCell>
-              <TableCell align="right">{pizza.name}</TableCell>
-              <TableCell align="right">{pizza.description}</TableCell>
+              <TableCell>{pizza.name}</TableCell>
+              <TableCell>{pizza.description}</TableCell>
               <TableCell align="right">{formatCurrency(pizza.price)}</TableCell>
               <TableCell align="right">
                 <PizzaOptions pizza={pizza} />

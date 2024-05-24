@@ -30,9 +30,9 @@ export default async function UserTable({ query, currentPage }: Props) {
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Dirección</TableCell>
-            <TableCell align="right">Rol</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Dirección</TableCell>
+            <TableCell>Rol</TableCell>
             <TableCell align="right">Estado</TableCell>
           </TableRow>
         </TableHead>
@@ -45,11 +45,9 @@ export default async function UserTable({ query, currentPage }: Props) {
               <TableCell component="th" scope="row">
                 {user.name}
               </TableCell>
-              <TableCell align="right">{user.email}</TableCell>
-              <TableCell align="right">
-                {user.home_address || "Sin especificar"}
-              </TableCell>
-              <TableCell align="right">{roles[user.role]}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.home_address || "Sin especificar"}</TableCell>
+              <TableCell>{roles[user.role]}</TableCell>
               <TableCell align="right">
                 {user.status === "validated" ? (
                   <Chip label="Validado" color="success" />

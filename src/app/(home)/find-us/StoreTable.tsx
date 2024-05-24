@@ -8,8 +8,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { list as listStores } from "#/models/store";
 
-// paper le da apariencia de estar elevado a la tabla
-
 interface Props {
   query?: string;
   currentPage: number;
@@ -24,9 +22,9 @@ export default async function StoreTable({ query, currentPage }: Props) {
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>
-            <TableCell align="right">Dirección</TableCell>
-            <TableCell align="right">Ciudad</TableCell>
-            <TableCell align="right">Estado</TableCell>
+            <TableCell>Dirección</TableCell>
+            <TableCell>Ciudad</TableCell>
+            <TableCell>Estado</TableCell>
             <TableCell align="right">Código Postal</TableCell>
             <TableCell align="right">Número de teléfono</TableCell>
           </TableRow>
@@ -40,9 +38,9 @@ export default async function StoreTable({ query, currentPage }: Props) {
               <TableCell component="th" scope="row">
                 {store.name}
               </TableCell>
-              <TableCell align="right">{store.address}</TableCell>
-              <TableCell align="right">{store.city}</TableCell>
-              <TableCell align="right">{store.state}</TableCell>
+              <TableCell>{store.address}</TableCell>
+              <TableCell>{store.city}</TableCell>
+              <TableCell>{store.state}</TableCell>
               <TableCell align="right">{store.postcode}</TableCell>
               <TableCell align="right">{store.phone_number}</TableCell>
             </TableRow>
