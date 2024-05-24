@@ -21,7 +21,6 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 // https://mui.com/material-ui/react-menu/#basic-menu
 // https://mui.com/material-ui/react-popover/#anchor-playground
-
 // https://mui.com/material-ui/react-dialog/
 
 interface Props {
@@ -42,7 +41,6 @@ export default function PizzaOptions({ pizza }: Props) {
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
-
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };

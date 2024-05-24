@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { Pizza } from "#/models/pizza";
 import { Store } from "#/models/store";
 
-interface CartItem {
+export interface CartItem {
   pizza: Pizza;
   quantity: number;
 }

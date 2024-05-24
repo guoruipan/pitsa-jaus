@@ -23,21 +23,17 @@ export default async function Page() {
 
   const store = await getStore(user.id);
 
-  return store ? (
-    <PaperStack>
-      <H1>Mi tienda</H1>
-      <CreateEditStoreForm manager_id={user.id} store={store} />
-    </PaperStack>
-  ) : (
+  return (
     <PaperStack spacing={4}>
       <Stack spacing={2}>
-        <H1>Registra tu tienda</H1>
+        <H1>{store ? "Mi" : "Registra tu"} tienda</H1>
         <Typography variant="body1">
-          No hay una tienda asociada a tu perfil todavía. Creála ahora:
+          {store
+            ? "Edita la información de tu tienda aquí"
+            : "No hay una tienda asociada a tu perfil todavía. Creála ahora:"}
         </Typography>
       </Stack>
-
-      <CreateEditStoreForm manager_id={user.id} store={undefined} />
+      <CreateEditStoreForm manager_id={user.id} store={store} />
     </PaperStack>
   );
 }
