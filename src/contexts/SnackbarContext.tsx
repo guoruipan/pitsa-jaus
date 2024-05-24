@@ -21,7 +21,7 @@ const SnackbarContext = createContext<SnackbarContextProps>({
   showSnackbar: () => {},
 });
 
-export const useSnackBar = () => useContext(SnackbarContext);
+export const useSnackbar = () => useContext(SnackbarContext);
 
 export const SnackBarProvider = ({
   children,

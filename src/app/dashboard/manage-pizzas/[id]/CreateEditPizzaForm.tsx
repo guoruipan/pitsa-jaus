@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 import { useRouter } from "next/navigation";
 import { Pizza } from "#/models/pizza";
 import { update as updatePizza, insert as insertPizza } from "#/models/pizza";
@@ -19,7 +19,7 @@ interface Props {
 
 export default function CreateEditPizzaForm({ pizza }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
   const router = useRouter();
 
   const validationSchema = yup.object({

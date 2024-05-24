@@ -12,7 +12,7 @@ import {
   getWithName as getStore,
   insert as insertStore,
 } from "#/models/store";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 
 export default function CreateEditStoreForm({ store, manager_id }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
   const router = useRouter();
 
   const validationSchema = yup.object({

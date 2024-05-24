@@ -15,7 +15,7 @@ import { Button, IconButton } from "@mui/material";
 import Image from "next/image";
 import { User } from "#/models/user";
 import { PaperStack } from "#/components/containers/PaperStack";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function MenuCard({ pizza, user }: Props) {
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

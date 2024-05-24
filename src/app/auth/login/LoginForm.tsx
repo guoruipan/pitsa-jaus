@@ -8,7 +8,7 @@ import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { authenticate } from "#/lib/session";
 import { getWithEmail as getUser } from "#/models/user";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 
 // https://formik.org/docs/examples/with-material-ui
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61
@@ -18,7 +18,7 @@ import { useSnackBar } from "#/contexts/SnackbarContext";
 
 export default function LoginForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   const validationSchema = yup.object({
     email: yup

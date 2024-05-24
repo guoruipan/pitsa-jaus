@@ -11,12 +11,12 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ClearIcon from "@mui/icons-material/Clear";
 import { PaperStack } from "#/components/containers/PaperStack";
 import H2 from "#/components/texts/H2";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 
 export default function ShoppingCartList() {
   const { cart, addToCart, removeFromCart } = useShoppingCart();
 
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   if (cart.length === 0) {
     return (

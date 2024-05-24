@@ -15,7 +15,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { redirectTo } from "#/lib/navigation";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 import { deleteWithId as deletePizza } from "#/models/pizza";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
@@ -103,7 +103,7 @@ function DeletePizzaDialog({
   const { replace } = useRouter();
   const searchParams = useSearchParams();
 
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   function handleReload() {
     const params = new URLSearchParams(searchParams);

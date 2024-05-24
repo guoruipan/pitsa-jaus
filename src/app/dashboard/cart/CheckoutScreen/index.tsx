@@ -26,7 +26,7 @@ import { AlertError } from "#/components/ui/Alert";
 import Link from "#/components/texts/Link";
 import { formatCurrency } from "#/lib/utils";
 import { Order } from "#/models/order";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 import { insertOrder, insertOrderLine } from "#/models/order";
 import { redirectTo } from "#/lib/navigation";
 
@@ -55,7 +55,7 @@ export default function CheckoutScreen({ user }: Props) {
 function CompleteOrderButton({ user }: { user: User }) {
   const { cart, getCartTotal, store, clearCart, changeStore } =
     useShoppingCart();
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   const handleClick = async () => {
     if (!store) {

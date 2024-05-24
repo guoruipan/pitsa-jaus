@@ -16,7 +16,7 @@ import {
 import Stack from "@mui/material/Stack";
 import { update as updateUser } from "#/models/user";
 import type { User } from "#/models/user";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 import H1 from "#/components/texts/H1";
 
 interface Props {
@@ -25,7 +25,7 @@ interface Props {
 
 export default function EditProfileForm({ user }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   const validationSchema = yup.object({
     name: yup

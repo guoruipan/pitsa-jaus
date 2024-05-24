@@ -17,7 +17,7 @@ import {
   deleteWithId as deleteUser,
 } from "#/models/user";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { useSnackBar } from "#/contexts/SnackbarContext";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 
 // https://mui.com/material-ui/react-dialog/
 
@@ -53,7 +53,7 @@ function ValidateUserDialog({
   const { replace } = useRouter();
   const searchParams = useSearchParams();
 
-  const { showSnackbar } = useSnackBar();
+  const { showSnackbar } = useSnackbar();
 
   function handleReload() {
     const params = new URLSearchParams(searchParams);
