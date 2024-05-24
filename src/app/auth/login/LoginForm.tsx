@@ -6,9 +6,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { AlertError } from "#/components/ui/Alert";
 import { authenticate } from "#/lib/session";
 import { getWithEmail as getUser } from "#/models/user";
+import { useSnackBar } from "#/contexts/SnackbarContext";
 
 // https://formik.org/docs/examples/with-material-ui
 // https://codesandbox.io/p/sandbox/formik-v2-tutorial-final-ge1pt?file=%2Fsrc%2Findex.js%3A16%2C61
@@ -17,8 +17,8 @@ import { getWithEmail as getUser } from "#/models/user";
 // https://stackoverflow.com/questions/73531755/formik-handle-checkbox-validation-with-react-and-material-ui
 
 export default function LoginForm() {
-  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { showSnackbar } = useSnackBar();
 
   const validationSchema = yup.object({
     email: yup
@@ -39,18 +39,19 @@ export default function LoginForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      // quitamos los mensajes de error previos
-      setErrorMessage("");
       setIsSubmitting(true);
 
       const user = await getUser(values.email);
       if (!user) {
-        setErrorMessage("Usuario o contraseña incorrectos");
+        showSnackbar("Usuario o contraseña incorrectos", "error");
       } else if (user.status === "pending") {
-        setErrorMessage("Esperando validación. Contacte a un administrador");
+        showSnackbar(
+          "Esperando validación. Contacte a un administrador",
+          "error",
+        );
       } else {
         const error = await authenticate(values);
-        if (error) setErrorMessage(error);
+        if (error) showSnackbar(error, "error");
       }
 
       setIsSubmitting(false);
@@ -60,7 +61,6 @@ export default function LoginForm() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Stack spacing={2}>
-        {errorMessage && <AlertError>{errorMessage}</AlertError>}
         <TextField
           fullWidth
           id="email"
