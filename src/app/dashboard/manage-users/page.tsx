@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import { getSessionUser } from "#/lib/session";
+import { checkUserRole } from "#/lib/session";
 import { getTotalPages as getUserPages } from "#/models/user";
 import Stack from "@mui/material/Stack";
 import H1 from "#/components/texts/H1";
@@ -25,12 +25,7 @@ interface Props {
 }
 
 export default async function Page({ searchParams }: Props) {
-  const user = await getSessionUser();
-  // en principio con middleware valido que no emtre en /dashboard/:slug si no hay sessión, pero no está de más
-  if (!user) throw new Error("No hay usuario logueado");
-
-  if (user.role !== "admin")
-    throw new Error("Este usuario no tiene permiso para ver esta página");
+  await checkUserRole("admin");
 
   const { query, page } = searchParams || {};
   const totalPages = await getUserPages(query);

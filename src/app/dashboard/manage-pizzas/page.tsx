@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Metadata } from "next";
-import { getSessionUser } from "#/lib/session";
+import { checkUserRole } from "#/lib/session";
 import { getTotalPages as getPizzaPages } from "#/models/pizza";
 import { clamp } from "#/lib/utils";
 import { Box, Button, Stack } from "@mui/material";
@@ -25,12 +25,8 @@ interface Props {
 }
 
 export default async function Page({ searchParams }: Props) {
-  const user = await getSessionUser();
-  // en principio con middleware valido que no emtre en /dashboard/:slug si no hay sessión, pero no está de más
-  if (!user) throw new Error("No hay usuario logueado");
-
-  if (user.role !== "admin")
-    throw new Error("Este usuario no tiene permiso para ver esta página");
+  // test
+  await checkUserRole("admin");
 
   const { query, page } = searchParams || {};
   const totalPages = await getPizzaPages(query);

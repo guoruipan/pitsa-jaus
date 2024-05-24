@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import { getSessionUser } from "#/lib/session";
+import { checkUserRole } from "#/lib/session";
 import { getWithId as getPizza } from "#/models/pizza";
 import { Stack } from "@mui/material";
 import ReturnLink from "#/components/texts/ReturnLink";
@@ -21,12 +21,7 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
-  const user = await getSessionUser();
-  // en principio con middleware valido que no emtre en /dashboard/:slug si no hay sessión, pero no está de más
-  if (!user) throw new Error("No hay usuario logueado");
-
-  if (user.role !== "admin")
-    throw new Error("Este usuario no tiene permiso para ver esta página");
+  await checkUserRole("admin");
 
   const { id } = params || {};
 

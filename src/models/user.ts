@@ -9,9 +9,11 @@ export type User = {
   email: string;
   pwd: string;
   home_address?: string;
-  role: "admin" | "manager" | "customer";
+  role: UserRole;
   status: "validated" | "pending";
 };
+
+export type UserRole = "admin" | "manager" | "customer";
 
 const ITEMS_PER_PAGE = 5;
 

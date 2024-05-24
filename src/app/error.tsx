@@ -25,8 +25,7 @@ export default function Error({
     <CenteredPaperStack>
       <H1>Algo ha ido mal</H1>
       <Typography variant="h6" component={"p"}>
-        Lo sentimos, se ha producido un error inesperado. Por favor, inténtalo
-        de nuevo más tarde.
+        {error.message}
       </Typography>
       <Button
         variant={"contained"}
