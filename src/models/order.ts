@@ -50,7 +50,7 @@ export async function insertOrderLine(orderLine: OrderLine) {
 
 const ITEMS_PER_PAGE = 5;
 
-export async function listOrders(currentPage = 1, user_id: number) {
+export async function listCustomerOrders(currentPage = 1, user_id: number) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
@@ -69,10 +69,42 @@ export async function listOrders(currentPage = 1, user_id: number) {
   }
 }
 
-export async function getTotalPages(user_id: number) {
+export async function getCustomerOrderTotalPages(user_id: number) {
   try {
     const res =
       await sql`SELECT COUNT(*) FROM orders WHERE user_id=${user_id};`;
+
+    // total pages
+    return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of orders.");
+  }
+}
+
+export async function listStoreOrders(currentPage = 1, store_id: number) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const data = await sql<
+      Order & { useremail: string }
+    >`SELECT o.*, u.email as useremail FROM orders o INNER JOIN users u ON o.user_id=u.id WHERE store_id=${store_id} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
+
+    // si no encuentra registros, devolver array vacío
+    return data?.rows || [];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data about orders");
+  }
+}
+
+export async function getStoreOrderTotalPages(store_id: number) {
+  try {
+    const res =
+      await sql`SELECT COUNT(*) FROM orders WHERE store_id=${store_id};`;
 
     // total pages
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);

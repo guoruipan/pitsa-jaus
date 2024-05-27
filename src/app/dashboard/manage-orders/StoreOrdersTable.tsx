@@ -1,5 +1,5 @@
 import React from "react";
-import { listCustomerOrders } from "#/models/order";
+import { listStoreOrders } from "#/models/order";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,18 +12,21 @@ import { formatCurrency } from "#/lib/utils";
 
 interface Props {
   currentPage: number;
-  user_id: number;
+  store_id: number;
 }
 
-export default async function OrdersTable({ currentPage, user_id }: Props) {
-  const orders = await listCustomerOrders(currentPage, user_id);
+export default async function StoreOrdersTable({
+  currentPage,
+  store_id,
+}: Props) {
+  const orders = await listStoreOrders(currentPage, store_id);
 
   return (
     <TableContainer component={Paper} elevation={3}>
       <Table sx={{ minWidth: 650 }} aria-label="Tabla de pedidos">
         <TableHead>
           <TableRow>
-            <TableCell>Tienda</TableCell>
+            <TableCell>Usuario</TableCell>
             <TableCell>Dirección envío</TableCell>
             <TableCell align="right">Total</TableCell>
             <TableCell align="right">Fecha pedido</TableCell>
@@ -37,7 +40,7 @@ export default async function OrdersTable({ currentPage, user_id }: Props) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {order.storename}
+                {order.useremail}
               </TableCell>
               <TableCell>{order.address}</TableCell>
               <TableCell align="right">{formatCurrency(order.total)}</TableCell>
