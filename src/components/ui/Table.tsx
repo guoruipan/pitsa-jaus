@@ -19,6 +19,7 @@ interface Column {
 
 interface Props {
   columns: Column[];
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   data: { [key: string]: any }[]; // tipo de dato para objetos con claves dinámicas
 }
 
