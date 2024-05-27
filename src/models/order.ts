@@ -47,3 +47,37 @@ export async function insertOrderLine(orderLine: OrderLine) {
     throw new Error("Failed to register new orderline.");
   }
 }
+
+const ITEMS_PER_PAGE = 5;
+
+export async function listOrders(currentPage = 1, user_id: number) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const data = await sql<
+      Order & { storename: string }
+    >`SELECT o.*, s.name as storename FROM orders o INNER JOIN stores s ON o.store_id=s.id WHERE user_id=${user_id} LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset};`;
+
+    // si no encuentra registros, devolver array vacío
+    return data?.rows || [];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data about orders");
+  }
+}
+
+export async function getTotalPages(user_id: number) {
+  try {
+    const res =
+      await sql`SELECT COUNT(*) FROM orders WHERE user_id=${user_id};`;
+
+    // total pages
+    return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of orders.");
+  }
+}

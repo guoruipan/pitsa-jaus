@@ -4,6 +4,8 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import { Pizza } from "#/models/pizza";
 import { Store } from "#/models/store";
 
+// https://dev.to/anne46/cart-functionality-in-react-with-context-api-2k2f
+
 export interface CartItem {
   pizza: Pizza;
   quantity: number;
