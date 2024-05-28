@@ -13,12 +13,10 @@ export type Order = {
   address: string;
 };
 
-// en lugar de guardar pizza_id: number, guardo un objeto de tipo Pizza para tener acceso directamente a
-// datos como el precio, nombre y la foto
 export type OrderLine = {
   id: number;
   order_id: number;
-  pizza: Pizza;
+  pizza_id: number;
   quantity: number;
 };
 
@@ -40,7 +38,7 @@ export async function insertOrderLine(orderLine: OrderLine) {
   try {
     await sql<OrderLine>`
     INSERT INTO order_lines (order_id, pizza_id, quantity)
-    VALUES (${orderLine.order_id}, ${orderLine.pizza.id}, ${orderLine.quantity})
+    VALUES (${orderLine.order_id}, ${orderLine.pizza_id}, ${orderLine.quantity})
   `;
   } catch (error) {
     console.error("Database Error:", error);
@@ -111,5 +109,26 @@ export async function getStoreOrderTotalPages(store_id: number) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of orders.");
+  }
+}
+
+export interface OrderLineDetails extends Pizza {
+  quantity: number;
+}
+
+export async function listOrderDetails(order_id: number) {
+  try {
+    // FOR TESTING ONLY, NEVER IN PRODUCTION
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const data =
+      await sql<OrderLineDetails>`SELECT o.quantity, p.* FROM order_lines o INNER JOIN pizzas p ON o.pizza_id=p.id WHERE order_id=${order_id}`;
+
+    console.log("reconsider this type");
+    // si no encuentra registros, devolver array vacío
+    return data?.rows || [];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch data about order_lines");
   }
 }

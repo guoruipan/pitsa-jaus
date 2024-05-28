@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Chip } from "@mui/material";
 import { formatCurrency } from "#/lib/utils";
+import OrderDetailsButton from "./OrderDetailsButton";
 
 interface Props {
   currentPage: number;
@@ -31,6 +32,7 @@ export default async function StoreOrdersTable({
             <TableCell align="right">Total</TableCell>
             <TableCell align="right">Fecha pedido</TableCell>
             <TableCell align="right">Fecha entrega</TableCell>
+            <TableCell align="right">Detalles</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,6 +53,9 @@ export default async function StoreOrdersTable({
                 {order.sent_date?.toLocaleDateString() || (
                   <Chip label="Pendiente" color="warning" />
                 )}
+              </TableCell>
+              <TableCell align="right">
+                <OrderDetailsButton order_id={order.id} />
               </TableCell>
             </TableRow>
           ))}

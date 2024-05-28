@@ -33,7 +33,7 @@ export default async function Page({ searchParams }: Props) {
       <H1>{pageTitle}</H1>
       <Suspense
         key={`${currentPage}`}
-        fallback={<TableSkeleton rows={5} cols={5} />}
+        fallback={<TableSkeleton rows={5} cols={6} />}
       >
         <OrdersTable currentPage={currentPage} user_id={user.id} />
       </Suspense>

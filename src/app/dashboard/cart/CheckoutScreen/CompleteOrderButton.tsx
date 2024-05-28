@@ -46,7 +46,7 @@ export default function CompleteOrderButton({ user }: { user: User }) {
       insertOrderLine({
         id: 0,
         order_id: order_id,
-        pizza: cartItem.pizza,
+        pizza_id: cartItem.pizza.id,
         quantity: cartItem.quantity,
       });
     });

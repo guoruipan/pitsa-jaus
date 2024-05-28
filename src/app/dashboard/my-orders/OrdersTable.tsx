@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { listCustomerOrders } from "#/models/order";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,8 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Chip } from "@mui/material";
+import { Chip, CircularProgress } from "@mui/material";
 import { formatCurrency } from "#/lib/utils";
+import OrderDetailsButton from "./OrderDetailsButton";
 
 interface Props {
   currentPage: number;
@@ -28,6 +29,7 @@ export default async function OrdersTable({ currentPage, user_id }: Props) {
             <TableCell align="right">Total</TableCell>
             <TableCell align="right">Fecha pedido</TableCell>
             <TableCell align="right">Fecha entrega</TableCell>
+            <TableCell align="right">Detalles</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -48,6 +50,11 @@ export default async function OrdersTable({ currentPage, user_id }: Props) {
                 {order.sent_date?.toLocaleDateString() || (
                   <Chip label="Pendiente" color="warning" />
                 )}
+              </TableCell>
+              <TableCell align="right">
+                <Suspense key={`${order.id}`} fallback={<CircularProgress />}>
+                  <OrderDetailsButton order_id={order.id} />
+                </Suspense>
               </TableCell>
             </TableRow>
           ))}
