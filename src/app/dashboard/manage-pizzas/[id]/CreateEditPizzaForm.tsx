@@ -4,18 +4,23 @@ import React from "react";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Button, TextField } from "@mui/material";
+import { Button, FormControl, FormHelperText, TextField } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { useSnackbar } from "#/contexts/SnackbarContext";
 import { useRouter } from "next/navigation";
 import { Pizza } from "#/models/pizza";
 import { update as updatePizza, insert as insertPizza } from "#/models/pizza";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { saveFile } from "#/lib/files";
 
 interface Props {
   pizza: Pizza | undefined;
 }
 
 // si pizza === undefined, es nuevo. Si no, es editar
+
+// https://github.com/jaredpalmer/formik/issues/926
+// https://dev.to/olabisi09/file-validation-in-react-with-formik-and-yup-48e6
 
 export default function CreateEditPizzaForm({ pizza }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,10 +40,7 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
       .number()
       .positive("Este campo no puede ser negativo")
       .required("Este campo es obligatorio"),
-    photo: yup // TODO implement actual photo input
-      .string()
-      .max(100, "Este campo no puede exceder los 100 caracteres")
-      .required("Este campo es obligatorio"),
+    photo: yup.mixed().required("La foto es obligatoria"),
   });
 
   const formik = useFormik({
@@ -46,27 +48,36 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
       name: pizza?.name || "",
       description: pizza?.description || "",
       price: pizza?.price || 0,
-      photo: pizza?.photo || "",
+      photo: null as File | null,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setIsSubmitting(true);
+
+      const file = values.photo as File; // nunca va a ser null
 
       const updatedPizza: Pizza = {
         id: pizza?.id || 0,
         name: values.name,
         description: values.description,
         price: values.price,
-        photo: values.photo,
+        photo: file.name,
       };
 
       !pizza ? insertPizza(updatedPizza) : updatePizza(updatedPizza);
+
+      saveFile(file);
+
       router.push("/dashboard/manage-pizzas");
 
       setIsSubmitting(false);
       showSnackbar("Se han actualizado los datos", "success");
     },
   });
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    formik.setFieldValue("photo", e.target?.files?.[0]);
+  };
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -107,39 +118,27 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
           error={formik.touched.price && Boolean(formik.errors.price)}
           helperText={formik.touched.price && formik.errors.price}
         />
-        <TextField // TODO make actual file input
-          fullWidth
-          id="photo"
-          name="photo"
-          label="Foto"
-          value={formik.values.photo}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={formik.touched.photo && Boolean(formik.errors.photo)}
-          helperText={formik.touched.photo && formik.errors.photo}
-        />
-        {/*  <FormControl fullWidth>
+        <FormControl fullWidth>
           <Button
             component="label"
             variant="outlined"
             startIcon={<FileUploadIcon />}
-            sx={{ mr: "1rem" }}
           >
             Subir foto
             <input
               type="file"
               accept="image/*"
               hidden
-              id="photoFile"
-              name="photoFile"
-              onChange={formik.handleChange}
+              id="photo"
+              name="photo"
+              onChange={handlePhotoChange}
               onBlur={formik.handleBlur}
             />
           </Button>
-          <FormHelperText sx={{ color: "red" }}>
-            {formik.touched.photoFile && formik.errors.photoFile}
+          <FormHelperText sx={{ color: "error" }}>
+            {formik.touched.photo && formik.errors.photo}
           </FormHelperText>
-        </FormControl> */}
+        </FormControl>
 
         <Button
           color="primary"
