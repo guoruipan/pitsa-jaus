@@ -7,9 +7,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Chip } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import { formatCurrency } from "#/lib/utils";
 import OrderDetailsButton from "./OrderDetailsButton";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import PendingChip from "./PendingChip";
 
 interface Props {
   currentPage: number;
@@ -31,7 +33,10 @@ export default async function StoreOrdersTable({
             <TableCell>Dirección envío</TableCell>
             <TableCell align="right">Total</TableCell>
             <TableCell align="right">Fecha pedido</TableCell>
-            <TableCell align="right">Fecha entrega</TableCell>
+            <TableCell align="right">
+              Fecha entrega
+              <SentDateTooltip />
+            </TableCell>
             <TableCell align="right">Detalles</TableCell>
           </TableRow>
         </TableHead>
@@ -51,7 +56,7 @@ export default async function StoreOrdersTable({
               </TableCell>
               <TableCell align="right">
                 {order.sent_date?.toLocaleDateString() || (
-                  <Chip label="Pendiente" color="warning" />
+                  <PendingChip order={order} />
                 )}
               </TableCell>
               <TableCell align="right">
@@ -62,5 +67,15 @@ export default async function StoreOrdersTable({
         </TableBody>
       </Table>
     </TableContainer>
+  );
+}
+
+function SentDateTooltip() {
+  return (
+    <Tooltip title="Pulsa en el icono de Pendiente para confirmar el envío">
+      <IconButton>
+        <HelpOutlineIcon />
+      </IconButton>
+    </Tooltip>
   );
 }

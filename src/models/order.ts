@@ -34,6 +34,19 @@ export async function insertOrder(order: Order): Promise<number | undefined> {
   }
 }
 
+export async function updateOrder(order: Order) {
+  try {
+    await sql<Order>`
+    UPDATE orders SET user_id=${order.user_id}, store_id=${order.store_id}, total=${order.total}, 
+    order_date=${order.order_date.toISOString()}, sent_date=${order.sent_date?.toISOString()}, address=${order.address}
+    WHERE id=${order.id}
+  `;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update order.");
+  }
+}
+
 export async function insertOrderLine(orderLine: OrderLine) {
   try {
     await sql<OrderLine>`
