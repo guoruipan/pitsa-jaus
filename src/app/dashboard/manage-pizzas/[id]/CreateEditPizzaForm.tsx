@@ -66,7 +66,7 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
 
       !pizza ? insertPizza(updatedPizza) : updatePizza(updatedPizza);
 
-      saveFile(file);
+      await saveFile(file);
 
       router.push("/dashboard/manage-pizzas");
 

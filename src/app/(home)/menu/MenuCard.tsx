@@ -40,7 +40,7 @@ export default function MenuCard({ pizza, user }: Props) {
 
   return (
     <>
-      <Card sx={{ minWidth: 275 }}>
+      <Card>
         <CardActionArea onClick={handleOpen}>
           <CardMedia
             component={"img"}

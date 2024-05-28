@@ -1,6 +1,17 @@
 import React from "react";
 import Image from "next/image";
-import { Button, Grid, Stack, SxProps, Theme, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  Stack,
+  SxProps,
+  Theme,
+  Typography,
+} from "@mui/material";
 import photo from "@/public/logo3.png";
 import NextLink from "next/link";
 
@@ -11,7 +22,79 @@ export default async function Home() {
     <>
       <HomeXS />
       <HomeMD />
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6}>
+          <MyCard
+            image="/two_pizza.webp"
+            title="2x1 por tiempo limitado"
+            description="No te pierdas nuestras ofertas semanales"
+            href="/auth/login"
+            buttonText="¡Lo quiero!"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <MyCard
+            image="/pizza_slice.webp"
+            title="¡Listo en 10 minutos!"
+            description="Pide y paga desde donde quieras, como quieras"
+            href="/auth/login"
+            buttonText="Descúbrelo"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <MyCard
+            image="/delivery_guy.webp"
+            title="¿Ganas de Pitsajaus&#174;?"
+            description="Elige tu pizza favorita y nosotros te la llevamos."
+            href="/menu"
+            buttonText="¡Pide ya!"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <MyCard
+            image="/discount.webp"
+            title="Acumula puntos"
+            description="Y canjéalos por recompensas increíbles"
+            href="/auth/login"
+            buttonText="Regístrate"
+          />
+        </Grid>
+      </Grid>
     </>
+  );
+}
+
+interface CardProps {
+  image: string;
+  title: string;
+  description: string;
+  href: string;
+  buttonText: string;
+}
+
+function MyCard({ image, title, description, href, buttonText }: CardProps) {
+  return (
+    <Card sx={{ borderRadius: "1rem", pb: 2 }}>
+      <CardMedia sx={{ height: 250 }} image={image} />
+      <CardContent sx={{ textAlign: "center" }}>
+        <Typography gutterBottom variant="h5" fontWeight={"bold"}>
+          {title}
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          {description}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ justifyContent: "center" }}>
+        <Button
+          variant="contained"
+          component={NextLink}
+          href={href}
+          sx={{ width: "75%" }}
+        >
+          {buttonText}
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
 
@@ -22,6 +105,7 @@ function HomeXS() {
       display={{ xs: "flex", sm: "none" }}
       justifyContent={"center"}
       textAlign={"center"}
+      sx={{ mb: 4 }}
     >
       <Typography variant="h2" component={"h1"}>
         Felicidad en cada bocado
