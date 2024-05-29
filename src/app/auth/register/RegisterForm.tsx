@@ -25,7 +25,7 @@ import {
 } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { insert as createUser, getWithEmail as getUser } from "#/models/user";
-import type { User } from "#/models/user";
+import type { User, UserRole } from "#/models/user";
 import { redirectTo } from "#/lib/navigation";
 
 export default function RegisterForm() {
@@ -67,7 +67,7 @@ export default function RegisterForm() {
       name: "",
       email: "",
       pwd: "",
-      home_address: "",
+      home_address: "" as string | undefined,
       role: "",
       privacyPolicy: false,
       termsConditions: false,
@@ -81,8 +81,8 @@ export default function RegisterForm() {
         name: values.name,
         email: values.email,
         pwd: values.pwd,
-        home_address: values.home_address || undefined,
-        role: values.role as "admin" | "manager" | "customer",
+        home_address: values.home_address,
+        role: values.role as UserRole,
         status: values.role === "customer" ? "validated" : "pending",
       };
 

@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import { list as listUsers } from "#/models/user";
 import { Chip } from "@mui/material";
 import PendingChip from "./PendingChip";
+import { SimpleTooltip } from "#/components/icons/Tooltip";
 
 interface Props {
   query?: string;
@@ -33,7 +34,10 @@ export default async function UserTable({ query, currentPage }: Props) {
             <TableCell>Email</TableCell>
             <TableCell>Dirección</TableCell>
             <TableCell>Rol</TableCell>
-            <TableCell align="right">Estado</TableCell>
+            <TableCell align="right">
+              Estado
+              <SimpleTooltip text="Pulsa en el icono de Pendiente para validar o rechazar al usuario" />
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
