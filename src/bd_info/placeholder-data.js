@@ -53,7 +53,7 @@ const users = [
     pwd: "elena789",
     home_address: "Avenida del Sol, 21",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 7,
@@ -62,7 +62,7 @@ const users = [
     pwd: "francisco00",
     home_address: "Calle Luna, 32",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 8,
@@ -71,7 +71,7 @@ const users = [
     pwd: "gloria111",
     home_address: "Calle Estacion, 1",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ const users = [
     pwd: "hugo222",
     home_address: null,
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 10,
@@ -89,7 +89,7 @@ const users = [
     pwd: "irene333",
     home_address: "Calle Principal, 7",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 11,
@@ -98,7 +98,7 @@ const users = [
     pwd: "javier444",
     home_address: "Calle Norte, 56",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 12,
@@ -107,7 +107,7 @@ const users = [
     pwd: "karina555",
     home_address: "Calle Sur, 89",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 13,
@@ -116,7 +116,7 @@ const users = [
     pwd: "luis666",
     home_address: "Calle Oriente, 23",
     role: "manager",
-    status: "pending",
+    status: "validated",
   },
   {
     id: 14,

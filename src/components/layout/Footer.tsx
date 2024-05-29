@@ -15,7 +15,7 @@ export default function Footer() {
       spacing={2}
       sx={{
         bgcolor: "primary.main",
-        p: "1rem",
+        p: "1.5rem",
         color: "primary.contrastText",
         textAlign: "center",
       }}

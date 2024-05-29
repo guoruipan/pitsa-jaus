@@ -89,6 +89,7 @@ export default function RegisterForm() {
       /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
 
       if (!(await getUser(user.email))) {
+        // TODO el error da al insertar
         await createUser(user);
         await redirectTo(
           user.status === "validated"
