@@ -64,9 +64,23 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
         photo: file.name,
       };
 
-      !pizza ? insertPizza(updatedPizza) : updatePizza(updatedPizza);
+      let file_id: number;
+      if (!pizza) {
+        file_id = (await insertPizza(updatedPizza)) || 0;
+      } else {
+        updatePizza(updatedPizza);
+        file_id = updatedPizza.id;
+      }
 
-      await saveFile(file);
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("file_id", file_id.toString());
+
+        await saveFile(formData);
+      } catch (error) {
+        console.error(error);
+      }
 
       router.push("/dashboard/manage-pizzas");
 

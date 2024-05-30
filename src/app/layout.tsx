@@ -30,28 +30,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-ES">
-      <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
-          <ShoppingCartProvider>
-            <SnackBarProvider>
-              <CssBaseline />
-              <InnerLayout>{children as React.ReactNode}</InnerLayout>
-            </SnackBarProvider>
-          </ShoppingCartProvider>
-        </ThemeProvider>
-      </AppRouterCacheProvider>
+      <body>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <ShoppingCartProvider>
+              <SnackBarProvider>
+                <CssBaseline />
+                <InnerLayout>{children as React.ReactNode}</InnerLayout>
+              </SnackBarProvider>
+            </ShoppingCartProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
 
 function InnerLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Stack
-      component="body"
-      sx={{
-        minHeight: "100vh",
-      }}
-    >
+    <Stack sx={{ minHeight: "100vh" }}>
       <AppBar />
       <Container
         component="main"

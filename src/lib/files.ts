@@ -1,10 +1,22 @@
 "use server";
 
-// TODO wip
+import fs from "fs/promises";
+import path from "path";
 
-import fs from "fs";
+export async function saveFile(formData: FormData) {
+  try {
+    const file = formData.get("file") as File;
+    const file_id = formData.get("file_id");
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
+    const uploadPath = path.join(
+      process.cwd(),
+      `/public/pizza/${file_id}_${file.name}`,
+    );
 
-export async function saveFile(file: File) {
-  const data = await file.arrayBuffer();
-  fs.appendFile(`#/public/${file.name}`, Buffer.from(data), () => {});
+    console.log(uploadPath);
+    await fs.writeFile(uploadPath, buffer);
+  } catch (error) {
+    console.error(error);
+  }
 }

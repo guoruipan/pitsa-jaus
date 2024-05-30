@@ -63,7 +63,7 @@ export default function Layout({
         </List>
       </Grid>
       <Grid item xs={12} md={9}>
-        <PaperStack>{children}</PaperStack>
+        <PaperStack>{children as React.ReactNode}</PaperStack>
       </Grid>
     </Grid>
   );

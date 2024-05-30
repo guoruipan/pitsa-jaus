@@ -12,12 +12,14 @@ export type Pizza = {
 
 const ITEMS_PER_PAGE = 8;
 
-export async function insert(pizza: Pizza) {
+export async function insert(pizza: Pizza): Promise<number | undefined> {
   try {
-    await sql<Pizza>`
+    const data = await sql`
     INSERT INTO pizzas (name, description, price, photo)
     VALUES (${pizza.name}, ${pizza.description}, ${pizza.price}, ${pizza.photo})
+    RETURNING id AS generated_id
   `;
+    if (data.rowCount > 0) return data.rows[0].generated_id as number;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to register new pizza.");
