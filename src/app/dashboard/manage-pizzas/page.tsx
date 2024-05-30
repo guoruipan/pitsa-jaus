@@ -51,7 +51,7 @@ export default async function Page({ searchParams }: Props) {
       >
         <PizzaTable query={query} currentPage={currentPage} />
       </Suspense>
-      <Pagination totalPages={totalPages} defaultPage={currentPage} />
+      <Pagination totalPages={totalPages} activePage={currentPage} />
     </Stack>
   );
 }

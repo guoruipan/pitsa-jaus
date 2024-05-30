@@ -6,10 +6,10 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 interface Props {
   totalPages: number;
-  defaultPage?: number;
+  activePage?: number;
 }
 
-export default function MyPagination({ totalPages, defaultPage = 1 }: Props) {
+export default function MyPagination({ totalPages, activePage = 1 }: Props) {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -24,7 +24,7 @@ export default function MyPagination({ totalPages, defaultPage = 1 }: Props) {
     <Pagination
       count={totalPages}
       color="secondary"
-      page={defaultPage}
+      page={activePage}
       onChange={(event, page) => {
         handleSearch(event, page);
       }}

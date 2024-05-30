@@ -38,7 +38,7 @@ export default async function Page({ searchParams }: Props) {
       <Suspense fallback={<MenuGridSkeleton />}>
         <MenuGrid currentPage={currentPage} />
       </Suspense>
-      <Pagination totalPages={totalPages} defaultPage={currentPage} />
+      <Pagination totalPages={totalPages} activePage={currentPage} />
     </Stack>
   );
 }

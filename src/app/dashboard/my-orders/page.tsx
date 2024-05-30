@@ -37,7 +37,7 @@ export default async function Page({ searchParams }: Props) {
       >
         <OrdersTable currentPage={currentPage} user_id={user.id} />
       </Suspense>
-      <MyPagination totalPages={totalPages} defaultPage={currentPage} />
+      <MyPagination totalPages={totalPages} activePage={currentPage} />
     </Stack>
   );
 }

@@ -56,7 +56,7 @@ async function StoreOrdersScreen({
       >
         <StoreOrdersTable currentPage={currentPage} store_id={store_id} />
       </Suspense>
-      <MyPagination totalPages={totalPages} defaultPage={currentPage} />
+      <MyPagination totalPages={totalPages} activePage={currentPage} />
     </Stack>
   );
 }
