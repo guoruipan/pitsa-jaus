@@ -18,6 +18,7 @@ import { redirectTo } from "#/lib/navigation";
 import { useSnackbar } from "#/contexts/SnackbarContext";
 import { deleteWithId as deletePizza } from "#/models/pizza";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { deleteFile } from "#/lib/files";
 
 // https://mui.com/material-ui/react-menu/#basic-menu
 // https://mui.com/material-ui/react-popover/#anchor-playground
@@ -112,9 +113,10 @@ function DeletePizzaDialog({
   const handleClose = () => {
     onClose();
   };
-  const handleDeleteClick = () => {
-    console.log("not sure why it works worse when async await");
-    deletePizza(pizza.id);
+  const handleDeleteClick = async () => {
+    await deletePizza(pizza.id);
+    console.log("make this path a global const");
+    await deleteFile(`/public/pizza/${pizza.id}_${pizza.photo}`);
     handleClose();
     handleReload();
     showSnackbar(`Se ha borrado la pizza ${pizza.name}`, "success");

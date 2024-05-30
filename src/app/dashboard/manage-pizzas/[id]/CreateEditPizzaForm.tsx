@@ -75,7 +75,7 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
       try {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("file_id", file_id.toString());
+        formData.append("filePath", `/public/pizza/${file_id}_${file.name}`);
 
         await saveFile(formData);
       } catch (error) {
