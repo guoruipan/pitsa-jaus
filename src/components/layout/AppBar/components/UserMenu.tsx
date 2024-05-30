@@ -53,7 +53,6 @@ export default function UserMenu({ user }: Props) {
 
   const handleLogout = async () => {
     await logout();
-    console.log("vaciar carrito on logout");
   };
 
   return (

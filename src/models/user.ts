@@ -1,5 +1,6 @@
 "use server";
 
+/* eslint no-console: "off" */
 import { hashPassword } from "#/lib/security";
 import { sql } from "@vercel/postgres";
 
@@ -36,7 +37,7 @@ export async function list(term = "", currentPage = 1) {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about users");
+    throw new Error("No se pudo obtener los datos de los usuarios");
   }
 }
 
@@ -52,7 +53,7 @@ export async function getTotalPages(term = "") {
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of users.");
+    throw new Error("No se pudo obtener los datos de los usuarios");
   }
 }
 
@@ -66,7 +67,7 @@ export async function insert(user: User) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to register new user.");
+    throw new Error("No se pudo registrar al usuario");
   }
 }
 
@@ -79,7 +80,7 @@ export async function update(user: User) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to update user.");
+    throw new Error("No se pudo actualizar los datos del usuario");
   }
 }
 
@@ -91,7 +92,7 @@ export async function changePassword(user_id: number, newPassword: string) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to update user password.");
+    throw new Error("No se pudo actualizar la contraseña");
   }
 }
 
@@ -103,7 +104,7 @@ export async function deleteWithId(id: number) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to delete user.");
+    throw new Error("No se pudo borrar al usuario");
   }
 }
 
@@ -114,6 +115,6 @@ export async function getWithEmail(email: string) {
     if (data.rowCount > 0) return data.rows[0];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch user with email");
+    throw new Error("No se pudo obtener los datos del usuario");
   }
 }

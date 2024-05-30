@@ -1,5 +1,6 @@
 "use server";
 
+/* eslint no-console: "off" */
 import { sql } from "@vercel/postgres";
 
 export type Store = {
@@ -34,7 +35,7 @@ export async function list(term = "", currentPage = 1) {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about stores");
+    throw new Error("No se pudo obtener los datos de las tiendas");
   }
 }
 
@@ -55,7 +56,7 @@ export async function completeList(term = "") {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about stores");
+    throw new Error("No se pudo obtener los datos de las tiendas");
   }
 }
 
@@ -71,7 +72,7 @@ export async function getTotalPages(term = "") {
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of stores.");
+    throw new Error("No se pudo obtener los datos de las tiendas");
   }
 }
 
@@ -83,7 +84,7 @@ export async function insert(store: Store) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to register new store.");
+    throw new Error("No se pudo registrar la nueva tienda");
   }
 }
 
@@ -96,7 +97,7 @@ export async function update(store: Store) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to update store.");
+    throw new Error("No se pudo actualizar los datos de la tienda");
   }
 }
 
@@ -108,7 +109,7 @@ export async function getWithManagerId(manager_id: number) {
     if (data.rowCount > 0) return data.rows[0];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch store with manager id");
+    throw new Error("No se pudo obtener los datos de la tienda");
   }
 }
 
@@ -119,6 +120,6 @@ export async function getWithName(name: string) {
     if (data.rowCount > 0) return data.rows[0];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch store with name");
+    throw new Error("No se pudo obtener los datos de la tienda");
   }
 }

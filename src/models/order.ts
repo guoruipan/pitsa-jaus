@@ -1,5 +1,6 @@
 "use server";
 
+/* eslint no-console: "off" */
 import { sql } from "@vercel/postgres";
 import { Pizza } from "./pizza";
 
@@ -30,7 +31,7 @@ export async function insertOrder(order: Order): Promise<number | undefined> {
     if (data.rowCount > 0) return data.rows[0].generated_id as number;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to register new order.");
+    throw new Error("No se pudo registrar el pedido");
   }
 }
 
@@ -43,7 +44,7 @@ export async function updateOrder(order: Order) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to update order.");
+    throw new Error("No se pudo actualizar los datos del pedido");
   }
 }
 
@@ -55,7 +56,7 @@ export async function insertOrderLine(orderLine: OrderLine) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to register new orderline.");
+    throw new Error("No se pudo registrar una de las líneas del pedido");
   }
 }
 
@@ -76,7 +77,7 @@ export async function listCustomerOrders(currentPage = 1, user_id: number) {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about orders");
+    throw new Error("No se pudo obtener los datos de pedidos");
   }
 }
 
@@ -89,7 +90,7 @@ export async function getCustomerOrderTotalPages(user_id: number) {
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of orders.");
+    throw new Error("No se pudo obtener los datos de pedidos");
   }
 }
 
@@ -108,7 +109,7 @@ export async function listStoreOrders(currentPage = 1, store_id: number) {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about orders");
+    throw new Error("No se pudo obtener los datos de pedidos");
   }
 }
 
@@ -121,7 +122,7 @@ export async function getStoreOrderTotalPages(store_id: number) {
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of orders.");
+    throw new Error("No se pudo obtener los datos de pedidos");
   }
 }
 
@@ -142,6 +143,6 @@ export async function listOrderDetails(order_id: number) {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about order_lines");
+    throw new Error("No se pudo obtener los datos de pedidos");
   }
 }

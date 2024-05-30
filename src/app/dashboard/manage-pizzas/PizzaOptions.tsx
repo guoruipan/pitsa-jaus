@@ -115,7 +115,6 @@ function DeletePizzaDialog({
   };
   const handleDeleteClick = async () => {
     await deletePizza(pizza.id);
-    console.log("make this path a global const");
     await deleteFile(`/public/pizza/${pizza.id}_${pizza.photo}`);
     handleClose();
     handleReload();

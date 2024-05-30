@@ -1,18 +1,17 @@
 "use server";
 
+/* eslint no-console: "off" */
 import fs from "fs/promises";
 import path from "path";
 
 export async function saveFile(formData: FormData) {
   try {
     const file = formData.get("file") as File;
-    const filePath = formData.get("filePath") as string;
-
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
 
+    const filePath = formData.get("filePath") as string;
     const uploadPath = path.join(process.cwd(), filePath);
-    console.log(uploadPath);
 
     await fs.writeFile(uploadPath, buffer);
   } catch (error) {

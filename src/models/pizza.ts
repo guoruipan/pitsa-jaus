@@ -1,5 +1,6 @@
 "use server";
 
+/* eslint no-console: "off" */
 import { sql } from "@vercel/postgres";
 
 export type Pizza = {
@@ -22,7 +23,7 @@ export async function insert(pizza: Pizza): Promise<number | undefined> {
     if (data.rowCount > 0) return data.rows[0].generated_id as number;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to register new pizza.");
+    throw new Error("No se pudo registrar la nueva pizza");
   }
 }
 
@@ -34,7 +35,7 @@ export async function update(pizza: Pizza) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to update pizza.");
+    throw new Error("No se pudo actualizar los datos de la pizza");
   }
 }
 
@@ -46,7 +47,7 @@ export async function deleteWithId(id: number) {
   `;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to delete pizza.");
+    throw new Error("No se pudo borrar la pizza.");
   }
 }
 
@@ -69,7 +70,7 @@ export async function list(term = "", currentPage = 1) {
     return data?.rows || [];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch data about pizzas");
+    throw new Error("No se pudo obtener los datos de las pizzas");
   }
 }
 
@@ -86,7 +87,7 @@ export async function getTotalPages(term = "") {
     return Math.ceil(Number(res.rows[0].count) / ITEMS_PER_PAGE);
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch total number of pizzas.");
+    throw new Error("No se pudo obtener los datos de las pizzas.");
   }
 }
 
@@ -101,6 +102,6 @@ export async function getWithId(id: number) {
     if (data.rowCount > 0) return data.rows[0];
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch pizza with specified ID");
+    throw new Error("No se pudo obtener los datos de la pizza");
   }
 }
