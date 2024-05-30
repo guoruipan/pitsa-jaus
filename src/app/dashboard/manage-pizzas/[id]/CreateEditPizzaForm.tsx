@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { Pizza } from "#/models/pizza";
 import { update as updatePizza, insert as insertPizza } from "#/models/pizza";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { saveFile } from "#/lib/files";
+import { deleteFile, saveFile } from "#/lib/files";
 
 interface Props {
   pizza: Pizza | undefined;
@@ -40,7 +40,9 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
       .number()
       .positive("Este campo no puede ser negativo")
       .required("Este campo es obligatorio"),
-    photo: yup.mixed().required("La foto es obligatoria"),
+    photo: !pizza
+      ? yup.mixed().required("La foto es obligatoria")
+      : yup.mixed().nullable(),
   });
 
   const formik = useFormik({
@@ -54,14 +56,15 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
     onSubmit: async (values) => {
       setIsSubmitting(true);
 
-      const file = values.photo as File; // nunca va a ser null
+      const file = values.photo;
 
       const updatedPizza: Pizza = {
         id: pizza?.id || 0,
         name: values.name,
         description: values.description,
         price: values.price,
-        photo: file.name,
+        // si no han subido fichero, es porque es editar y sí hay pizza. nunca debería darse "Error"
+        photo: file?.name || pizza?.photo || "Error",
       };
 
       let file_id: number;
@@ -72,14 +75,20 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
         file_id = updatedPizza.id;
       }
 
-      try {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("filePath", `/public/pizza/${file_id}_${file.name}`);
+      if (file) {
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("filePath", `/public/pizza/${file_id}_${file.name}`);
 
-        await saveFile(formData);
-      } catch (error) {
-        console.error(error);
+          await saveFile(formData);
+
+          if (pizza) {
+            await deleteFile(`/public/pizza/${pizza.id}_${pizza.photo}`);
+          }
+        } catch (error) {
+          console.error(error);
+        }
       }
 
       router.push("/dashboard/manage-pizzas");
