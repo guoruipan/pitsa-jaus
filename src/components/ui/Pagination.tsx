@@ -14,7 +14,7 @@ export default function MyPagination({ totalPages, defaultPage = 1 }: Props) {
   const { replace } = useRouter();
   const searchParams = useSearchParams();
 
-  function handleSearch(page: number) {
+  function handleSearch(event: React.ChangeEvent<unknown>, page: number) {
     const params = new URLSearchParams(searchParams);
     params.set("page", page.toString());
     replace(`${pathname}?${params.toString()}`);
@@ -24,9 +24,9 @@ export default function MyPagination({ totalPages, defaultPage = 1 }: Props) {
     <Pagination
       count={totalPages}
       color="secondary"
-      defaultPage={defaultPage}
-      onChange={(event: React.ChangeEvent<unknown>, page: number) => {
-        handleSearch(page);
+      page={defaultPage}
+      onChange={(event, page) => {
+        handleSearch(event, page);
       }}
     />
   );
