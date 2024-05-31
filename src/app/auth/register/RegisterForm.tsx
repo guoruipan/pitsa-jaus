@@ -27,9 +27,11 @@ import Stack from "@mui/material/Stack";
 import { insert as createUser, getWithEmail as getUser } from "#/models/user";
 import type { User, UserRole } from "#/models/user";
 import { redirectTo } from "#/lib/navigation";
+import { useSnackbar } from "#/contexts/SnackbarContext";
 
 export default function RegisterForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { showSnackbar } = useSnackbar();
 
   const validationSchema = yup.object({
     name: yup
@@ -88,17 +90,20 @@ export default function RegisterForm() {
 
       /* home_address lo guardo como undefined cuando el campo está vacío, para evitar "" en bd */
 
-      if (!(await getUser(user.email))) {
-        // TODO el error da al insertar
-        await createUser(user);
-        await redirectTo(
-          user.status === "validated"
-            ? "/auth/register/success"
-            : "/auth/register/pending",
-        );
-      } else {
-        formik.touched.email = true;
-        formik.errors.email = "Ya existe un usuario con el email introducido";
+      try {
+        if (!(await getUser(user.email))) {
+          await createUser(user);
+          await redirectTo(
+            user.status === "validated"
+              ? "/auth/register/success"
+              : "/auth/register/pending",
+          );
+        } else {
+          formik.touched.email = true;
+          formik.errors.email = "Ya existe un usuario con el email introducido";
+        }
+      } catch (error) {
+        showSnackbar("No se ha podido registrar el usuario", "error");
       }
 
       setIsSubmitting(false);

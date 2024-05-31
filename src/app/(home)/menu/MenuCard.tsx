@@ -59,56 +59,59 @@ export default function MenuCard({ pizza, user }: Props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <PaperStack
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: {
-              xs: "95%",
-              sm: "70%",
-              md: "50%",
-            },
-            transform: "translate(-50%, -50%)",
-            pt: "1.5rem",
-          }}
-        >
-          <Box display="flex" flexDirection={"row-reverse"}>
-            <IconButton
-              size="small"
-              aria-label="close-modal"
-              color="inherit"
-              onClick={handleClose}
-            >
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Box>
-          <Box
+        <>
+          {/* el fragmento es para evitar un warning sobre refs pasados a Modal */}
+          <PaperStack
             sx={{
-              position: "relative",
-              height: { xs: "200px", sm: "250px", md: "275px", lg: "300px" },
-              borderRadius: "1rem",
-              overflow: "hidden",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              width: {
+                xs: "95%",
+                sm: "70%",
+                md: "50%",
+              },
+              transform: "translate(-50%, -50%)",
+              pt: "1.5rem",
             }}
           >
-            <Image
-              src={getPizzaPhoto(pizza)}
-              alt={`Imagen de una pizza ${pizza.name}`}
-              fill
-              style={{ objectFit: "cover" }}
-              priority
-            />
-          </Box>
-          <Typography variant="h4">{pizza.name}</Typography>
-          <Typography variant={"subtitle1"}>{pizza.description}</Typography>
-          <Button
-            variant="contained"
-            onClick={handleClick}
-            disabled={!user || user.role !== "customer"}
-          >
-            Añadir por {formatCurrency(pizza.price)}
-          </Button>
-        </PaperStack>
+            <Box display="flex" flexDirection={"row-reverse"}>
+              <IconButton
+                size="small"
+                aria-label="close-modal"
+                color="inherit"
+                onClick={handleClose}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                position: "relative",
+                height: { xs: "200px", sm: "250px", md: "275px", lg: "300px" },
+                borderRadius: "1rem",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={getPizzaPhoto(pizza)}
+                alt={`Imagen de una pizza ${pizza.name}`}
+                fill
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            </Box>
+            <Typography variant="h4">{pizza.name}</Typography>
+            <Typography variant={"subtitle1"}>{pizza.description}</Typography>
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              disabled={!user || user.role !== "customer"}
+            >
+              Añadir por {formatCurrency(pizza.price)}
+            </Button>
+          </PaperStack>
+        </>
       </Modal>
     </>
   );
