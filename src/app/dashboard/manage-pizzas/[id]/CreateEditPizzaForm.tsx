@@ -158,7 +158,11 @@ export default function CreateEditPizzaForm({ pizza }: Props) {
               onBlur={formik.handleBlur}
             />
           </Button>
-          <FormHelperText sx={{ color: "error" }}>
+          <FormHelperText sx={{ color: "inherit" }}>
+            {formik.values.photo &&
+              `Archivo subido: ${formik.values.photo.name}`}
+          </FormHelperText>
+          <FormHelperText sx={{ color: "red" }}>
             {formik.touched.photo && formik.errors.photo}
           </FormHelperText>
         </FormControl>
