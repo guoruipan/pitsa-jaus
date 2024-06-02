@@ -34,15 +34,17 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <Stack spacing={3}>
-      <H1>{pageTitle}</H1>
-      <Box display={"flex"} justifyContent={"flex-end"}>
-        <Button
-          variant="contained"
-          component={NextLink}
-          href="/dashboard/manage-pizzas/0"
-        >
-          Nuevo
-        </Button>
+      <Box>
+        <H1>{pageTitle}</H1>
+        <Box display={"flex"} justifyContent={"flex-end"}>
+          <Button
+            variant="contained"
+            component={NextLink}
+            href="/dashboard/manage-pizzas/0"
+          >
+            Nuevo
+          </Button>
+        </Box>
       </Box>
       <SearchBar label="Busca por nombre" />
       <Suspense
