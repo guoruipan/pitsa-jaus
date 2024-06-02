@@ -138,7 +138,6 @@ export async function listOrderDetails(order_id: number) {
     const data =
       await sql<OrderLineDetails>`SELECT o.quantity, p.* FROM order_lines o INNER JOIN pizzas p ON o.pizza_id=p.id WHERE order_id=${order_id}`;
 
-    console.log("reconsider this type");
     // si no encuentra registros, devolver array vacío
     return data?.rows || [];
   } catch (error) {

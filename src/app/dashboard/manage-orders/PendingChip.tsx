@@ -55,11 +55,10 @@ function ValidateSentDateDialog({
     onClose();
   };
 
-  const accept = () => {
-    console.log("not sure why it works worse when async await");
+  const accept = async () => {
     const updatedOrder = order;
     updatedOrder.sent_date = new Date();
-    updateOrder(updatedOrder);
+    await updateOrder(updatedOrder);
     handleClose();
     handleReload();
     showSnackbar(`Has marcado el pedido como enviado`, "success");

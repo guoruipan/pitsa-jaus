@@ -65,17 +65,15 @@ function ValidateUserDialog({
     onClose();
   };
 
-  const accept = () => {
-    console.log("not sure why it works worse when async await");
+  const accept = async () => {
     user.status = "validated";
-    updateUser(user);
+    await updateUser(user);
     handleClose();
     handleReload();
     showSnackbar(`Has aceptado a ${user.email}`, "success");
   };
-  const reject = () => {
-    console.log("not sure why it works worse when async await");
-    deleteUser(user.id);
+  const reject = async () => {
+    await deleteUser(user.id);
     handleClose();
     handleReload();
     showSnackbar(`Has rechazado a ${user.email}`, "error");
