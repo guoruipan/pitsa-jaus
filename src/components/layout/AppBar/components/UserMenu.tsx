@@ -12,6 +12,7 @@ import type { User } from "#/models/user";
 import Link from "#/components/texts/Link";
 import { Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useShoppingCart } from "#/contexts/ShoppingCartContext";
 
 const settings = [
   { name: "Mi perfil", href: "/dashboard" },
@@ -51,7 +52,12 @@ export default function UserMenu({ user }: Props) {
     setAnchorElUser(null);
   };
 
+  const { clearCart, changeStore } = useShoppingCart();
+
   const handleLogout = async () => {
+    // vaciar el carrito y tienda así sólo es necesario porque está en localstorage
+    clearCart();
+    changeStore(undefined);
     await logout();
   };
 
