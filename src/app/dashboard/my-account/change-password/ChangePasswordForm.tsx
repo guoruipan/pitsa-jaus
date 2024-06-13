@@ -48,6 +48,7 @@ export default function ChangePasswordForm({ user }: Props) {
         formik.touched.newPwd2 = true;
         formik.errors.newPwd = "Las contraseñas deben coincidir";
         formik.errors.newPwd2 = "Las contraseñas deben coincidir";
+        setIsSubmitting(false);
         return;
       }
 
